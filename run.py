@@ -4,7 +4,7 @@ import json
 import numpy as np
 import pandas as pd
 
-model = "gpt-3.5-turbo"
+model = "falcon"
 questions_path = "TeleQnA.txt"
 save_path = os.path.join(model+"_answers.txt")
 
@@ -51,7 +51,7 @@ for start_id in range(start, end, n_questions):
 
     while attempts < max_attempts:
         try:
-            accepted_questions, parsed_predicted_answers = check_questions_with_val_output(selected_questions, model)
+            accepted_questions, parsed_predicted_answers = check_questions_with_val_output_local(selected_questions, "falcon")
             
             for q in selected_questions:  
                 parsed_predicted_answers[q]['answer']
