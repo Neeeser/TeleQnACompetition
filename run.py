@@ -4,11 +4,11 @@ import json
 import numpy as np
 import pandas as pd
 
-model = "falcon"
+model = "phi3"
 questions_path = "TeleQnA.txt"
 save_path = os.path.join(model+"_answers.txt")
 
-n_questions = 5 # Batch the questions asked to reduce time
+n_questions = 1 # Batch the questions asked to reduce time
 max_attempts = 5 # Maximal number of trials before skipping the question
 
 print("Evaluating {}".format(model))
@@ -51,7 +51,7 @@ for start_id in range(start, end, n_questions):
 
     while attempts < max_attempts:
         try:
-            accepted_questions, parsed_predicted_answers = check_questions_with_val_output_local(selected_questions, "falcon")
+            accepted_questions, parsed_predicted_answers = check_questions_with_val_output_local(selected_questions, model=model)
             
             for q in selected_questions:  
                 parsed_predicted_answers[q]['answer']

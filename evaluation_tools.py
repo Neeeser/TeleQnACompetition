@@ -82,7 +82,7 @@ def check_questions_with_val_output(questions_dict, model):
     return accepted_questions, parsed_predicted_answers
 
 
-def check_questions_with_val_output_local(questions_dict, model="llama3:instruct"):
+def check_questions_with_val_output_local(questions_dict, model="phi"):
     questions_only = deepcopy(questions_dict)
     answers_only = {}
     for q in questions_dict:
@@ -105,12 +105,11 @@ def check_questions_with_val_output_local(questions_dict, model="llama3:instruct
     # Call the local model using Ollama
     response = call_local_model(syst_prompt + "\n" + user_prompt, model=model)
     predicted_answers_str = response['message']['content']  # Adjust based on your local API's response format
-
     predicted_answers_str = predicted_answers_str.replace('"\n', '",\n')
     predicted_answers_str = predicted_answers_str[predicted_answers_str.find("{"):]
 
     parsed_predicted_answers = ast.literal_eval(predicted_answers_str)
-    print(parsed_predicted_answers)
+
     for q in parsed_predicted_answers:
         if "answer" in parsed_predicted_answers[q] and "question" in parsed_predicted_answers[q]:
             parsed_predicted_answers[q] = {
@@ -127,7 +126,5 @@ def check_questions_with_val_output_local(questions_dict, model="llama3:instruct
 
     return accepted_questions, parsed_predicted_answers
 
-response = call_local_model("Hello, how are you?", model="falcon")
 
-print(response["message"]["content"])
 
