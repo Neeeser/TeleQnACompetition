@@ -61,6 +61,7 @@ for start_id in range(start, end, n_questions):
                 correct += [results[q]['correct']]
                 categories += [selected_questions[q]['category']]
         
+        
             break
             
         except Exception as e:

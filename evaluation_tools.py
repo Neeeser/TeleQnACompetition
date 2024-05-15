@@ -5,6 +5,7 @@ import ast
 import ollama
 
 
+
 # Function to call the local model using Ollama
 def call_local_model(prompt, model="llama3:instruct"):
     response = ollama.chat(
