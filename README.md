@@ -1,5 +1,14 @@
 # TeleQnA 
 
+## Andrew's Notes
+
+To make this run with local models instead of OpenAI's API, I've made the following changes:
+I updated evaluation_tools.py to ping a local OpenAI api server at "http://localhost:1234/v1"
+This is hosted using LM Studio (https://lmstudio.ai/) 
+    To set up download the application and the relevant model (e.g. Phi 2)
+    In LM studio there is a run local server tab click that and run start.
+
+
 ## Introduction
 
 TeleQnA is a comprehensive dataset tailored to assess the knowledge of Large Language Models (LLMs) in the field of telecommunications. It encompasses 10,000 multiple-choice questions distributed across five distinct categories:
