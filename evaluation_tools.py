@@ -128,30 +128,33 @@ def count_predicted_answer_tokens(predicted):
 
     return total_tokens
 
-questions_file = "TeleQnA.txt"
-selected_questions = select_random_questions(questions_file, 1)
-print(selected_questions)
-print("Answer:" + selected_questions[list(selected_questions.keys())[0]]["answer"])
-estimated_tokens = estimate_max_tokens(selected_questions[list(selected_questions.keys())[0]])
-print(estimated_tokens)
 
-# Pass the selected questions to check_questions_with_val_output_local
-accepted, predicted = check_questions_with_val_output_local(selected_questions)
+if __name__ == '__main__':
 
-print("Accepted Questions:")
-accepted_answer = json.dumps(accepted, indent=2, ensure_ascii=False)
-print(accepted_answer)
-print("\nPredicted Answers:")
-predicted_answers = json.dumps(predicted, indent=2, ensure_ascii=False)
-print(predicted_answers)
+    questions_file = "TeleQnA.txt"
+    selected_questions = select_random_questions(questions_file, 1)
+    print(selected_questions)
+    print("Answer:" + selected_questions[list(selected_questions.keys())[0]]["answer"])
+    estimated_tokens = estimate_max_tokens(selected_questions[list(selected_questions.keys())[0]])
+    print(estimated_tokens)
 
-# Call the count_predicted_answer_tokens function
-actual_tokens = count_predicted_answer_tokens(predicted[list(predicted.keys())[0]])
+    # Pass the selected questions to check_questions_with_val_output_local
+    accepted, predicted = check_questions_with_val_output_local(selected_questions)
 
-print(f"Estimated tokens: {estimated_tokens}")
-print(f"Actual tokens in predicted answers: {actual_tokens}")
+    print("Accepted Questions:")
+    accepted_answer = json.dumps(accepted, indent=2, ensure_ascii=False)
+    print(accepted_answer)
+    print("\nPredicted Answers:")
+    predicted_answers = json.dumps(predicted, indent=2, ensure_ascii=False)
+    print(predicted_answers)
 
-if actual_tokens <= estimated_tokens:
-    print("The estimated tokens are sufficient for the predicted answers.")
-else:
-    print("The estimated tokens are insufficient for the predicted answers.")
+    # Call the count_predicted_answer_tokens function
+    actual_tokens = count_predicted_answer_tokens(predicted[list(predicted.keys())[0]])
+
+    print(f"Estimated tokens: {estimated_tokens}")
+    print(f"Actual tokens in predicted answers: {actual_tokens}")
+
+    if actual_tokens <= estimated_tokens:
+        print("The estimated tokens are sufficient for the predicted answers.")
+    else:
+        print("The estimated tokens are insufficient for the predicted answers.")
