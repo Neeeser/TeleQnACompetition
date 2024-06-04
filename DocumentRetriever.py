@@ -61,16 +61,20 @@ def search_documents(query: str, db_path: str, collection_name: str, top_n: int 
     print(f"Found {len(results)} documents matching the query.")
     return results
 
-# Example usage
-folder_path = 'test'
-db_path = 'db'
-collection_name = 'my_documents'
 
-# Store documents
-store_documents(folder_path, db_path, collection_name)
 
-# Search for relevant chunks
-query = "According to IEEE Std 802.11-2020, when can an HT STA transmit a frame with LDPC coding? [IEEE 802.11]"
-results = search_documents(query, db_path, collection_name)
-for result in results:
-    print(f"Document chunk: '{result[0]}' found in file: '{result[1]}'")
+if __name__ == '__main__':
+
+    # Example usage
+    folder_path = 'rel18'
+    db_path = 'db'
+    collection_name = 'my_documents'
+
+    # Store documents
+    #store_documents(folder_path, db_path, collection_name)
+
+    # Search for relevant chunks
+    query = "According to IEEE Std 802.11-2020, when can an HT STA transmit a frame with LDPC coding? [IEEE 802.11]"
+    results = search_documents(query, db_path, collection_name)
+    for result in results:
+        print(f"Document chunk: '{result[0]}' found in file: '{result[1]}'")

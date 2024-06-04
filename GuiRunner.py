@@ -101,7 +101,7 @@ def evaluate(model, questions_path, save_path, n_questions, max_attempts, window
 
     window.write_event_value('-COMPLETE-', results)
 
-model = "phi3"
+model = "phi2"
 questions_path = "TeleQnA.txt"
 save_path = os.path.join(model + "_answers.txt")
 

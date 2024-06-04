@@ -4,40 +4,57 @@ import openai
 import ast
 import ollama
 import random
+from DocumentRetriever import search_documents
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+
+
+db_path = 'db'
+collection_name = 'my_documents'
+
 
 # Function to call the local model using Ollama
-def call_local_model(sys_prompt, user_prompt, model="llama3:instruct", max_tokens=8000):
+def call_local_model(sys_prompt, user_prompt, relevant_text, model="phi", temperature=0.1):
+    syst_prompt_with_relevant_text = f"""
+    {sys_prompt}
+
+    Relevant context to assist in answering the question:
+    {relevant_text}
+
+    Please ensure to use the provided context to assist in accurately answering the following question. If the relevant text does not help, please ignore it and answer based on your knowledge.
+    """
     completion = openai.ChatCompletion.create(
         model=model,
         messages=[
-            {"role": "system", "content": sys_prompt},
+            {"role": "system", "content": syst_prompt_with_relevant_text},
             {"role": "user", "content": user_prompt},
         ],
-        temperature=0.1,
-        max_tokens=max_tokens
+        temperature=temperature
     )
-    completion = completion.choices[0].message.content
-    return completion
+    return completion.choices[0].message.content.strip()
+
 
 openai.api_key = "lm-studio"  # Default LM studio key
 # Point to the local server
 openai.api_base = "http://localhost:1234/v1"
 
 syst_prompt = """
-You are an AI assistant that answers telecommunications-related multiple-choice questions. You will be provided with a single question in JSON format. Your response should only fill in the "answer" field with the correct answer option, adhering to the following format:
+You are an AI assistant that answers telecommunications-related multiple-choice questions. You will be provided with a single question in JSON format. Your response should only fill in the "answer" field with the correct answer option number, adhering to the following format:
 
-option X: Answer text
+option X
 
 Important notes:
-- The response should start with "option X", where X is the number of the correct answer option, followed by a colon and a space, and then the exact text of the selected answer option.
-- Do not include any quotes or additional formatting in your response.
+- The response should start with "option X", where X is the number of the correct answer option.
+- Do not include any quotes, additional formatting, or answer text in your response.
+- Use the relevant text to assist in answering the question. If the relevant text is not helpful, please ignore it and answer based on your knowledge.
 
 Example:
 If the given question is:
-{ "question": "What is the capital of France?", "answer": "option 1": "London", "option 2": "Paris", "option 3": "Berlin", "option 4": "Madrid" }
+{ "question": "What is the capital of France?", "option 1": "London", "option 2": "Paris", "option 3": "Berlin", "option 4": "Madrid" }
 
 The expected response for the "answer" field would be:
-option 2: Paris
+option 2
 
 Please ensure that your response fills in the "answer" field correctly, following the specified format and guidelines.
 """
@@ -64,18 +81,17 @@ def check_questions_with_val_output_local(questions_dict, model="phi"):
             "answer": questions_only[q]
         }, ensure_ascii=False)
 
-        # Estimate the max_tokens for the selected question
-        max_tokens = estimate_max_tokens(questions_dict[q])
+        relevant_docs = search_documents(questions_only[q]["question"], db_path, collection_name, top_n=1)
+        relevant_text = " ".join([doc[0] for doc in relevant_docs])
 
-        # Call the local model using Ollama with max_tokens
-        predicted_answer = call_local_model(syst_prompt, user_prompt, model=model, max_tokens=max_tokens).strip()
+        predicted_answer = call_local_model(syst_prompt, user_prompt, relevant_text, model=model).strip()
 
         parsed_predicted_answers[q] = {
             "question": questions_dict[q]["question"],
             "answer": predicted_answer
         }
 
-        if predicted_answer == answers_only[q]:
+        if predicted_answer == answers_only[q].split(":")[0]:
             accepted_questions[q] = questions_dict[q]
 
     return accepted_questions, parsed_predicted_answers
