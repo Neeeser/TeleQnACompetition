@@ -19,15 +19,20 @@ class llmRag:
         self.collection = self.db_client.get_or_create_collection(self.collection_name)
         logger.info(f"Connected to collection: {collection_name}")
 
-    def search_documents(self, query: str, top_n: int = 5):
-        """ Searches documents based on a query and returns the top N similar chunks. """
-        logger.info(f"Searching for the top {top_n} documents similar to the query: '{query}'")
+    def search_documents(self, query: str, top_n: int = 5, threshold: float = 0.0):
+        """ Searches documents based on a query and returns the top N similar chunks. If a threshold is provided, it returns only the chunks with similarity scores above the threshold. """
+        logger.info(
+            f"Searching for the top {top_n} documents similar to the query: '{query}' with threshold {threshold}")
         query_result = self.collection.query(query_texts=[query], n_results=top_n)
 
         documents = query_result["documents"][0]
         metadatas = query_result["metadatas"][0]
-        results = [(doc, meta['filename']) for doc, meta in zip(documents, metadatas)]
-        logger.info(f"Found {len(results)} documents matching the query.")
+        scores = query_result["distances"][0]
+
+        results = [(doc, meta['filename'], score) for doc, meta, score in zip(documents, metadatas, scores) if
+                   score >= threshold]
+        logger.info(f"Found {len(results)} documents above the similarity threshold.")
+
         return results
 
     def store_documents(self, folder_path: str):

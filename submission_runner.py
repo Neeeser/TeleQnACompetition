@@ -43,15 +43,16 @@ if __name__ == "__main__":
     answer_sheet = [['Question_ID','Answer_ID','Task']]
     for key in all_questions:
         user_prompt, question_only, answer_only = prepare_questions(all_questions[key])
-        
+
+        syst_prompt = syst_prompt_version1
         if args.rag:
-            relevant_docs = llm_rag.search_documents(question_only, top_n=1)
-            relevant_text = " ".join([doc[0] for doc in relevant_docs])
-            syst_prompt = syst_prompt_with_relevant_text_version1.format(syst_prompt_version1, relevant_text)
-        else:
-            syst_prompt = syst_prompt_version1
-        # logger.debug(syst_prompt)
-        
+            relevant_docs = llm_rag.search_documents(question_only, top_n=1, threshold=0.5)
+            if relevant_docs:
+                relevant_text = " ".join([doc[0] for doc in relevant_docs])
+                syst_prompt = syst_prompt_with_relevant_text_version1.format(syst_prompt_version1, relevant_text)
+            else:
+                logger.warning(f"No relevant documents found for Question ID: {key.split(' ')[1]}")
+
         pred_option = None
         for _ in range(args.max_attempts):
             predicted_answer = llm.call_local_model(syst_prompt, user_prompt, model=args.model_name)
