@@ -64,7 +64,6 @@ def search_documents(query: str, db_path: str, collection_name: str, top_n: int 
 
 
 if __name__ == '__main__':
-
     # Example usage
     folder_path = 'rel18'
     db_path = 'db'

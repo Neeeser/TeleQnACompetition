@@ -1,5 +1,13 @@
 # TeleQnA 
 
+## Shengzhe's Notes
+
+Some other thoughts:
+- To use the training set, we can store the "question" and "explaination" in the RAG database.
+- We should look into samples with Nan answer after 5 attempts.
+
+- Current RAG embedding model all-MiniLM-L6-v2 (default). Could try others, such as open_ai.
+
 ## Andrew's Notes
 
 To make this run with local models instead of OpenAI's API, I've made the following changes:

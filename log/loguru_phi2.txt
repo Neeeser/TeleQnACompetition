@@ -1,0 +1,1191 @@
+2024-06-04 23:58:30.490 | INFO     | __main__:<module>:67 - Question ID: 0, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:31.568 | INFO     | __main__:<module>:67 - Question ID: 1, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:32.580 | INFO     | __main__:<module>:67 - Question ID: 2, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:33.452 | INFO     | __main__:<module>:67 - Question ID: 3, Answer ID: 3, Task: Phi-2
+2024-06-04 23:58:34.371 | INFO     | __main__:<module>:67 - Question ID: 4, Answer ID: 1, Task: Phi-2
+2024-06-04 23:58:35.207 | INFO     | __main__:<module>:67 - Question ID: 5, Answer ID: 5, Task: Phi-2
+2024-06-04 23:58:35.979 | INFO     | __main__:<module>:67 - Question ID: 6, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:36.915 | INFO     | __main__:<module>:67 - Question ID: 7, Answer ID: 1, Task: Phi-2
+2024-06-04 23:58:37.956 | WARNING  | __main__:<module>:60 - Retry: Question ID: 8, Answer ID: None, Task: Phi-2
+2024-06-04 23:58:38.203 | WARNING  | __main__:<module>:60 - Retry: Question ID: 8, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:38.203 | INFO     | __main__:<module>:67 - Question ID: 8, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:38.971 | INFO     | __main__:<module>:67 - Question ID: 9, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:39.887 | INFO     | __main__:<module>:67 - Question ID: 10, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:41.025 | INFO     | __main__:<module>:67 - Question ID: 11, Answer ID: 3, Task: Phi-2
+2024-06-04 23:58:42.147 | INFO     | __main__:<module>:67 - Question ID: 12, Answer ID: 4, Task: Phi-2
+2024-06-04 23:58:43.329 | INFO     | __main__:<module>:67 - Question ID: 13, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:44.155 | INFO     | __main__:<module>:67 - Question ID: 14, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:45.041 | INFO     | __main__:<module>:67 - Question ID: 15, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:45.978 | INFO     | __main__:<module>:67 - Question ID: 16, Answer ID: 4, Task: Phi-2
+2024-06-04 23:58:47.243 | WARNING  | __main__:<module>:60 - Retry: Question ID: 17, Answer ID: 3, Task: Phi-2
+2024-06-04 23:58:47.243 | INFO     | __main__:<module>:67 - Question ID: 17, Answer ID: 3, Task: Phi-2
+2024-06-04 23:58:48.830 | INFO     | __main__:<module>:67 - Question ID: 18, Answer ID: 1, Task: Phi-2
+2024-06-04 23:58:50.014 | INFO     | __main__:<module>:67 - Question ID: 19, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:51.201 | INFO     | __main__:<module>:67 - Question ID: 20, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:52.260 | INFO     | __main__:<module>:67 - Question ID: 21, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:53.093 | INFO     | __main__:<module>:67 - Question ID: 22, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:54.055 | INFO     | __main__:<module>:67 - Question ID: 23, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:55.119 | INFO     | __main__:<module>:67 - Question ID: 24, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:55.999 | INFO     | __main__:<module>:67 - Question ID: 25, Answer ID: 5, Task: Phi-2
+2024-06-04 23:58:56.782 | INFO     | __main__:<module>:67 - Question ID: 26, Answer ID: 4, Task: Phi-2
+2024-06-04 23:58:57.684 | INFO     | __main__:<module>:67 - Question ID: 27, Answer ID: 2, Task: Phi-2
+2024-06-04 23:58:58.477 | INFO     | __main__:<module>:67 - Question ID: 28, Answer ID: 3, Task: Phi-2
+2024-06-04 23:58:59.533 | INFO     | __main__:<module>:67 - Question ID: 29, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:00.538 | WARNING  | __main__:<module>:60 - Retry: Question ID: 30, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:00.748 | WARNING  | __main__:<module>:60 - Retry: Question ID: 30, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:01.109 | WARNING  | __main__:<module>:60 - Retry: Question ID: 30, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:01.318 | WARNING  | __main__:<module>:60 - Retry: Question ID: 30, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:01.318 | ERROR    | __main__:<module>:66 - option
+2024-06-04 23:59:01.318 | INFO     | __main__:<module>:67 - Question ID: 30, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:02.217 | INFO     | __main__:<module>:67 - Question ID: 31, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:03.196 | INFO     | __main__:<module>:67 - Question ID: 32, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:04.035 | INFO     | __main__:<module>:67 - Question ID: 33, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:05.023 | INFO     | __main__:<module>:67 - Question ID: 34, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:05.913 | INFO     | __main__:<module>:67 - Question ID: 35, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:06.837 | INFO     | __main__:<module>:67 - Question ID: 36, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:07.634 | INFO     | __main__:<module>:67 - Question ID: 37, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:08.558 | INFO     | __main__:<module>:67 - Question ID: 38, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:09.428 | INFO     | __main__:<module>:67 - Question ID: 39, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:10.394 | INFO     | __main__:<module>:67 - Question ID: 40, Answer ID: 1, Task: Phi-2
+2024-06-04 23:59:11.492 | WARNING  | __main__:<module>:60 - Retry: Question ID: 41, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:11.725 | WARNING  | __main__:<module>:60 - Retry: Question ID: 41, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:12.015 | WARNING  | __main__:<module>:60 - Retry: Question ID: 41, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:12.015 | INFO     | __main__:<module>:67 - Question ID: 41, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:12.993 | INFO     | __main__:<module>:67 - Question ID: 42, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:13.936 | INFO     | __main__:<module>:67 - Question ID: 43, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:14.769 | INFO     | __main__:<module>:67 - Question ID: 44, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:22.500 | INFO     | __main__:<module>:67 - Question ID: 45, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:23.571 | INFO     | __main__:<module>:67 - Question ID: 46, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:24.575 | INFO     | __main__:<module>:67 - Question ID: 47, Answer ID: 5, Task: Phi-2
+2024-06-04 23:59:25.600 | WARNING  | __main__:<module>:60 - Retry: Question ID: 48, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:25.806 | WARNING  | __main__:<module>:60 - Retry: Question ID: 48, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:26.021 | WARNING  | __main__:<module>:60 - Retry: Question ID: 48, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:26.257 | WARNING  | __main__:<module>:60 - Retry: Question ID: 48, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:26.257 | ERROR    | __main__:<module>:66 - option
+2024-06-04 23:59:26.257 | INFO     | __main__:<module>:67 - Question ID: 48, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:27.271 | INFO     | __main__:<module>:67 - Question ID: 49, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:28.174 | INFO     | __main__:<module>:67 - Question ID: 50, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:29.274 | INFO     | __main__:<module>:67 - Question ID: 51, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:30.373 | INFO     | __main__:<module>:67 - Question ID: 52, Answer ID: 1, Task: Phi-2
+2024-06-04 23:59:31.427 | INFO     | __main__:<module>:67 - Question ID: 53, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:32.291 | INFO     | __main__:<module>:67 - Question ID: 54, Answer ID: 5, Task: Phi-2
+2024-06-04 23:59:33.422 | INFO     | __main__:<module>:67 - Question ID: 55, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:34.269 | INFO     | __main__:<module>:67 - Question ID: 56, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:35.041 | INFO     | __main__:<module>:67 - Question ID: 57, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:35.800 | INFO     | __main__:<module>:67 - Question ID: 58, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:36.553 | INFO     | __main__:<module>:67 - Question ID: 59, Answer ID: 5, Task: Phi-2
+2024-06-04 23:59:37.539 | WARNING  | __main__:<module>:60 - Retry: Question ID: 60, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:37.719 | WARNING  | __main__:<module>:60 - Retry: Question ID: 60, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:37.899 | WARNING  | __main__:<module>:60 - Retry: Question ID: 60, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:38.075 | WARNING  | __main__:<module>:60 - Retry: Question ID: 60, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:38.075 | ERROR    | __main__:<module>:66 - option
+2024-06-04 23:59:38.075 | INFO     | __main__:<module>:67 - Question ID: 60, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:39.037 | INFO     | __main__:<module>:67 - Question ID: 61, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:40.213 | WARNING  | __main__:<module>:60 - Retry: Question ID: 62, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:40.409 | WARNING  | __main__:<module>:60 - Retry: Question ID: 62, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:40.653 | WARNING  | __main__:<module>:60 - Retry: Question ID: 62, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:40.653 | INFO     | __main__:<module>:67 - Question ID: 62, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:41.489 | INFO     | __main__:<module>:67 - Question ID: 63, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:42.715 | INFO     | __main__:<module>:67 - Question ID: 64, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:43.548 | INFO     | __main__:<module>:67 - Question ID: 65, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:44.721 | INFO     | __main__:<module>:67 - Question ID: 66, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:45.697 | INFO     | __main__:<module>:67 - Question ID: 67, Answer ID: 1, Task: Phi-2
+2024-06-04 23:59:46.715 | INFO     | __main__:<module>:67 - Question ID: 68, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:47.580 | INFO     | __main__:<module>:67 - Question ID: 69, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:48.525 | INFO     | __main__:<module>:67 - Question ID: 70, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:49.680 | INFO     | __main__:<module>:67 - Question ID: 71, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:50.652 | INFO     | __main__:<module>:67 - Question ID: 72, Answer ID: 1, Task: Phi-2
+2024-06-04 23:59:51.785 | INFO     | __main__:<module>:67 - Question ID: 73, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:52.678 | INFO     | __main__:<module>:67 - Question ID: 74, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:53.620 | WARNING  | __main__:<module>:60 - Retry: Question ID: 75, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:53.822 | WARNING  | __main__:<module>:60 - Retry: Question ID: 75, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:54.019 | WARNING  | __main__:<module>:60 - Retry: Question ID: 75, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:54.227 | WARNING  | __main__:<module>:60 - Retry: Question ID: 75, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:54.227 | ERROR    | __main__:<module>:66 - option
+2024-06-04 23:59:54.227 | INFO     | __main__:<module>:67 - Question ID: 75, Answer ID: None, Task: Phi-2
+2024-06-04 23:59:55.001 | INFO     | __main__:<module>:67 - Question ID: 76, Answer ID: 3, Task: Phi-2
+2024-06-04 23:59:55.891 | INFO     | __main__:<module>:67 - Question ID: 77, Answer ID: 4, Task: Phi-2
+2024-06-04 23:59:56.774 | INFO     | __main__:<module>:67 - Question ID: 78, Answer ID: 5, Task: Phi-2
+2024-06-04 23:59:57.571 | INFO     | __main__:<module>:67 - Question ID: 79, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:58.591 | INFO     | __main__:<module>:67 - Question ID: 80, Answer ID: 2, Task: Phi-2
+2024-06-04 23:59:59.369 | INFO     | __main__:<module>:67 - Question ID: 81, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:00.363 | INFO     | __main__:<module>:67 - Question ID: 82, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:01.452 | INFO     | __main__:<module>:67 - Question ID: 83, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:02.345 | INFO     | __main__:<module>:67 - Question ID: 84, Answer ID: 5, Task: Phi-2
+2024-06-05 00:00:03.183 | INFO     | __main__:<module>:67 - Question ID: 85, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:04.088 | INFO     | __main__:<module>:67 - Question ID: 86, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:05.101 | WARNING  | __main__:<module>:60 - Retry: Question ID: 87, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:05.316 | WARNING  | __main__:<module>:60 - Retry: Question ID: 87, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:05.514 | WARNING  | __main__:<module>:60 - Retry: Question ID: 87, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:05.730 | WARNING  | __main__:<module>:60 - Retry: Question ID: 87, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:05.731 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:00:05.731 | INFO     | __main__:<module>:67 - Question ID: 87, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:06.919 | WARNING  | __main__:<module>:60 - Retry: Question ID: 88, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:07.171 | WARNING  | __main__:<module>:60 - Retry: Question ID: 88, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:07.394 | WARNING  | __main__:<module>:60 - Retry: Question ID: 88, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:07.607 | WARNING  | __main__:<module>:60 - Retry: Question ID: 88, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:07.607 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:00:07.607 | INFO     | __main__:<module>:67 - Question ID: 88, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:08.559 | INFO     | __main__:<module>:67 - Question ID: 89, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:09.492 | INFO     | __main__:<module>:67 - Question ID: 90, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:10.425 | INFO     | __main__:<module>:67 - Question ID: 91, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:11.462 | INFO     | __main__:<module>:67 - Question ID: 92, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:12.394 | INFO     | __main__:<module>:67 - Question ID: 93, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:13.528 | INFO     | __main__:<module>:67 - Question ID: 94, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:14.492 | INFO     | __main__:<module>:67 - Question ID: 95, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:15.531 | INFO     | __main__:<module>:67 - Question ID: 96, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:16.671 | INFO     | __main__:<module>:67 - Question ID: 97, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:17.641 | INFO     | __main__:<module>:67 - Question ID: 98, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:18.736 | INFO     | __main__:<module>:67 - Question ID: 99, Answer ID: 5, Task: Phi-2
+2024-06-05 00:00:19.741 | INFO     | __main__:<module>:67 - Question ID: 100, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:20.813 | INFO     | __main__:<module>:67 - Question ID: 101, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:21.646 | INFO     | __main__:<module>:67 - Question ID: 102, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:22.666 | INFO     | __main__:<module>:67 - Question ID: 103, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:23.595 | INFO     | __main__:<module>:67 - Question ID: 104, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:24.545 | INFO     | __main__:<module>:67 - Question ID: 105, Answer ID: 4, Task: Phi-2
+2024-06-05 00:00:25.357 | INFO     | __main__:<module>:67 - Question ID: 106, Answer ID: 5, Task: Phi-2
+2024-06-05 00:00:26.221 | INFO     | __main__:<module>:67 - Question ID: 107, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:27.091 | INFO     | __main__:<module>:67 - Question ID: 108, Answer ID: 4, Task: Phi-2
+2024-06-05 00:00:28.017 | INFO     | __main__:<module>:67 - Question ID: 109, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:28.903 | INFO     | __main__:<module>:67 - Question ID: 110, Answer ID: 4, Task: Phi-2
+2024-06-05 00:00:29.831 | INFO     | __main__:<module>:67 - Question ID: 111, Answer ID: 1, Task: Phi-2
+2024-06-05 00:00:31.016 | INFO     | __main__:<module>:67 - Question ID: 112, Answer ID: 5, Task: Phi-2
+2024-06-05 00:00:31.871 | INFO     | __main__:<module>:67 - Question ID: 113, Answer ID: 4, Task: Phi-2
+2024-06-05 00:00:32.782 | INFO     | __main__:<module>:67 - Question ID: 114, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:33.582 | INFO     | __main__:<module>:67 - Question ID: 115, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:34.405 | INFO     | __main__:<module>:67 - Question ID: 116, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:35.184 | INFO     | __main__:<module>:67 - Question ID: 117, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:36.062 | INFO     | __main__:<module>:67 - Question ID: 118, Answer ID: 4, Task: Phi-2
+2024-06-05 00:00:36.947 | INFO     | __main__:<module>:67 - Question ID: 119, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:37.844 | INFO     | __main__:<module>:67 - Question ID: 120, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:38.811 | INFO     | __main__:<module>:67 - Question ID: 121, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:39.772 | INFO     | __main__:<module>:67 - Question ID: 122, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:40.742 | INFO     | __main__:<module>:67 - Question ID: 123, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:41.676 | INFO     | __main__:<module>:67 - Question ID: 124, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:42.555 | INFO     | __main__:<module>:67 - Question ID: 125, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:43.457 | INFO     | __main__:<module>:67 - Question ID: 126, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:44.309 | INFO     | __main__:<module>:67 - Question ID: 127, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:45.214 | INFO     | __main__:<module>:67 - Question ID: 128, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:46.275 | WARNING  | __main__:<module>:60 - Retry: Question ID: 129, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:46.488 | WARNING  | __main__:<module>:60 - Retry: Question ID: 129, Answer ID: 5, Task: Phi-2
+2024-06-05 00:00:46.488 | INFO     | __main__:<module>:67 - Question ID: 129, Answer ID: 5, Task: Phi-2
+2024-06-05 00:00:47.294 | INFO     | __main__:<module>:67 - Question ID: 130, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:48.113 | INFO     | __main__:<module>:67 - Question ID: 131, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:49.253 | INFO     | __main__:<module>:67 - Question ID: 132, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:50.109 | INFO     | __main__:<module>:67 - Question ID: 133, Answer ID: 5, Task: Phi-2
+2024-06-05 00:00:51.338 | WARNING  | __main__:<module>:60 - Retry: Question ID: 134, Answer ID: None, Task: Phi-2
+2024-06-05 00:00:51.747 | WARNING  | __main__:<module>:60 - Retry: Question ID: 134, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:51.747 | INFO     | __main__:<module>:67 - Question ID: 134, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:52.802 | INFO     | __main__:<module>:67 - Question ID: 135, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:53.980 | INFO     | __main__:<module>:67 - Question ID: 136, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:54.724 | INFO     | __main__:<module>:67 - Question ID: 137, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:55.654 | WARNING  | __main__:<module>:60 - Retry: Question ID: 138, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:55.654 | INFO     | __main__:<module>:67 - Question ID: 138, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:56.397 | INFO     | __main__:<module>:67 - Question ID: 139, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:57.256 | INFO     | __main__:<module>:67 - Question ID: 140, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:58.197 | INFO     | __main__:<module>:67 - Question ID: 141, Answer ID: 3, Task: Phi-2
+2024-06-05 00:00:58.962 | INFO     | __main__:<module>:67 - Question ID: 142, Answer ID: 2, Task: Phi-2
+2024-06-05 00:00:59.730 | INFO     | __main__:<module>:67 - Question ID: 143, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:00.605 | INFO     | __main__:<module>:67 - Question ID: 144, Answer ID: 5, Task: Phi-2
+2024-06-05 00:01:01.388 | INFO     | __main__:<module>:67 - Question ID: 145, Answer ID: 5, Task: Phi-2
+2024-06-05 00:01:02.238 | INFO     | __main__:<module>:67 - Question ID: 146, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:03.335 | INFO     | __main__:<module>:67 - Question ID: 147, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:04.150 | INFO     | __main__:<module>:67 - Question ID: 148, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:04.982 | INFO     | __main__:<module>:67 - Question ID: 149, Answer ID: 4, Task: Phi-2
+2024-06-05 00:01:06.025 | WARNING  | __main__:<module>:60 - Retry: Question ID: 150, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:06.025 | INFO     | __main__:<module>:67 - Question ID: 150, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:06.914 | INFO     | __main__:<module>:67 - Question ID: 151, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:07.892 | INFO     | __main__:<module>:67 - Question ID: 152, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:09.204 | INFO     | __main__:<module>:67 - Question ID: 153, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:10.230 | INFO     | __main__:<module>:67 - Question ID: 154, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:11.259 | WARNING  | __main__:<module>:60 - Retry: Question ID: 155, Answer ID: None, Task: Phi-2
+2024-06-05 00:01:11.451 | WARNING  | __main__:<module>:60 - Retry: Question ID: 155, Answer ID: None, Task: Phi-2
+2024-06-05 00:01:11.636 | WARNING  | __main__:<module>:60 - Retry: Question ID: 155, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:11.636 | INFO     | __main__:<module>:67 - Question ID: 155, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:12.406 | INFO     | __main__:<module>:67 - Question ID: 156, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:13.116 | INFO     | __main__:<module>:67 - Question ID: 157, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:14.005 | INFO     | __main__:<module>:67 - Question ID: 158, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:14.923 | INFO     | __main__:<module>:67 - Question ID: 159, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:15.788 | INFO     | __main__:<module>:67 - Question ID: 160, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:16.652 | INFO     | __main__:<module>:67 - Question ID: 161, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:17.416 | INFO     | __main__:<module>:67 - Question ID: 162, Answer ID: 5, Task: Phi-2
+2024-06-05 00:01:18.174 | INFO     | __main__:<module>:67 - Question ID: 163, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:19.138 | WARNING  | __main__:<module>:60 - Retry: Question ID: 164, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:19.138 | INFO     | __main__:<module>:67 - Question ID: 164, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:19.909 | INFO     | __main__:<module>:67 - Question ID: 165, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:20.700 | INFO     | __main__:<module>:67 - Question ID: 166, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:21.552 | INFO     | __main__:<module>:67 - Question ID: 167, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:22.394 | INFO     | __main__:<module>:67 - Question ID: 168, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:23.326 | INFO     | __main__:<module>:67 - Question ID: 169, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:24.393 | INFO     | __main__:<module>:67 - Question ID: 170, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:25.182 | INFO     | __main__:<module>:67 - Question ID: 171, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:25.965 | INFO     | __main__:<module>:67 - Question ID: 172, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:26.906 | INFO     | __main__:<module>:67 - Question ID: 173, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:27.781 | INFO     | __main__:<module>:67 - Question ID: 174, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:28.566 | INFO     | __main__:<module>:67 - Question ID: 175, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:29.421 | INFO     | __main__:<module>:67 - Question ID: 176, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:30.203 | INFO     | __main__:<module>:67 - Question ID: 177, Answer ID: 5, Task: Phi-2
+2024-06-05 00:01:31.196 | WARNING  | __main__:<module>:60 - Retry: Question ID: 178, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:31.196 | INFO     | __main__:<module>:67 - Question ID: 178, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:32.067 | INFO     | __main__:<module>:67 - Question ID: 179, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:32.929 | INFO     | __main__:<module>:67 - Question ID: 180, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:33.858 | INFO     | __main__:<module>:67 - Question ID: 181, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:34.843 | INFO     | __main__:<module>:67 - Question ID: 182, Answer ID: 4, Task: Phi-2
+2024-06-05 00:01:36.450 | WARNING  | __main__:<module>:60 - Retry: Question ID: 183, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:36.451 | INFO     | __main__:<module>:67 - Question ID: 183, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:37.336 | INFO     | __main__:<module>:67 - Question ID: 184, Answer ID: 4, Task: Phi-2
+2024-06-05 00:01:38.281 | INFO     | __main__:<module>:67 - Question ID: 185, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:39.090 | INFO     | __main__:<module>:67 - Question ID: 186, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:39.984 | INFO     | __main__:<module>:67 - Question ID: 187, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:40.913 | INFO     | __main__:<module>:67 - Question ID: 188, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:41.745 | INFO     | __main__:<module>:67 - Question ID: 189, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:42.665 | INFO     | __main__:<module>:67 - Question ID: 190, Answer ID: 4, Task: Phi-2
+2024-06-05 00:01:43.595 | INFO     | __main__:<module>:67 - Question ID: 191, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:44.376 | INFO     | __main__:<module>:67 - Question ID: 192, Answer ID: 4, Task: Phi-2
+2024-06-05 00:01:45.528 | INFO     | __main__:<module>:67 - Question ID: 193, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:46.402 | INFO     | __main__:<module>:67 - Question ID: 194, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:47.212 | INFO     | __main__:<module>:67 - Question ID: 195, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:48.132 | INFO     | __main__:<module>:67 - Question ID: 196, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:48.957 | INFO     | __main__:<module>:67 - Question ID: 197, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:49.873 | INFO     | __main__:<module>:67 - Question ID: 198, Answer ID: 1, Task: Phi-2
+2024-06-05 00:01:50.762 | INFO     | __main__:<module>:67 - Question ID: 199, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:51.610 | INFO     | __main__:<module>:67 - Question ID: 200, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:52.539 | INFO     | __main__:<module>:67 - Question ID: 201, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:53.324 | INFO     | __main__:<module>:67 - Question ID: 202, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:54.200 | INFO     | __main__:<module>:67 - Question ID: 203, Answer ID: 3, Task: Phi-2
+2024-06-05 00:01:55.170 | INFO     | __main__:<module>:67 - Question ID: 204, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:56.052 | INFO     | __main__:<module>:67 - Question ID: 205, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:57.010 | INFO     | __main__:<module>:67 - Question ID: 206, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:57.864 | INFO     | __main__:<module>:67 - Question ID: 207, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:58.793 | INFO     | __main__:<module>:67 - Question ID: 208, Answer ID: 2, Task: Phi-2
+2024-06-05 00:01:59.582 | INFO     | __main__:<module>:67 - Question ID: 209, Answer ID: 3, Task: Phi-2
+2024-06-05 00:02:00.676 | WARNING  | __main__:<module>:60 - Retry: Question ID: 210, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:00.926 | WARNING  | __main__:<module>:60 - Retry: Question ID: 210, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:01.114 | WARNING  | __main__:<module>:60 - Retry: Question ID: 210, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:01.347 | WARNING  | __main__:<module>:60 - Retry: Question ID: 210, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:01.347 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:02:01.347 | INFO     | __main__:<module>:67 - Question ID: 210, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:02.137 | INFO     | __main__:<module>:67 - Question ID: 211, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:02.957 | INFO     | __main__:<module>:67 - Question ID: 212, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:03.887 | INFO     | __main__:<module>:67 - Question ID: 213, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:04.706 | INFO     | __main__:<module>:67 - Question ID: 214, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:05.609 | INFO     | __main__:<module>:67 - Question ID: 215, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:06.667 | INFO     | __main__:<module>:67 - Question ID: 216, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:07.611 | INFO     | __main__:<module>:67 - Question ID: 217, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:08.537 | INFO     | __main__:<module>:67 - Question ID: 218, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:09.662 | INFO     | __main__:<module>:67 - Question ID: 219, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:10.635 | INFO     | __main__:<module>:67 - Question ID: 220, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:11.433 | INFO     | __main__:<module>:67 - Question ID: 221, Answer ID: 3, Task: Phi-2
+2024-06-05 00:02:12.591 | WARNING  | __main__:<module>:60 - Retry: Question ID: 222, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:12.591 | INFO     | __main__:<module>:67 - Question ID: 222, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:13.529 | INFO     | __main__:<module>:67 - Question ID: 223, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:14.488 | INFO     | __main__:<module>:67 - Question ID: 224, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:15.496 | INFO     | __main__:<module>:67 - Question ID: 225, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:16.361 | INFO     | __main__:<module>:67 - Question ID: 226, Answer ID: 4, Task: Phi-2
+2024-06-05 00:02:17.433 | WARNING  | __main__:<module>:60 - Retry: Question ID: 227, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:17.598 | WARNING  | __main__:<module>:60 - Retry: Question ID: 227, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:17.759 | WARNING  | __main__:<module>:60 - Retry: Question ID: 227, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:17.923 | WARNING  | __main__:<module>:60 - Retry: Question ID: 227, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:17.923 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:02:17.924 | INFO     | __main__:<module>:67 - Question ID: 227, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:18.802 | INFO     | __main__:<module>:67 - Question ID: 228, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:19.576 | INFO     | __main__:<module>:67 - Question ID: 229, Answer ID: 4, Task: Phi-2
+2024-06-05 00:02:20.508 | INFO     | __main__:<module>:67 - Question ID: 230, Answer ID: 3, Task: Phi-2
+2024-06-05 00:02:21.423 | WARNING  | __main__:<module>:60 - Retry: Question ID: 231, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:21.602 | WARNING  | __main__:<module>:60 - Retry: Question ID: 231, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:21.780 | WARNING  | __main__:<module>:60 - Retry: Question ID: 231, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:21.958 | WARNING  | __main__:<module>:60 - Retry: Question ID: 231, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:21.958 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:02:21.958 | INFO     | __main__:<module>:67 - Question ID: 231, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:22.834 | INFO     | __main__:<module>:67 - Question ID: 232, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:23.754 | INFO     | __main__:<module>:67 - Question ID: 233, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:24.499 | INFO     | __main__:<module>:67 - Question ID: 234, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:25.413 | WARNING  | __main__:<module>:60 - Retry: Question ID: 235, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:25.584 | WARNING  | __main__:<module>:60 - Retry: Question ID: 235, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:25.822 | WARNING  | __main__:<module>:60 - Retry: Question ID: 235, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:26.000 | WARNING  | __main__:<module>:60 - Retry: Question ID: 235, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:26.001 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:02:26.001 | INFO     | __main__:<module>:67 - Question ID: 235, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:26.759 | INFO     | __main__:<module>:67 - Question ID: 236, Answer ID: 4, Task: Phi-2
+2024-06-05 00:02:27.513 | INFO     | __main__:<module>:67 - Question ID: 237, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:28.461 | WARNING  | __main__:<module>:60 - Retry: Question ID: 238, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:28.651 | WARNING  | __main__:<module>:60 - Retry: Question ID: 238, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:28.651 | INFO     | __main__:<module>:67 - Question ID: 238, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:29.492 | INFO     | __main__:<module>:67 - Question ID: 239, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:30.385 | INFO     | __main__:<module>:67 - Question ID: 240, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:31.161 | INFO     | __main__:<module>:67 - Question ID: 241, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:32.047 | INFO     | __main__:<module>:67 - Question ID: 242, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:32.819 | INFO     | __main__:<module>:67 - Question ID: 243, Answer ID: 4, Task: Phi-2
+2024-06-05 00:02:33.722 | INFO     | __main__:<module>:67 - Question ID: 244, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:34.793 | WARNING  | __main__:<module>:60 - Retry: Question ID: 245, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:34.984 | WARNING  | __main__:<module>:60 - Retry: Question ID: 245, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:35.183 | WARNING  | __main__:<module>:60 - Retry: Question ID: 245, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:35.390 | WARNING  | __main__:<module>:60 - Retry: Question ID: 245, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:35.390 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:02:35.390 | INFO     | __main__:<module>:67 - Question ID: 245, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:36.180 | INFO     | __main__:<module>:67 - Question ID: 246, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:37.103 | INFO     | __main__:<module>:67 - Question ID: 247, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:38.004 | INFO     | __main__:<module>:67 - Question ID: 248, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:38.878 | INFO     | __main__:<module>:67 - Question ID: 249, Answer ID: 3, Task: Phi-2
+2024-06-05 00:02:39.815 | INFO     | __main__:<module>:67 - Question ID: 250, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:40.600 | INFO     | __main__:<module>:67 - Question ID: 251, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:41.419 | INFO     | __main__:<module>:67 - Question ID: 252, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:42.216 | INFO     | __main__:<module>:67 - Question ID: 253, Answer ID: 4, Task: Phi-2
+2024-06-05 00:02:43.024 | INFO     | __main__:<module>:67 - Question ID: 254, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:43.822 | INFO     | __main__:<module>:67 - Question ID: 255, Answer ID: 5, Task: Phi-2
+2024-06-05 00:02:44.824 | WARNING  | __main__:<module>:60 - Retry: Question ID: 256, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:45.014 | WARNING  | __main__:<module>:60 - Retry: Question ID: 256, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:45.236 | WARNING  | __main__:<module>:60 - Retry: Question ID: 256, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:45.424 | WARNING  | __main__:<module>:60 - Retry: Question ID: 256, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:45.424 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:02:45.424 | INFO     | __main__:<module>:67 - Question ID: 256, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:46.544 | INFO     | __main__:<module>:67 - Question ID: 257, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:47.531 | INFO     | __main__:<module>:67 - Question ID: 258, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:48.377 | INFO     | __main__:<module>:67 - Question ID: 259, Answer ID: 4, Task: Phi-2
+2024-06-05 00:02:49.201 | INFO     | __main__:<module>:67 - Question ID: 260, Answer ID: 3, Task: Phi-2
+2024-06-05 00:02:49.989 | INFO     | __main__:<module>:67 - Question ID: 261, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:51.146 | INFO     | __main__:<module>:67 - Question ID: 262, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:52.055 | INFO     | __main__:<module>:67 - Question ID: 263, Answer ID: 1, Task: Phi-2
+2024-06-05 00:02:52.920 | INFO     | __main__:<module>:67 - Question ID: 264, Answer ID: 3, Task: Phi-2
+2024-06-05 00:02:53.942 | WARNING  | __main__:<module>:60 - Retry: Question ID: 265, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:53.943 | INFO     | __main__:<module>:67 - Question ID: 265, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:54.763 | INFO     | __main__:<module>:67 - Question ID: 266, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:55.643 | INFO     | __main__:<module>:67 - Question ID: 267, Answer ID: 2, Task: Phi-2
+2024-06-05 00:02:56.540 | INFO     | __main__:<module>:67 - Question ID: 268, Answer ID: 3, Task: Phi-2
+2024-06-05 00:02:57.571 | WARNING  | __main__:<module>:60 - Retry: Question ID: 269, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:57.809 | WARNING  | __main__:<module>:60 - Retry: Question ID: 269, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:58.031 | WARNING  | __main__:<module>:60 - Retry: Question ID: 269, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:58.241 | WARNING  | __main__:<module>:60 - Retry: Question ID: 269, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:58.242 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:02:58.242 | INFO     | __main__:<module>:67 - Question ID: 269, Answer ID: None, Task: Phi-2
+2024-06-05 00:02:59.866 | INFO     | __main__:<module>:67 - Question ID: 270, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:00.744 | INFO     | __main__:<module>:67 - Question ID: 271, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:01.655 | INFO     | __main__:<module>:67 - Question ID: 272, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:02.578 | INFO     | __main__:<module>:67 - Question ID: 273, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:03.636 | INFO     | __main__:<module>:67 - Question ID: 274, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:04.481 | INFO     | __main__:<module>:67 - Question ID: 275, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:05.567 | WARNING  | __main__:<module>:60 - Retry: Question ID: 276, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:05.799 | WARNING  | __main__:<module>:60 - Retry: Question ID: 276, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:06.070 | WARNING  | __main__:<module>:60 - Retry: Question ID: 276, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:06.070 | INFO     | __main__:<module>:67 - Question ID: 276, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:06.977 | INFO     | __main__:<module>:67 - Question ID: 277, Answer ID: 4, Task: Phi-2
+2024-06-05 00:03:07.903 | INFO     | __main__:<module>:67 - Question ID: 278, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:09.059 | INFO     | __main__:<module>:67 - Question ID: 279, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:10.096 | INFO     | __main__:<module>:67 - Question ID: 280, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:10.884 | INFO     | __main__:<module>:67 - Question ID: 281, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:11.795 | INFO     | __main__:<module>:67 - Question ID: 282, Answer ID: 4, Task: Phi-2
+2024-06-05 00:03:12.694 | INFO     | __main__:<module>:67 - Question ID: 283, Answer ID: 5, Task: Phi-2
+2024-06-05 00:03:13.495 | INFO     | __main__:<module>:67 - Question ID: 284, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:14.424 | INFO     | __main__:<module>:67 - Question ID: 285, Answer ID: 5, Task: Phi-2
+2024-06-05 00:03:15.246 | INFO     | __main__:<module>:67 - Question ID: 286, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:16.212 | INFO     | __main__:<module>:67 - Question ID: 287, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:17.091 | INFO     | __main__:<module>:67 - Question ID: 288, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:17.996 | INFO     | __main__:<module>:67 - Question ID: 289, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:18.930 | INFO     | __main__:<module>:67 - Question ID: 290, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:19.957 | WARNING  | __main__:<module>:60 - Retry: Question ID: 291, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:20.186 | WARNING  | __main__:<module>:60 - Retry: Question ID: 291, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:20.438 | WARNING  | __main__:<module>:60 - Retry: Question ID: 291, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:20.655 | WARNING  | __main__:<module>:60 - Retry: Question ID: 291, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:20.655 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:03:20.655 | INFO     | __main__:<module>:67 - Question ID: 291, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:21.663 | WARNING  | __main__:<module>:60 - Retry: Question ID: 292, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:21.887 | WARNING  | __main__:<module>:60 - Retry: Question ID: 292, Answer ID: 5, Task: Phi-2
+2024-06-05 00:03:21.887 | INFO     | __main__:<module>:67 - Question ID: 292, Answer ID: 5, Task: Phi-2
+2024-06-05 00:03:22.964 | INFO     | __main__:<module>:67 - Question ID: 293, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:23.960 | INFO     | __main__:<module>:67 - Question ID: 294, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:24.866 | INFO     | __main__:<module>:67 - Question ID: 295, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:25.735 | INFO     | __main__:<module>:67 - Question ID: 296, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:26.660 | INFO     | __main__:<module>:67 - Question ID: 297, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:27.550 | INFO     | __main__:<module>:67 - Question ID: 298, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:28.501 | INFO     | __main__:<module>:67 - Question ID: 299, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:29.409 | WARNING  | __main__:<module>:60 - Retry: Question ID: 300, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:29.409 | INFO     | __main__:<module>:67 - Question ID: 300, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:30.154 | INFO     | __main__:<module>:67 - Question ID: 301, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:31.071 | INFO     | __main__:<module>:67 - Question ID: 302, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:32.051 | INFO     | __main__:<module>:67 - Question ID: 303, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:32.870 | INFO     | __main__:<module>:67 - Question ID: 304, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:33.810 | WARNING  | __main__:<module>:60 - Retry: Question ID: 305, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:33.810 | INFO     | __main__:<module>:67 - Question ID: 305, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:34.548 | INFO     | __main__:<module>:67 - Question ID: 306, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:35.426 | INFO     | __main__:<module>:67 - Question ID: 307, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:36.190 | INFO     | __main__:<module>:67 - Question ID: 308, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:37.225 | INFO     | __main__:<module>:67 - Question ID: 309, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:38.003 | INFO     | __main__:<module>:67 - Question ID: 310, Answer ID: 4, Task: Phi-2
+2024-06-05 00:03:40.163 | INFO     | __main__:<module>:67 - Question ID: 311, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:41.102 | WARNING  | __main__:<module>:60 - Retry: Question ID: 312, Answer ID: 4, Task: Phi-2
+2024-06-05 00:03:41.102 | INFO     | __main__:<module>:67 - Question ID: 312, Answer ID: 4, Task: Phi-2
+2024-06-05 00:03:42.223 | INFO     | __main__:<module>:67 - Question ID: 313, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:42.985 | INFO     | __main__:<module>:67 - Question ID: 314, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:43.913 | WARNING  | __main__:<module>:60 - Retry: Question ID: 315, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:43.913 | INFO     | __main__:<module>:67 - Question ID: 315, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:44.762 | INFO     | __main__:<module>:67 - Question ID: 316, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:45.714 | WARNING  | __main__:<module>:60 - Retry: Question ID: 317, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:45.907 | WARNING  | __main__:<module>:60 - Retry: Question ID: 317, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:46.270 | WARNING  | __main__:<module>:60 - Retry: Question ID: 317, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:46.270 | INFO     | __main__:<module>:67 - Question ID: 317, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:47.247 | INFO     | __main__:<module>:67 - Question ID: 318, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:48.205 | INFO     | __main__:<module>:67 - Question ID: 319, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:49.164 | INFO     | __main__:<module>:67 - Question ID: 320, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:50.156 | WARNING  | __main__:<module>:60 - Retry: Question ID: 321, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:50.351 | WARNING  | __main__:<module>:60 - Retry: Question ID: 321, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:50.554 | WARNING  | __main__:<module>:60 - Retry: Question ID: 321, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:50.742 | WARNING  | __main__:<module>:60 - Retry: Question ID: 321, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:50.742 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:03:50.743 | INFO     | __main__:<module>:67 - Question ID: 321, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:51.523 | INFO     | __main__:<module>:67 - Question ID: 322, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:52.361 | INFO     | __main__:<module>:67 - Question ID: 323, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:53.276 | INFO     | __main__:<module>:67 - Question ID: 324, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:54.067 | INFO     | __main__:<module>:67 - Question ID: 325, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:54.959 | INFO     | __main__:<module>:67 - Question ID: 326, Answer ID: 1, Task: Phi-2
+2024-06-05 00:03:55.726 | INFO     | __main__:<module>:67 - Question ID: 327, Answer ID: 2, Task: Phi-2
+2024-06-05 00:03:56.568 | INFO     | __main__:<module>:67 - Question ID: 328, Answer ID: 5, Task: Phi-2
+2024-06-05 00:03:57.538 | WARNING  | __main__:<module>:60 - Retry: Question ID: 329, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:57.726 | WARNING  | __main__:<module>:60 - Retry: Question ID: 329, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:57.930 | WARNING  | __main__:<module>:60 - Retry: Question ID: 329, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:58.133 | WARNING  | __main__:<module>:60 - Retry: Question ID: 329, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:58.133 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:03:58.133 | INFO     | __main__:<module>:67 - Question ID: 329, Answer ID: None, Task: Phi-2
+2024-06-05 00:03:58.976 | INFO     | __main__:<module>:67 - Question ID: 330, Answer ID: 3, Task: Phi-2
+2024-06-05 00:03:59.750 | INFO     | __main__:<module>:67 - Question ID: 331, Answer ID: 4, Task: Phi-2
+2024-06-05 00:04:00.527 | INFO     | __main__:<module>:67 - Question ID: 332, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:01.423 | INFO     | __main__:<module>:67 - Question ID: 333, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:02.550 | INFO     | __main__:<module>:67 - Question ID: 334, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:04.107 | WARNING  | __main__:<module>:60 - Retry: Question ID: 335, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:04.360 | WARNING  | __main__:<module>:60 - Retry: Question ID: 335, Answer ID: 3, Task: Phi-2
+2024-06-05 00:04:04.360 | INFO     | __main__:<module>:67 - Question ID: 335, Answer ID: 3, Task: Phi-2
+2024-06-05 00:04:05.357 | INFO     | __main__:<module>:67 - Question ID: 336, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:06.284 | INFO     | __main__:<module>:67 - Question ID: 337, Answer ID: 1, Task: Phi-2
+2024-06-05 00:04:07.123 | INFO     | __main__:<module>:67 - Question ID: 338, Answer ID: 3, Task: Phi-2
+2024-06-05 00:04:08.032 | INFO     | __main__:<module>:67 - Question ID: 339, Answer ID: 1, Task: Phi-2
+2024-06-05 00:04:09.401 | INFO     | __main__:<module>:67 - Question ID: 340, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:10.822 | WARNING  | __main__:<module>:60 - Retry: Question ID: 341, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:10.822 | INFO     | __main__:<module>:67 - Question ID: 341, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:20.599 | INFO     | __main__:<module>:67 - Question ID: 342, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:21.854 | INFO     | __main__:<module>:67 - Question ID: 343, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:22.834 | INFO     | __main__:<module>:67 - Question ID: 344, Answer ID: 5, Task: Phi-2
+2024-06-05 00:04:23.709 | INFO     | __main__:<module>:67 - Question ID: 345, Answer ID: 5, Task: Phi-2
+2024-06-05 00:04:24.508 | INFO     | __main__:<module>:67 - Question ID: 346, Answer ID: 4, Task: Phi-2
+2024-06-05 00:04:25.491 | INFO     | __main__:<module>:67 - Question ID: 347, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:26.620 | INFO     | __main__:<module>:67 - Question ID: 348, Answer ID: 5, Task: Phi-2
+2024-06-05 00:04:27.804 | WARNING  | __main__:<module>:60 - Retry: Question ID: 349, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:28.263 | WARNING  | __main__:<module>:60 - Retry: Question ID: 349, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:28.600 | WARNING  | __main__:<module>:60 - Retry: Question ID: 349, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:28.844 | WARNING  | __main__:<module>:60 - Retry: Question ID: 349, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:28.844 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:04:28.844 | INFO     | __main__:<module>:67 - Question ID: 349, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:30.003 | INFO     | __main__:<module>:67 - Question ID: 350, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:31.198 | INFO     | __main__:<module>:67 - Question ID: 351, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:32.193 | INFO     | __main__:<module>:67 - Question ID: 352, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:34.534 | WARNING  | __main__:<module>:60 - Retry: Question ID: 353, Answer ID: 1, Task: Phi-2
+2024-06-05 00:04:34.534 | INFO     | __main__:<module>:67 - Question ID: 353, Answer ID: 1, Task: Phi-2
+2024-06-05 00:04:35.562 | INFO     | __main__:<module>:67 - Question ID: 354, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:36.602 | INFO     | __main__:<module>:67 - Question ID: 355, Answer ID: 4, Task: Phi-2
+2024-06-05 00:04:37.646 | INFO     | __main__:<module>:67 - Question ID: 356, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:38.722 | INFO     | __main__:<module>:67 - Question ID: 357, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:39.714 | INFO     | __main__:<module>:67 - Question ID: 358, Answer ID: 5, Task: Phi-2
+2024-06-05 00:04:48.455 | INFO     | __main__:<module>:67 - Question ID: 359, Answer ID: 3, Task: Phi-2
+2024-06-05 00:04:49.735 | INFO     | __main__:<module>:67 - Question ID: 360, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:50.492 | INFO     | __main__:<module>:67 - Question ID: 361, Answer ID: 4, Task: Phi-2
+2024-06-05 00:04:51.396 | INFO     | __main__:<module>:67 - Question ID: 362, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:52.503 | WARNING  | __main__:<module>:60 - Retry: Question ID: 363, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:52.737 | WARNING  | __main__:<module>:60 - Retry: Question ID: 363, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:52.909 | WARNING  | __main__:<module>:60 - Retry: Question ID: 363, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:53.095 | WARNING  | __main__:<module>:60 - Retry: Question ID: 363, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:53.095 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:04:53.095 | INFO     | __main__:<module>:67 - Question ID: 363, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:54.165 | INFO     | __main__:<module>:67 - Question ID: 364, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:55.536 | INFO     | __main__:<module>:67 - Question ID: 365, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:56.648 | INFO     | __main__:<module>:67 - Question ID: 366, Answer ID: 2, Task: Phi-2
+2024-06-05 00:04:57.752 | WARNING  | __main__:<module>:60 - Retry: Question ID: 367, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:58.038 | WARNING  | __main__:<module>:60 - Retry: Question ID: 367, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:58.331 | WARNING  | __main__:<module>:60 - Retry: Question ID: 367, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:58.557 | WARNING  | __main__:<module>:60 - Retry: Question ID: 367, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:58.557 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:04:58.557 | INFO     | __main__:<module>:67 - Question ID: 367, Answer ID: None, Task: Phi-2
+2024-06-05 00:04:59.531 | INFO     | __main__:<module>:67 - Question ID: 368, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:00.878 | INFO     | __main__:<module>:67 - Question ID: 369, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:01.881 | WARNING  | __main__:<module>:60 - Retry: Question ID: 370, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:02.095 | WARNING  | __main__:<module>:60 - Retry: Question ID: 370, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:02.293 | WARNING  | __main__:<module>:60 - Retry: Question ID: 370, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:02.471 | WARNING  | __main__:<module>:60 - Retry: Question ID: 370, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:02.472 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:05:02.472 | INFO     | __main__:<module>:67 - Question ID: 370, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:03.478 | INFO     | __main__:<module>:67 - Question ID: 371, Answer ID: 3, Task: Phi-2
+2024-06-05 00:05:04.538 | INFO     | __main__:<module>:67 - Question ID: 372, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:05.699 | WARNING  | __main__:<module>:60 - Retry: Question ID: 373, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:05.901 | WARNING  | __main__:<module>:60 - Retry: Question ID: 373, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:06.156 | WARNING  | __main__:<module>:60 - Retry: Question ID: 373, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:06.156 | INFO     | __main__:<module>:67 - Question ID: 373, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:07.102 | INFO     | __main__:<module>:67 - Question ID: 374, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:08.046 | INFO     | __main__:<module>:67 - Question ID: 375, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:09.035 | INFO     | __main__:<module>:67 - Question ID: 376, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:09.948 | INFO     | __main__:<module>:67 - Question ID: 377, Answer ID: 3, Task: Phi-2
+2024-06-05 00:05:10.839 | INFO     | __main__:<module>:67 - Question ID: 378, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:12.051 | WARNING  | __main__:<module>:60 - Retry: Question ID: 379, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:12.269 | WARNING  | __main__:<module>:60 - Retry: Question ID: 379, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:12.492 | WARNING  | __main__:<module>:60 - Retry: Question ID: 379, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:12.789 | WARNING  | __main__:<module>:60 - Retry: Question ID: 379, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:12.789 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:05:12.789 | INFO     | __main__:<module>:67 - Question ID: 379, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:13.728 | INFO     | __main__:<module>:67 - Question ID: 380, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:15.566 | INFO     | __main__:<module>:67 - Question ID: 381, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:16.617 | INFO     | __main__:<module>:67 - Question ID: 382, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:17.466 | INFO     | __main__:<module>:67 - Question ID: 383, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:18.611 | INFO     | __main__:<module>:67 - Question ID: 384, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:20.056 | WARNING  | __main__:<module>:60 - Retry: Question ID: 385, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:20.296 | WARNING  | __main__:<module>:60 - Retry: Question ID: 385, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:20.584 | WARNING  | __main__:<module>:60 - Retry: Question ID: 385, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:20.904 | WARNING  | __main__:<module>:60 - Retry: Question ID: 385, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:20.904 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:05:20.904 | INFO     | __main__:<module>:67 - Question ID: 385, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:22.095 | INFO     | __main__:<module>:67 - Question ID: 386, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:23.245 | INFO     | __main__:<module>:67 - Question ID: 387, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:24.175 | INFO     | __main__:<module>:67 - Question ID: 388, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:25.142 | INFO     | __main__:<module>:67 - Question ID: 389, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:26.082 | INFO     | __main__:<module>:67 - Question ID: 390, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:27.178 | INFO     | __main__:<module>:67 - Question ID: 391, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:28.307 | INFO     | __main__:<module>:67 - Question ID: 392, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:29.222 | INFO     | __main__:<module>:67 - Question ID: 393, Answer ID: 4, Task: Phi-2
+2024-06-05 00:05:30.138 | INFO     | __main__:<module>:67 - Question ID: 394, Answer ID: 5, Task: Phi-2
+2024-06-05 00:05:31.177 | WARNING  | __main__:<module>:60 - Retry: Question ID: 395, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:31.474 | WARNING  | __main__:<module>:60 - Retry: Question ID: 395, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:31.716 | WARNING  | __main__:<module>:60 - Retry: Question ID: 395, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:31.978 | WARNING  | __main__:<module>:60 - Retry: Question ID: 395, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:31.979 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:05:31.979 | INFO     | __main__:<module>:67 - Question ID: 395, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:32.817 | INFO     | __main__:<module>:67 - Question ID: 396, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:33.871 | INFO     | __main__:<module>:67 - Question ID: 397, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:46.194 | INFO     | __main__:<module>:67 - Question ID: 398, Answer ID: 1, Task: Phi-2
+2024-06-05 00:05:47.087 | INFO     | __main__:<module>:67 - Question ID: 399, Answer ID: 5, Task: Phi-2
+2024-06-05 00:05:48.199 | WARNING  | __main__:<module>:60 - Retry: Question ID: 400, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:48.422 | WARNING  | __main__:<module>:60 - Retry: Question ID: 400, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:48.655 | WARNING  | __main__:<module>:60 - Retry: Question ID: 400, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:48.868 | WARNING  | __main__:<module>:60 - Retry: Question ID: 400, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:48.868 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:05:48.868 | INFO     | __main__:<module>:67 - Question ID: 400, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:49.666 | INFO     | __main__:<module>:67 - Question ID: 401, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:50.722 | INFO     | __main__:<module>:67 - Question ID: 402, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:51.652 | INFO     | __main__:<module>:67 - Question ID: 403, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:52.472 | INFO     | __main__:<module>:67 - Question ID: 404, Answer ID: 3, Task: Phi-2
+2024-06-05 00:05:53.373 | INFO     | __main__:<module>:67 - Question ID: 405, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:54.296 | INFO     | __main__:<module>:67 - Question ID: 406, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:55.224 | INFO     | __main__:<module>:67 - Question ID: 407, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:56.265 | WARNING  | __main__:<module>:60 - Retry: Question ID: 408, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:56.437 | WARNING  | __main__:<module>:60 - Retry: Question ID: 408, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:56.437 | INFO     | __main__:<module>:67 - Question ID: 408, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:57.332 | INFO     | __main__:<module>:67 - Question ID: 409, Answer ID: 2, Task: Phi-2
+2024-06-05 00:05:58.457 | WARNING  | __main__:<module>:60 - Retry: Question ID: 410, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:58.631 | WARNING  | __main__:<module>:60 - Retry: Question ID: 410, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:58.843 | WARNING  | __main__:<module>:60 - Retry: Question ID: 410, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:59.118 | WARNING  | __main__:<module>:60 - Retry: Question ID: 410, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:59.119 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:05:59.119 | INFO     | __main__:<module>:67 - Question ID: 410, Answer ID: None, Task: Phi-2
+2024-06-05 00:05:59.969 | INFO     | __main__:<module>:67 - Question ID: 411, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:00.826 | INFO     | __main__:<module>:67 - Question ID: 412, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:01.728 | INFO     | __main__:<module>:67 - Question ID: 413, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:02.492 | INFO     | __main__:<module>:67 - Question ID: 414, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:03.394 | INFO     | __main__:<module>:67 - Question ID: 415, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:04.158 | INFO     | __main__:<module>:67 - Question ID: 416, Answer ID: 4, Task: Phi-2
+2024-06-05 00:06:04.920 | INFO     | __main__:<module>:67 - Question ID: 417, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:05.688 | INFO     | __main__:<module>:67 - Question ID: 418, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:06.601 | INFO     | __main__:<module>:67 - Question ID: 419, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:07.442 | INFO     | __main__:<module>:67 - Question ID: 420, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:08.359 | INFO     | __main__:<module>:67 - Question ID: 421, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:09.198 | INFO     | __main__:<module>:67 - Question ID: 422, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:10.507 | INFO     | __main__:<module>:67 - Question ID: 423, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:11.276 | INFO     | __main__:<module>:67 - Question ID: 424, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:12.166 | INFO     | __main__:<module>:67 - Question ID: 425, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:13.254 | INFO     | __main__:<module>:67 - Question ID: 426, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:14.408 | INFO     | __main__:<module>:67 - Question ID: 427, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:15.250 | INFO     | __main__:<module>:67 - Question ID: 428, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:16.107 | INFO     | __main__:<module>:67 - Question ID: 429, Answer ID: 5, Task: Phi-2
+2024-06-05 00:06:16.900 | INFO     | __main__:<module>:67 - Question ID: 430, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:17.821 | INFO     | __main__:<module>:67 - Question ID: 431, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:18.628 | INFO     | __main__:<module>:67 - Question ID: 432, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:19.599 | INFO     | __main__:<module>:67 - Question ID: 433, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:20.360 | INFO     | __main__:<module>:67 - Question ID: 434, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:21.435 | INFO     | __main__:<module>:67 - Question ID: 435, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:22.932 | INFO     | __main__:<module>:67 - Question ID: 436, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:23.993 | INFO     | __main__:<module>:67 - Question ID: 437, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:24.950 | INFO     | __main__:<module>:67 - Question ID: 438, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:26.003 | INFO     | __main__:<module>:67 - Question ID: 439, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:27.100 | INFO     | __main__:<module>:67 - Question ID: 440, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:28.103 | INFO     | __main__:<module>:67 - Question ID: 441, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:29.143 | WARNING  | __main__:<module>:60 - Retry: Question ID: 442, Answer ID: None, Task: Phi-2
+2024-06-05 00:06:29.349 | WARNING  | __main__:<module>:60 - Retry: Question ID: 442, Answer ID: None, Task: Phi-2
+2024-06-05 00:06:29.553 | WARNING  | __main__:<module>:60 - Retry: Question ID: 442, Answer ID: None, Task: Phi-2
+2024-06-05 00:06:29.759 | WARNING  | __main__:<module>:60 - Retry: Question ID: 442, Answer ID: None, Task: Phi-2
+2024-06-05 00:06:29.759 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:06:29.759 | INFO     | __main__:<module>:67 - Question ID: 442, Answer ID: None, Task: Phi-2
+2024-06-05 00:06:31.404 | INFO     | __main__:<module>:67 - Question ID: 443, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:33.380 | INFO     | __main__:<module>:67 - Question ID: 444, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:34.364 | WARNING  | __main__:<module>:60 - Retry: Question ID: 445, Answer ID: None, Task: Phi-2
+2024-06-05 00:06:34.582 | WARNING  | __main__:<module>:60 - Retry: Question ID: 445, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:34.582 | INFO     | __main__:<module>:67 - Question ID: 445, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:35.568 | INFO     | __main__:<module>:67 - Question ID: 446, Answer ID: 5, Task: Phi-2
+2024-06-05 00:06:36.568 | INFO     | __main__:<module>:67 - Question ID: 447, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:37.887 | INFO     | __main__:<module>:67 - Question ID: 448, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:38.945 | INFO     | __main__:<module>:67 - Question ID: 449, Answer ID: 4, Task: Phi-2
+2024-06-05 00:06:40.129 | INFO     | __main__:<module>:67 - Question ID: 450, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:41.038 | INFO     | __main__:<module>:67 - Question ID: 451, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:42.077 | INFO     | __main__:<module>:67 - Question ID: 452, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:42.910 | INFO     | __main__:<module>:67 - Question ID: 453, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:43.929 | INFO     | __main__:<module>:67 - Question ID: 454, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:44.927 | INFO     | __main__:<module>:67 - Question ID: 455, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:45.739 | INFO     | __main__:<module>:67 - Question ID: 456, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:46.557 | INFO     | __main__:<module>:67 - Question ID: 457, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:47.424 | INFO     | __main__:<module>:67 - Question ID: 458, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:48.341 | INFO     | __main__:<module>:67 - Question ID: 459, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:49.250 | INFO     | __main__:<module>:67 - Question ID: 460, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:50.202 | INFO     | __main__:<module>:67 - Question ID: 461, Answer ID: 1, Task: Phi-2
+2024-06-05 00:06:51.353 | WARNING  | __main__:<module>:60 - Retry: Question ID: 462, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:51.353 | INFO     | __main__:<module>:67 - Question ID: 462, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:52.229 | INFO     | __main__:<module>:67 - Question ID: 463, Answer ID: 4, Task: Phi-2
+2024-06-05 00:06:53.100 | INFO     | __main__:<module>:67 - Question ID: 464, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:54.056 | INFO     | __main__:<module>:67 - Question ID: 465, Answer ID: 2, Task: Phi-2
+2024-06-05 00:06:55.003 | INFO     | __main__:<module>:67 - Question ID: 466, Answer ID: 5, Task: Phi-2
+2024-06-05 00:06:56.086 | WARNING  | __main__:<module>:60 - Retry: Question ID: 467, Answer ID: None, Task: Phi-2
+2024-06-05 00:06:56.360 | WARNING  | __main__:<module>:60 - Retry: Question ID: 467, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:56.361 | INFO     | __main__:<module>:67 - Question ID: 467, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:57.475 | INFO     | __main__:<module>:67 - Question ID: 468, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:58.294 | INFO     | __main__:<module>:67 - Question ID: 469, Answer ID: 3, Task: Phi-2
+2024-06-05 00:06:59.591 | INFO     | __main__:<module>:67 - Question ID: 470, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:00.894 | INFO     | __main__:<module>:67 - Question ID: 471, Answer ID: 1, Task: Phi-2
+2024-06-05 00:07:01.811 | INFO     | __main__:<module>:67 - Question ID: 472, Answer ID: 4, Task: Phi-2
+2024-06-05 00:07:02.802 | INFO     | __main__:<module>:67 - Question ID: 473, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:03.769 | INFO     | __main__:<module>:67 - Question ID: 474, Answer ID: 5, Task: Phi-2
+2024-06-05 00:07:04.753 | INFO     | __main__:<module>:67 - Question ID: 475, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:05.763 | INFO     | __main__:<module>:67 - Question ID: 476, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:06.823 | INFO     | __main__:<module>:67 - Question ID: 477, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:07.837 | INFO     | __main__:<module>:67 - Question ID: 478, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:09.190 | INFO     | __main__:<module>:67 - Question ID: 479, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:10.224 | INFO     | __main__:<module>:67 - Question ID: 480, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:11.282 | INFO     | __main__:<module>:67 - Question ID: 481, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:12.527 | INFO     | __main__:<module>:67 - Question ID: 482, Answer ID: 1, Task: Phi-2
+2024-06-05 00:07:13.624 | INFO     | __main__:<module>:67 - Question ID: 483, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:14.674 | INFO     | __main__:<module>:67 - Question ID: 484, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:15.629 | INFO     | __main__:<module>:67 - Question ID: 485, Answer ID: 4, Task: Phi-2
+2024-06-05 00:07:16.592 | INFO     | __main__:<module>:67 - Question ID: 486, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:18.716 | INFO     | __main__:<module>:67 - Question ID: 487, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:20.388 | INFO     | __main__:<module>:67 - Question ID: 488, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:21.350 | INFO     | __main__:<module>:67 - Question ID: 489, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:22.170 | INFO     | __main__:<module>:67 - Question ID: 490, Answer ID: 5, Task: Phi-2
+2024-06-05 00:07:23.232 | INFO     | __main__:<module>:67 - Question ID: 491, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:24.582 | INFO     | __main__:<module>:67 - Question ID: 492, Answer ID: 1, Task: Phi-2
+2024-06-05 00:07:25.721 | INFO     | __main__:<module>:67 - Question ID: 493, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:26.694 | INFO     | __main__:<module>:67 - Question ID: 494, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:27.910 | INFO     | __main__:<module>:67 - Question ID: 495, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:29.324 | INFO     | __main__:<module>:67 - Question ID: 496, Answer ID: 1, Task: Phi-2
+2024-06-05 00:07:30.355 | INFO     | __main__:<module>:67 - Question ID: 497, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:31.306 | INFO     | __main__:<module>:67 - Question ID: 498, Answer ID: 1, Task: Phi-2
+2024-06-05 00:07:32.467 | INFO     | __main__:<module>:67 - Question ID: 499, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:33.404 | INFO     | __main__:<module>:67 - Question ID: 500, Answer ID: 4, Task: Phi-2
+2024-06-05 00:07:34.231 | INFO     | __main__:<module>:67 - Question ID: 501, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:35.396 | INFO     | __main__:<module>:67 - Question ID: 502, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:36.673 | INFO     | __main__:<module>:67 - Question ID: 503, Answer ID: 4, Task: Phi-2
+2024-06-05 00:07:37.856 | INFO     | __main__:<module>:67 - Question ID: 504, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:39.261 | INFO     | __main__:<module>:67 - Question ID: 505, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:40.476 | INFO     | __main__:<module>:67 - Question ID: 506, Answer ID: 4, Task: Phi-2
+2024-06-05 00:07:41.365 | INFO     | __main__:<module>:67 - Question ID: 507, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:42.348 | INFO     | __main__:<module>:67 - Question ID: 508, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:43.951 | INFO     | __main__:<module>:67 - Question ID: 509, Answer ID: 1, Task: Phi-2
+2024-06-05 00:07:45.004 | INFO     | __main__:<module>:67 - Question ID: 510, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:46.223 | INFO     | __main__:<module>:67 - Question ID: 511, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:47.106 | INFO     | __main__:<module>:67 - Question ID: 512, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:48.020 | INFO     | __main__:<module>:67 - Question ID: 513, Answer ID: 1, Task: Phi-2
+2024-06-05 00:07:48.818 | INFO     | __main__:<module>:67 - Question ID: 514, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:49.895 | INFO     | __main__:<module>:67 - Question ID: 515, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:51.210 | INFO     | __main__:<module>:67 - Question ID: 516, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:52.453 | INFO     | __main__:<module>:67 - Question ID: 517, Answer ID: 3, Task: Phi-2
+2024-06-05 00:07:53.390 | INFO     | __main__:<module>:67 - Question ID: 518, Answer ID: 4, Task: Phi-2
+2024-06-05 00:07:54.491 | INFO     | __main__:<module>:67 - Question ID: 519, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:55.425 | INFO     | __main__:<module>:67 - Question ID: 520, Answer ID: 4, Task: Phi-2
+2024-06-05 00:07:56.466 | INFO     | __main__:<module>:67 - Question ID: 521, Answer ID: 5, Task: Phi-2
+2024-06-05 00:07:57.345 | INFO     | __main__:<module>:67 - Question ID: 522, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:58.202 | INFO     | __main__:<module>:67 - Question ID: 523, Answer ID: 2, Task: Phi-2
+2024-06-05 00:07:58.998 | INFO     | __main__:<module>:67 - Question ID: 524, Answer ID: 4, Task: Phi-2
+2024-06-05 00:08:00.429 | WARNING  | __main__:<module>:60 - Retry: Question ID: 525, Answer ID: 1, Task: Phi-2
+2024-06-05 00:08:00.430 | INFO     | __main__:<module>:67 - Question ID: 525, Answer ID: 1, Task: Phi-2
+2024-06-05 00:08:01.984 | INFO     | __main__:<module>:67 - Question ID: 526, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:03.199 | INFO     | __main__:<module>:67 - Question ID: 527, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:04.282 | WARNING  | __main__:<module>:60 - Retry: Question ID: 528, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:04.480 | WARNING  | __main__:<module>:60 - Retry: Question ID: 528, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:04.480 | INFO     | __main__:<module>:67 - Question ID: 528, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:05.359 | INFO     | __main__:<module>:67 - Question ID: 529, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:06.278 | INFO     | __main__:<module>:67 - Question ID: 530, Answer ID: 4, Task: Phi-2
+2024-06-05 00:08:07.084 | INFO     | __main__:<module>:67 - Question ID: 531, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:07.996 | INFO     | __main__:<module>:67 - Question ID: 532, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:08.794 | INFO     | __main__:<module>:67 - Question ID: 533, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:09.612 | INFO     | __main__:<module>:67 - Question ID: 534, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:10.599 | INFO     | __main__:<module>:67 - Question ID: 535, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:11.378 | INFO     | __main__:<module>:67 - Question ID: 536, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:12.234 | INFO     | __main__:<module>:67 - Question ID: 537, Answer ID: 4, Task: Phi-2
+2024-06-05 00:08:13.293 | INFO     | __main__:<module>:67 - Question ID: 538, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:14.396 | INFO     | __main__:<module>:67 - Question ID: 539, Answer ID: 5, Task: Phi-2
+2024-06-05 00:08:15.489 | INFO     | __main__:<module>:67 - Question ID: 540, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:16.421 | INFO     | __main__:<module>:67 - Question ID: 541, Answer ID: 1, Task: Phi-2
+2024-06-05 00:08:17.439 | WARNING  | __main__:<module>:60 - Retry: Question ID: 542, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:17.661 | WARNING  | __main__:<module>:60 - Retry: Question ID: 542, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:17.958 | WARNING  | __main__:<module>:60 - Retry: Question ID: 542, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:18.184 | WARNING  | __main__:<module>:60 - Retry: Question ID: 542, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:18.184 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:08:18.184 | INFO     | __main__:<module>:67 - Question ID: 542, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:18.991 | INFO     | __main__:<module>:67 - Question ID: 543, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:19.900 | INFO     | __main__:<module>:67 - Question ID: 544, Answer ID: 1, Task: Phi-2
+2024-06-05 00:08:20.896 | WARNING  | __main__:<module>:60 - Retry: Question ID: 545, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:20.897 | INFO     | __main__:<module>:67 - Question ID: 545, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:21.996 | WARNING  | __main__:<module>:60 - Retry: Question ID: 546, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:22.230 | WARNING  | __main__:<module>:60 - Retry: Question ID: 546, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:22.454 | WARNING  | __main__:<module>:60 - Retry: Question ID: 546, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:22.687 | WARNING  | __main__:<module>:60 - Retry: Question ID: 546, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:22.688 | ERROR    | __main__:<module>:66 - option X
+2024-06-05 00:08:22.688 | INFO     | __main__:<module>:67 - Question ID: 546, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:23.487 | INFO     | __main__:<module>:67 - Question ID: 547, Answer ID: 4, Task: Phi-2
+2024-06-05 00:08:24.369 | INFO     | __main__:<module>:67 - Question ID: 548, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:25.246 | INFO     | __main__:<module>:67 - Question ID: 549, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:26.027 | INFO     | __main__:<module>:67 - Question ID: 550, Answer ID: 5, Task: Phi-2
+2024-06-05 00:08:27.085 | INFO     | __main__:<module>:67 - Question ID: 551, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:27.929 | INFO     | __main__:<module>:67 - Question ID: 552, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:28.796 | INFO     | __main__:<module>:67 - Question ID: 553, Answer ID: 3, Task: Phi-2
+2024-06-05 00:08:29.846 | INFO     | __main__:<module>:67 - Question ID: 554, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:30.804 | INFO     | __main__:<module>:67 - Question ID: 555, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:31.734 | INFO     | __main__:<module>:67 - Question ID: 556, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:32.798 | INFO     | __main__:<module>:67 - Question ID: 557, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:33.807 | INFO     | __main__:<module>:67 - Question ID: 558, Answer ID: 1, Task: Phi-2
+2024-06-05 00:08:34.875 | INFO     | __main__:<module>:67 - Question ID: 559, Answer ID: 4, Task: Phi-2
+2024-06-05 00:08:35.792 | INFO     | __main__:<module>:67 - Question ID: 560, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:36.760 | INFO     | __main__:<module>:67 - Question ID: 561, Answer ID: 2, Task: Phi-2
+2024-06-05 00:08:37.990 | WARNING  | __main__:<module>:60 - Retry: Question ID: 562, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:38.192 | WARNING  | __main__:<module>:60 - Retry: Question ID: 562, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:38.423 | WARNING  | __main__:<module>:60 - Retry: Question ID: 562, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:38.635 | WARNING  | __main__:<module>:60 - Retry: Question ID: 562, Answer ID: None, Task: Phi-2
+2024-06-05 00:08:38.635 | ERROR    | __main__:<module>:66 - option
+2024-06-05 00:08:38.635 | INFO     | __main__:<module>:67 - Question ID: 562, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:06.932 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8138, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:07.173 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8138, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:07.414 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8138, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:07.933 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8138, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:07.933 | ERROR    | __main__:<module>:67 - option
+2024-06-05 00:25:07.933 | INFO     | __main__:<module>:68 - Question ID: 8138, Answer ID: None, Task: Phi-2, Label: 
+2024-06-05 00:25:09.329 | INFO     | __main__:<module>:68 - Question ID: 8153, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:10.583 | INFO     | __main__:<module>:68 - Question ID: 8156, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:25:11.543 | INFO     | __main__:<module>:68 - Question ID: 8160, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:12.563 | INFO     | __main__:<module>:68 - Question ID: 8165, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:13.545 | INFO     | __main__:<module>:68 - Question ID: 8168, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:14.475 | INFO     | __main__:<module>:68 - Question ID: 8186, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:25:15.387 | INFO     | __main__:<module>:68 - Question ID: 8200, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:25:16.196 | INFO     | __main__:<module>:68 - Question ID: 8202, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:17.203 | INFO     | __main__:<module>:68 - Question ID: 8210, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:18.193 | INFO     | __main__:<module>:68 - Question ID: 8211, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:19.011 | INFO     | __main__:<module>:68 - Question ID: 8213, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:20.072 | INFO     | __main__:<module>:68 - Question ID: 8216, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:21.242 | INFO     | __main__:<module>:68 - Question ID: 8223, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:22.047 | INFO     | __main__:<module>:68 - Question ID: 8230, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:25:23.114 | INFO     | __main__:<module>:68 - Question ID: 8231, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:24.014 | INFO     | __main__:<module>:68 - Question ID: 8243, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:24.928 | INFO     | __main__:<module>:68 - Question ID: 8261, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:25:25.806 | INFO     | __main__:<module>:68 - Question ID: 8263, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:26.866 | INFO     | __main__:<module>:68 - Question ID: 8266, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:27.953 | INFO     | __main__:<module>:68 - Question ID: 8269, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:28.957 | INFO     | __main__:<module>:68 - Question ID: 8272, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:29.859 | INFO     | __main__:<module>:68 - Question ID: 8285, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:30.761 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8289, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:30.934 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8289, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:31.096 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8289, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:31.264 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8289, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:31.264 | ERROR    | __main__:<module>:67 - option
+2024-06-05 00:25:31.264 | INFO     | __main__:<module>:68 - Question ID: 8289, Answer ID: None, Task: Phi-2, Label: 
+2024-06-05 00:25:32.152 | INFO     | __main__:<module>:68 - Question ID: 8293, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:25:34.392 | INFO     | __main__:<module>:68 - Question ID: 8301, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:35.316 | INFO     | __main__:<module>:68 - Question ID: 8307, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:25:36.136 | INFO     | __main__:<module>:68 - Question ID: 8310, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:25:36.950 | INFO     | __main__:<module>:68 - Question ID: 8311, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:37.959 | INFO     | __main__:<module>:68 - Question ID: 8314, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:38.749 | INFO     | __main__:<module>:68 - Question ID: 8318, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:39.739 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8319, Answer ID: 2, Task: Phi-2
+2024-06-05 00:25:39.739 | INFO     | __main__:<module>:68 - Question ID: 8319, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:40.646 | INFO     | __main__:<module>:68 - Question ID: 8335, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:41.817 | INFO     | __main__:<module>:68 - Question ID: 8342, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:25:42.705 | INFO     | __main__:<module>:68 - Question ID: 8347, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:25:43.597 | INFO     | __main__:<module>:68 - Question ID: 8350, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:44.655 | INFO     | __main__:<module>:68 - Question ID: 8354, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:45.748 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8359, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:45.957 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8359, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:46.187 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8359, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:46.452 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8359, Answer ID: 2, Task: Phi-2
+2024-06-05 00:25:46.452 | INFO     | __main__:<module>:68 - Question ID: 8359, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:47.429 | INFO     | __main__:<module>:68 - Question ID: 8360, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:25:48.333 | INFO     | __main__:<module>:68 - Question ID: 8361, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:49.273 | INFO     | __main__:<module>:68 - Question ID: 8362, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:50.137 | INFO     | __main__:<module>:68 - Question ID: 8363, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:51.275 | INFO     | __main__:<module>:68 - Question ID: 8364, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:52.366 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8369, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:52.608 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8369, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:52.807 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8369, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:53.022 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8369, Answer ID: None, Task: Phi-2
+2024-06-05 00:25:53.022 | ERROR    | __main__:<module>:67 - option
+2024-06-05 00:25:53.022 | INFO     | __main__:<module>:68 - Question ID: 8369, Answer ID: None, Task: Phi-2, Label: 
+2024-06-05 00:25:54.003 | INFO     | __main__:<module>:68 - Question ID: 8371, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:54.898 | INFO     | __main__:<module>:68 - Question ID: 8381, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:55.750 | INFO     | __main__:<module>:68 - Question ID: 8389, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:25:56.608 | INFO     | __main__:<module>:68 - Question ID: 8396, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:57.389 | INFO     | __main__:<module>:68 - Question ID: 8401, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:25:58.333 | INFO     | __main__:<module>:68 - Question ID: 8403, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:25:59.183 | INFO     | __main__:<module>:68 - Question ID: 8405, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:00.098 | INFO     | __main__:<module>:68 - Question ID: 8411, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:01.029 | INFO     | __main__:<module>:68 - Question ID: 8417, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:01.968 | INFO     | __main__:<module>:68 - Question ID: 8426, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:02.747 | INFO     | __main__:<module>:68 - Question ID: 8429, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:03.624 | INFO     | __main__:<module>:68 - Question ID: 8434, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:26:04.582 | INFO     | __main__:<module>:68 - Question ID: 8437, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:05.586 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8445, Answer ID: 3, Task: Phi-2
+2024-06-05 00:26:05.586 | INFO     | __main__:<module>:68 - Question ID: 8445, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:06.566 | INFO     | __main__:<module>:68 - Question ID: 8455, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:07.620 | INFO     | __main__:<module>:68 - Question ID: 8456, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:08.523 | INFO     | __main__:<module>:68 - Question ID: 8460, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:09.545 | INFO     | __main__:<module>:68 - Question ID: 8462, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:10.533 | INFO     | __main__:<module>:68 - Question ID: 8476, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:26:11.576 | INFO     | __main__:<module>:68 - Question ID: 8485, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:12.467 | INFO     | __main__:<module>:68 - Question ID: 8493, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:26:13.410 | INFO     | __main__:<module>:68 - Question ID: 8499, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:14.222 | INFO     | __main__:<module>:68 - Question ID: 8503, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:15.072 | INFO     | __main__:<module>:68 - Question ID: 8508, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:16.079 | INFO     | __main__:<module>:68 - Question ID: 8523, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:16.978 | INFO     | __main__:<module>:68 - Question ID: 8525, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:17.991 | INFO     | __main__:<module>:68 - Question ID: 8531, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:18.872 | INFO     | __main__:<module>:68 - Question ID: 8538, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:19.962 | INFO     | __main__:<module>:68 - Question ID: 8541, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:20.898 | INFO     | __main__:<module>:68 - Question ID: 8546, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:21.706 | INFO     | __main__:<module>:68 - Question ID: 8552, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:22.623 | INFO     | __main__:<module>:68 - Question ID: 8568, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:23.605 | INFO     | __main__:<module>:68 - Question ID: 8570, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:24.437 | INFO     | __main__:<module>:68 - Question ID: 8576, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:25.464 | INFO     | __main__:<module>:68 - Question ID: 8578, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:26.381 | INFO     | __main__:<module>:68 - Question ID: 8579, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:26:27.469 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8598, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:27.677 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8598, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:27.915 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8598, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:28.132 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8598, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:28.132 | ERROR    | __main__:<module>:67 - option
+2024-06-05 00:26:28.132 | INFO     | __main__:<module>:68 - Question ID: 8598, Answer ID: None, Task: Phi-2, Label: 
+2024-06-05 00:26:29.029 | INFO     | __main__:<module>:68 - Question ID: 8600, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:29.845 | INFO     | __main__:<module>:68 - Question ID: 8601, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:30.853 | INFO     | __main__:<module>:68 - Question ID: 8611, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:31.670 | INFO     | __main__:<module>:68 - Question ID: 8614, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:32.597 | INFO     | __main__:<module>:68 - Question ID: 8617, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:33.533 | INFO     | __main__:<module>:68 - Question ID: 8620, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:34.597 | INFO     | __main__:<module>:68 - Question ID: 8627, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:35.461 | INFO     | __main__:<module>:68 - Question ID: 8635, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:36.271 | INFO     | __main__:<module>:68 - Question ID: 8636, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:37.240 | INFO     | __main__:<module>:68 - Question ID: 8638, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:38.118 | INFO     | __main__:<module>:68 - Question ID: 8639, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:26:39.118 | INFO     | __main__:<module>:68 - Question ID: 8641, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:40.223 | INFO     | __main__:<module>:68 - Question ID: 8650, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:41.135 | INFO     | __main__:<module>:68 - Question ID: 8654, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:26:42.004 | INFO     | __main__:<module>:68 - Question ID: 8655, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:43.010 | INFO     | __main__:<module>:68 - Question ID: 8657, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:43.947 | INFO     | __main__:<module>:68 - Question ID: 8662, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:45.085 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8663, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:45.328 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8663, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:45.550 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8663, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:45.752 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8663, Answer ID: None, Task: Phi-2
+2024-06-05 00:26:45.752 | ERROR    | __main__:<module>:67 - option
+2024-06-05 00:26:45.752 | INFO     | __main__:<module>:68 - Question ID: 8663, Answer ID: None, Task: Phi-2, Label: 
+2024-06-05 00:26:46.756 | INFO     | __main__:<module>:68 - Question ID: 8665, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:26:47.723 | INFO     | __main__:<module>:68 - Question ID: 8672, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:48.670 | INFO     | __main__:<module>:68 - Question ID: 8677, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:49.625 | INFO     | __main__:<module>:68 - Question ID: 8683, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:50.483 | INFO     | __main__:<module>:68 - Question ID: 8690, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:26:51.373 | INFO     | __main__:<module>:68 - Question ID: 8693, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:52.197 | INFO     | __main__:<module>:68 - Question ID: 8694, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:53.165 | INFO     | __main__:<module>:68 - Question ID: 8696, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:54.160 | INFO     | __main__:<module>:68 - Question ID: 8703, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:55.616 | INFO     | __main__:<module>:68 - Question ID: 8716, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:26:56.599 | INFO     | __main__:<module>:68 - Question ID: 8721, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:26:57.483 | INFO     | __main__:<module>:68 - Question ID: 8723, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:26:58.352 | INFO     | __main__:<module>:68 - Question ID: 8735, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:26:59.121 | INFO     | __main__:<module>:68 - Question ID: 8742, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:26:59.953 | INFO     | __main__:<module>:68 - Question ID: 8755, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:27:00.800 | INFO     | __main__:<module>:68 - Question ID: 8762, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:27:01.697 | INFO     | __main__:<module>:68 - Question ID: 8768, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:02.663 | INFO     | __main__:<module>:68 - Question ID: 8770, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:03.515 | INFO     | __main__:<module>:68 - Question ID: 8774, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:27:04.406 | INFO     | __main__:<module>:68 - Question ID: 8779, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:27:05.158 | INFO     | __main__:<module>:68 - Question ID: 8795, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:06.675 | INFO     | __main__:<module>:68 - Question ID: 8798, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:07.916 | INFO     | __main__:<module>:68 - Question ID: 8801, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:09.041 | INFO     | __main__:<module>:68 - Question ID: 8806, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:27:10.184 | INFO     | __main__:<module>:68 - Question ID: 8808, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:11.177 | INFO     | __main__:<module>:68 - Question ID: 8814, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:27:12.159 | INFO     | __main__:<module>:68 - Question ID: 8833, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:13.554 | INFO     | __main__:<module>:68 - Question ID: 8854, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:14.568 | INFO     | __main__:<module>:68 - Question ID: 8860, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:27:16.011 | INFO     | __main__:<module>:68 - Question ID: 8862, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:17.137 | INFO     | __main__:<module>:68 - Question ID: 8863, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:27:18.321 | INFO     | __main__:<module>:68 - Question ID: 8868, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:19.343 | INFO     | __main__:<module>:68 - Question ID: 8874, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:20.301 | INFO     | __main__:<module>:68 - Question ID: 8875, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:27:21.524 | INFO     | __main__:<module>:68 - Question ID: 8877, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:27:22.754 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8882, Answer ID: 2, Task: Phi-2
+2024-06-05 00:27:22.754 | INFO     | __main__:<module>:68 - Question ID: 8882, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:23.690 | INFO     | __main__:<module>:68 - Question ID: 8885, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:24.963 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8886, Answer ID: None, Task: Phi-2
+2024-06-05 00:27:25.187 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8886, Answer ID: None, Task: Phi-2
+2024-06-05 00:27:25.674 | WARNING  | __main__:<module>:61 - Retry: Question ID: 8886, Answer ID: 1, Task: Phi-2
+2024-06-05 00:27:25.674 | INFO     | __main__:<module>:68 - Question ID: 8886, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:27:26.629 | INFO     | __main__:<module>:68 - Question ID: 8901, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:27.551 | INFO     | __main__:<module>:68 - Question ID: 8912, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:27:28.494 | INFO     | __main__:<module>:68 - Question ID: 8915, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:29.574 | INFO     | __main__:<module>:68 - Question ID: 8942, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:30.546 | INFO     | __main__:<module>:68 - Question ID: 8946, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:31.540 | INFO     | __main__:<module>:68 - Question ID: 8947, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:32.550 | INFO     | __main__:<module>:68 - Question ID: 8948, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:27:33.340 | INFO     | __main__:<module>:68 - Question ID: 8950, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:27:34.361 | INFO     | __main__:<module>:68 - Question ID: 8955, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:35.341 | INFO     | __main__:<module>:68 - Question ID: 8957, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:27:36.305 | INFO     | __main__:<module>:68 - Question ID: 8961, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:27:37.216 | INFO     | __main__:<module>:68 - Question ID: 8962, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:38.130 | INFO     | __main__:<module>:68 - Question ID: 8964, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:38.940 | INFO     | __main__:<module>:68 - Question ID: 8965, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:27:39.960 | INFO     | __main__:<module>:68 - Question ID: 8971, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:41.041 | INFO     | __main__:<module>:68 - Question ID: 8972, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:42.297 | INFO     | __main__:<module>:68 - Question ID: 8981, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:43.683 | INFO     | __main__:<module>:68 - Question ID: 8987, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:44.853 | INFO     | __main__:<module>:68 - Question ID: 9001, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:45.855 | INFO     | __main__:<module>:68 - Question ID: 9010, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:46.880 | INFO     | __main__:<module>:68 - Question ID: 9013, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:47.687 | INFO     | __main__:<module>:68 - Question ID: 9014, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:27:48.831 | INFO     | __main__:<module>:68 - Question ID: 9022, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:49.920 | INFO     | __main__:<module>:68 - Question ID: 9023, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:50.881 | INFO     | __main__:<module>:68 - Question ID: 9025, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:27:51.771 | INFO     | __main__:<module>:68 - Question ID: 9028, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:52.894 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9030, Answer ID: 2, Task: Phi-2
+2024-06-05 00:27:52.894 | INFO     | __main__:<module>:68 - Question ID: 9030, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:53.944 | INFO     | __main__:<module>:68 - Question ID: 9043, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:54.982 | INFO     | __main__:<module>:68 - Question ID: 9046, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:56.333 | INFO     | __main__:<module>:68 - Question ID: 9048, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:57.305 | INFO     | __main__:<module>:68 - Question ID: 9050, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:58.378 | INFO     | __main__:<module>:68 - Question ID: 9052, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:27:59.384 | INFO     | __main__:<module>:68 - Question ID: 9061, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:28:00.248 | INFO     | __main__:<module>:68 - Question ID: 9073, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:01.354 | INFO     | __main__:<module>:68 - Question ID: 9074, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:28:02.272 | INFO     | __main__:<module>:68 - Question ID: 9077, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:03.330 | INFO     | __main__:<module>:68 - Question ID: 9091, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:04.340 | INFO     | __main__:<module>:68 - Question ID: 9095, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:28:05.291 | INFO     | __main__:<module>:68 - Question ID: 9099, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:06.207 | INFO     | __main__:<module>:68 - Question ID: 9101, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:28:07.121 | INFO     | __main__:<module>:68 - Question ID: 9102, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:08.065 | INFO     | __main__:<module>:68 - Question ID: 9112, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:28:09.172 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9118, Answer ID: None, Task: Phi-2
+2024-06-05 00:28:09.409 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9118, Answer ID: 3, Task: Phi-2
+2024-06-05 00:28:09.409 | INFO     | __main__:<module>:68 - Question ID: 9118, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:10.302 | INFO     | __main__:<module>:68 - Question ID: 9124, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:11.470 | INFO     | __main__:<module>:68 - Question ID: 9126, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:12.460 | INFO     | __main__:<module>:68 - Question ID: 9129, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:13.431 | INFO     | __main__:<module>:68 - Question ID: 9139, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:14.483 | INFO     | __main__:<module>:68 - Question ID: 9145, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:15.440 | INFO     | __main__:<module>:68 - Question ID: 9146, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:28:16.366 | INFO     | __main__:<module>:68 - Question ID: 9167, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:17.286 | INFO     | __main__:<module>:68 - Question ID: 9168, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:18.128 | INFO     | __main__:<module>:68 - Question ID: 9174, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:28:19.275 | INFO     | __main__:<module>:68 - Question ID: 9180, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:20.517 | INFO     | __main__:<module>:68 - Question ID: 9187, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:21.331 | INFO     | __main__:<module>:68 - Question ID: 9191, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:22.305 | INFO     | __main__:<module>:68 - Question ID: 9204, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:29.841 | INFO     | __main__:<module>:68 - Question ID: 9208, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:28:30.632 | INFO     | __main__:<module>:68 - Question ID: 9213, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:31.467 | INFO     | __main__:<module>:68 - Question ID: 9214, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:32.225 | INFO     | __main__:<module>:68 - Question ID: 9219, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:33.110 | INFO     | __main__:<module>:68 - Question ID: 9224, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:33.925 | INFO     | __main__:<module>:68 - Question ID: 9225, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:34.900 | INFO     | __main__:<module>:68 - Question ID: 9231, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:35.860 | INFO     | __main__:<module>:68 - Question ID: 9237, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:36.856 | INFO     | __main__:<module>:68 - Question ID: 9242, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:28:38.024 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9243, Answer ID: None, Task: Phi-2
+2024-06-05 00:28:38.252 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9243, Answer ID: 2, Task: Phi-2
+2024-06-05 00:28:38.253 | INFO     | __main__:<module>:68 - Question ID: 9243, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:39.131 | INFO     | __main__:<module>:68 - Question ID: 9244, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:40.127 | INFO     | __main__:<module>:68 - Question ID: 9246, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:28:56.505 | INFO     | __main__:<module>:68 - Question ID: 9256, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:28:57.343 | INFO     | __main__:<module>:68 - Question ID: 9259, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:58.321 | INFO     | __main__:<module>:68 - Question ID: 9264, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:28:59.200 | INFO     | __main__:<module>:68 - Question ID: 9268, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:00.093 | INFO     | __main__:<module>:68 - Question ID: 9269, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:01.203 | INFO     | __main__:<module>:68 - Question ID: 9277, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:29:02.128 | INFO     | __main__:<module>:68 - Question ID: 9280, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:02.945 | INFO     | __main__:<module>:68 - Question ID: 9282, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:03.998 | INFO     | __main__:<module>:68 - Question ID: 9290, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:04.972 | INFO     | __main__:<module>:68 - Question ID: 9299, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:05.764 | INFO     | __main__:<module>:68 - Question ID: 9300, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:06.691 | INFO     | __main__:<module>:68 - Question ID: 9305, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:29:07.737 | INFO     | __main__:<module>:68 - Question ID: 9308, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:08.681 | INFO     | __main__:<module>:68 - Question ID: 9314, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:09.866 | INFO     | __main__:<module>:68 - Question ID: 9317, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:10.796 | INFO     | __main__:<module>:68 - Question ID: 9319, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:11.687 | INFO     | __main__:<module>:68 - Question ID: 9323, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:12.617 | INFO     | __main__:<module>:68 - Question ID: 9324, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:13.530 | INFO     | __main__:<module>:68 - Question ID: 9327, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:20.709 | INFO     | __main__:<module>:68 - Question ID: 9339, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:29:21.743 | INFO     | __main__:<module>:68 - Question ID: 9344, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:22.654 | INFO     | __main__:<module>:68 - Question ID: 9355, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:23.484 | INFO     | __main__:<module>:68 - Question ID: 9359, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:24.447 | INFO     | __main__:<module>:68 - Question ID: 9371, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:25.446 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9374, Answer ID: None, Task: Phi-2
+2024-06-05 00:29:25.682 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9374, Answer ID: 4, Task: Phi-2
+2024-06-05 00:29:25.682 | INFO     | __main__:<module>:68 - Question ID: 9374, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:29:26.508 | INFO     | __main__:<module>:68 - Question ID: 9377, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:27.305 | INFO     | __main__:<module>:68 - Question ID: 9379, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:28.239 | INFO     | __main__:<module>:68 - Question ID: 9385, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:29:29.131 | INFO     | __main__:<module>:68 - Question ID: 9388, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:29:30.008 | INFO     | __main__:<module>:68 - Question ID: 9389, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:31.108 | INFO     | __main__:<module>:68 - Question ID: 9390, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:32.004 | INFO     | __main__:<module>:68 - Question ID: 9394, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:29:33.147 | INFO     | __main__:<module>:68 - Question ID: 9396, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:34.089 | INFO     | __main__:<module>:68 - Question ID: 9400, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:35.059 | INFO     | __main__:<module>:68 - Question ID: 9417, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:35.961 | INFO     | __main__:<module>:68 - Question ID: 9434, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:29:36.871 | INFO     | __main__:<module>:68 - Question ID: 9435, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:37.759 | INFO     | __main__:<module>:68 - Question ID: 9442, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:29:38.833 | INFO     | __main__:<module>:68 - Question ID: 9443, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:39.814 | INFO     | __main__:<module>:68 - Question ID: 9444, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:40.720 | INFO     | __main__:<module>:68 - Question ID: 9447, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:41.590 | INFO     | __main__:<module>:68 - Question ID: 9454, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:42.521 | INFO     | __main__:<module>:68 - Question ID: 9456, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:43.374 | INFO     | __main__:<module>:68 - Question ID: 9457, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:44.158 | INFO     | __main__:<module>:68 - Question ID: 9459, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:29:45.009 | INFO     | __main__:<module>:68 - Question ID: 9462, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:45.957 | INFO     | __main__:<module>:68 - Question ID: 9464, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:46.723 | INFO     | __main__:<module>:68 - Question ID: 9467, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:47.582 | INFO     | __main__:<module>:68 - Question ID: 9468, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:48.404 | INFO     | __main__:<module>:68 - Question ID: 9487, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:49.286 | INFO     | __main__:<module>:68 - Question ID: 9504, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:29:50.310 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9505, Answer ID: None, Task: Phi-2
+2024-06-05 00:29:50.486 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9505, Answer ID: None, Task: Phi-2
+2024-06-05 00:29:50.675 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9505, Answer ID: None, Task: Phi-2
+2024-06-05 00:29:50.865 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9505, Answer ID: None, Task: Phi-2
+2024-06-05 00:29:50.865 | ERROR    | __main__:<module>:67 - option
+2024-06-05 00:29:50.866 | INFO     | __main__:<module>:68 - Question ID: 9505, Answer ID: None, Task: Phi-2, Label: 
+2024-06-05 00:29:51.905 | INFO     | __main__:<module>:68 - Question ID: 9507, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:52.747 | INFO     | __main__:<module>:68 - Question ID: 9511, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:53.615 | INFO     | __main__:<module>:68 - Question ID: 9516, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:54.389 | INFO     | __main__:<module>:68 - Question ID: 9524, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:29:55.342 | INFO     | __main__:<module>:68 - Question ID: 9526, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:56.159 | INFO     | __main__:<module>:68 - Question ID: 9533, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:29:56.840 | INFO     | __main__:<module>:68 - Question ID: 9545, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:57.881 | INFO     | __main__:<module>:68 - Question ID: 9547, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:58.787 | INFO     | __main__:<module>:68 - Question ID: 9549, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:29:59.702 | INFO     | __main__:<module>:68 - Question ID: 9557, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:30:00.573 | INFO     | __main__:<module>:68 - Question ID: 9570, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:01.429 | INFO     | __main__:<module>:68 - Question ID: 9571, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:02.308 | INFO     | __main__:<module>:68 - Question ID: 9585, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:30:03.091 | INFO     | __main__:<module>:68 - Question ID: 9586, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:30:03.871 | INFO     | __main__:<module>:68 - Question ID: 9587, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:04.871 | INFO     | __main__:<module>:68 - Question ID: 9595, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:05.901 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9597, Answer ID: 3, Task: Phi-2
+2024-06-05 00:30:05.902 | INFO     | __main__:<module>:68 - Question ID: 9597, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:06.910 | INFO     | __main__:<module>:68 - Question ID: 9602, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:07.713 | INFO     | __main__:<module>:68 - Question ID: 9607, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:08.706 | INFO     | __main__:<module>:68 - Question ID: 9610, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:09.645 | INFO     | __main__:<module>:68 - Question ID: 9612, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:10.722 | INFO     | __main__:<module>:68 - Question ID: 9613, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:11.654 | INFO     | __main__:<module>:68 - Question ID: 9623, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:12.503 | INFO     | __main__:<module>:68 - Question ID: 9626, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:13.303 | INFO     | __main__:<module>:68 - Question ID: 9630, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:14.339 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9631, Answer ID: None, Task: Phi-2
+2024-06-05 00:30:14.547 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9631, Answer ID: None, Task: Phi-2
+2024-06-05 00:30:14.754 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9631, Answer ID: 2, Task: Phi-2
+2024-06-05 00:30:14.755 | INFO     | __main__:<module>:68 - Question ID: 9631, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:15.600 | INFO     | __main__:<module>:68 - Question ID: 9633, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:16.468 | INFO     | __main__:<module>:68 - Question ID: 9637, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:17.368 | INFO     | __main__:<module>:68 - Question ID: 9641, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:18.303 | INFO     | __main__:<module>:68 - Question ID: 9650, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:19.120 | INFO     | __main__:<module>:68 - Question ID: 9653, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:20.200 | INFO     | __main__:<module>:68 - Question ID: 9656, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:30:21.160 | INFO     | __main__:<module>:68 - Question ID: 9657, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:22.154 | INFO     | __main__:<module>:68 - Question ID: 9659, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:23.150 | INFO     | __main__:<module>:68 - Question ID: 9673, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:24.033 | INFO     | __main__:<module>:68 - Question ID: 9674, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:25.041 | INFO     | __main__:<module>:68 - Question ID: 9676, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:30:25.979 | INFO     | __main__:<module>:68 - Question ID: 9678, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:30:26.872 | INFO     | __main__:<module>:68 - Question ID: 9682, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:27.827 | INFO     | __main__:<module>:68 - Question ID: 9685, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:32.746 | INFO     | __main__:<module>:68 - Question ID: 9703, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:33.559 | INFO     | __main__:<module>:68 - Question ID: 9705, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:34.375 | INFO     | __main__:<module>:68 - Question ID: 9707, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:30:35.230 | INFO     | __main__:<module>:68 - Question ID: 9709, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:36.088 | INFO     | __main__:<module>:68 - Question ID: 9710, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:37.270 | INFO     | __main__:<module>:68 - Question ID: 9713, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:38.140 | INFO     | __main__:<module>:68 - Question ID: 9717, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:38.959 | INFO     | __main__:<module>:68 - Question ID: 9719, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:30:39.993 | INFO     | __main__:<module>:68 - Question ID: 9728, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:40.872 | INFO     | __main__:<module>:68 - Question ID: 9738, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:41.783 | INFO     | __main__:<module>:68 - Question ID: 9741, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:30:42.780 | INFO     | __main__:<module>:68 - Question ID: 9743, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:43.711 | INFO     | __main__:<module>:68 - Question ID: 9745, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:30:44.755 | INFO     | __main__:<module>:68 - Question ID: 9751, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:45.686 | INFO     | __main__:<module>:68 - Question ID: 9754, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:30:46.640 | INFO     | __main__:<module>:68 - Question ID: 9765, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:47.563 | INFO     | __main__:<module>:68 - Question ID: 9767, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:30:48.391 | INFO     | __main__:<module>:68 - Question ID: 9769, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:49.607 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9776, Answer ID: None, Task: Phi-2
+2024-06-05 00:30:49.913 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9776, Answer ID: 2, Task: Phi-2
+2024-06-05 00:30:49.913 | INFO     | __main__:<module>:68 - Question ID: 9776, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:51.347 | INFO     | __main__:<module>:68 - Question ID: 9777, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:52.569 | INFO     | __main__:<module>:68 - Question ID: 9780, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:30:53.667 | INFO     | __main__:<module>:68 - Question ID: 9781, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:54.786 | INFO     | __main__:<module>:68 - Question ID: 9786, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:55.827 | INFO     | __main__:<module>:68 - Question ID: 9791, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:56.967 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9796, Answer ID: 3, Task: Phi-2
+2024-06-05 00:30:56.967 | INFO     | __main__:<module>:68 - Question ID: 9796, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:30:57.812 | INFO     | __main__:<module>:68 - Question ID: 9797, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:58.883 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9798, Answer ID: 2, Task: Phi-2
+2024-06-05 00:30:58.884 | INFO     | __main__:<module>:68 - Question ID: 9798, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:30:59.766 | INFO     | __main__:<module>:68 - Question ID: 9804, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:31:00.682 | INFO     | __main__:<module>:68 - Question ID: 9813, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:01.609 | INFO     | __main__:<module>:68 - Question ID: 9822, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:02.692 | INFO     | __main__:<module>:68 - Question ID: 9823, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:03.643 | INFO     | __main__:<module>:68 - Question ID: 9827, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:04.674 | INFO     | __main__:<module>:68 - Question ID: 9832, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:05.577 | INFO     | __main__:<module>:68 - Question ID: 9834, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:31:06.399 | INFO     | __main__:<module>:68 - Question ID: 9835, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:07.178 | INFO     | __main__:<module>:68 - Question ID: 9836, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:07.868 | INFO     | __main__:<module>:68 - Question ID: 9838, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:09.087 | INFO     | __main__:<module>:68 - Question ID: 9841, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:10.012 | INFO     | __main__:<module>:68 - Question ID: 9845, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:11.056 | INFO     | __main__:<module>:68 - Question ID: 9849, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:12.049 | INFO     | __main__:<module>:68 - Question ID: 9853, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:13.225 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9857, Answer ID: None, Task: Phi-2
+2024-06-05 00:31:13.397 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9857, Answer ID: None, Task: Phi-2
+2024-06-05 00:31:13.583 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9857, Answer ID: None, Task: Phi-2
+2024-06-05 00:31:13.766 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9857, Answer ID: None, Task: Phi-2
+2024-06-05 00:31:13.767 | ERROR    | __main__:<module>:67 - option
+2024-06-05 00:31:13.767 | INFO     | __main__:<module>:68 - Question ID: 9857, Answer ID: None, Task: Phi-2, Label: 
+2024-06-05 00:31:20.462 | INFO     | __main__:<module>:68 - Question ID: 9858, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:31:21.303 | INFO     | __main__:<module>:68 - Question ID: 9865, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:22.146 | INFO     | __main__:<module>:68 - Question ID: 9868, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:23.096 | INFO     | __main__:<module>:68 - Question ID: 9872, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:31:24.010 | INFO     | __main__:<module>:68 - Question ID: 9874, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:25.243 | INFO     | __main__:<module>:68 - Question ID: 9880, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:26.408 | INFO     | __main__:<module>:68 - Question ID: 9881, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:27.364 | INFO     | __main__:<module>:68 - Question ID: 9886, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:28.311 | INFO     | __main__:<module>:68 - Question ID: 9889, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:31:29.085 | INFO     | __main__:<module>:68 - Question ID: 9891, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:30.051 | INFO     | __main__:<module>:68 - Question ID: 9894, Answer ID: 4, Task: Phi-2, Label: 
+2024-06-05 00:31:31.234 | INFO     | __main__:<module>:68 - Question ID: 9898, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:32.356 | INFO     | __main__:<module>:68 - Question ID: 9901, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:33.395 | INFO     | __main__:<module>:68 - Question ID: 9925, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:34.467 | INFO     | __main__:<module>:68 - Question ID: 9926, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:35.376 | INFO     | __main__:<module>:68 - Question ID: 9927, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:36.224 | INFO     | __main__:<module>:68 - Question ID: 9930, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:37.242 | INFO     | __main__:<module>:68 - Question ID: 9944, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:38.275 | INFO     | __main__:<module>:68 - Question ID: 9945, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:39.122 | INFO     | __main__:<module>:68 - Question ID: 9949, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:40.034 | INFO     | __main__:<module>:68 - Question ID: 9957, Answer ID: 1, Task: Phi-2, Label: 
+2024-06-05 00:31:40.897 | INFO     | __main__:<module>:68 - Question ID: 9962, Answer ID: 5, Task: Phi-2, Label: 
+2024-06-05 00:31:41.740 | INFO     | __main__:<module>:68 - Question ID: 9974, Answer ID: 3, Task: Phi-2, Label: 
+2024-06-05 00:31:43.134 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9984, Answer ID: None, Task: Phi-2
+2024-06-05 00:31:43.394 | WARNING  | __main__:<module>:61 - Retry: Question ID: 9984, Answer ID: 2, Task: Phi-2
+2024-06-05 00:31:43.394 | INFO     | __main__:<module>:68 - Question ID: 9984, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:44.614 | INFO     | __main__:<module>:68 - Question ID: 9986, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:45.921 | INFO     | __main__:<module>:68 - Question ID: 9992, Answer ID: 2, Task: Phi-2, Label: 
+2024-06-05 00:31:46.909 | INFO     | __main__:<module>:68 - Question ID: 9999, Answer ID: 1, Task: Phi-2, Label: 

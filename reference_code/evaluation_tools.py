@@ -9,7 +9,6 @@ import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
-
 db_path = 'db'
 collection_name = 'my_documents'
 
