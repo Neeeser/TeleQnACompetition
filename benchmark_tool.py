@@ -2,7 +2,7 @@ import os
 import json
 import numpy as np
 import pandas as pd
-import FreeSimpleGUI as sg
+import FreeSimpleGUI as sg  # Corrected import statement
 import threading
 from copy import deepcopy
 from src.llm_utils import prepare_questions, syst_prompt_version1, syst_prompt_with_relevant_text_version1, regex_extraction
@@ -30,6 +30,7 @@ def check_questions_with_val_output_local(questions_dict, model="phi", use_rag=T
 
     accepted_questions = {}
     parsed_predicted_answers = {}
+    none_answers = []
 
     for q in questions_only:
         user_prompt, question_only, _ = prepare_questions(questions_only[q])
@@ -43,7 +44,10 @@ def check_questions_with_val_output_local(questions_dict, model="phi", use_rag=T
             else:
                 logger.warning(f"No relevant documents found for Question ID: {q.split(' ')[1]}")
 
-        predicted_answer = pipeline.call_local_model(syst_prompt, user_prompt, model=model).strip()
+        predicted_answer = pipeline.call_local_model(syst_prompt, user_prompt, model=model, max_tokens=3).strip()
+
+        if predicted_answer.lower() == "none":
+            none_answers.append(q)
 
         parsed_predicted_answers[q] = {
             "question": questions_dict[q]["question"],
@@ -53,11 +57,10 @@ def check_questions_with_val_output_local(questions_dict, model="phi", use_rag=T
         if predicted_answer == answers_only[q].split(":")[0]:
             accepted_questions[q] = questions_dict[q]
 
-    return accepted_questions, parsed_predicted_answers
+    return accepted_questions, parsed_predicted_answers, none_answers
 
 
-
-def update_plot(window, results):
+def update_plot(window, results, none_answers):
     res = pd.DataFrame.from_dict({
         'categories': [ques.get('category', 'Uncategorized') for ques in results.values()],
         'correct': [ques['correct'] for ques in results.values()]
@@ -69,6 +72,10 @@ def update_plot(window, results):
 
     summary = res.groupby('categories').mean()
     summary['counts'] = res.groupby('categories').count()['correct'].values
+
+    none_count = len(none_answers)
+    if none_count > 0:
+        summary.loc['None'] = [0, none_count]
 
     if summary.empty:
         window['-RESULT-'].update("No data to display.")
@@ -124,6 +131,8 @@ def evaluate(model, questions_path, save_path, n_questions, max_attempts, window
 
     k = 0
 
+    none_answers = []
+
     for start_id in range(start, end, n_questions):
         attempts = 0
         end_id = np.minimum(start_id + n_questions, len(all_questions) - 1)
@@ -133,8 +142,8 @@ def evaluate(model, questions_path, save_path, n_questions, max_attempts, window
 
         while attempts < max_attempts:
             try:
-                accepted_questions, parsed_predicted_answers = check_questions_with_val_output_local(selected_questions, model=model)
-
+                accepted_questions, parsed_predicted_answers, none_answers_batch = check_questions_with_val_output_local(selected_questions, model=model)
+                none_answers.extend(none_answers_batch)
                 for q in selected_questions:
                     parsed_predicted_answers[q]['answer']
                     results[q] = deepcopy(selected_questions[q])
@@ -152,15 +161,15 @@ def evaluate(model, questions_path, save_path, n_questions, max_attempts, window
             print(f"Failed after {max_attempts} attempts.")
 
         k += 1
-        window.write_event_value('-UPDATE-', results)
+        window.write_event_value('-UPDATE-', (results, none_answers))
 
     with open(save_path, 'w') as f:
         res_str = json.dumps(results)
         f.write(res_str)
 
-    window.write_event_value('-COMPLETE-', results)
+    window.write_event_value('-COMPLETE-', (results, none_answers))
 
-model = "phi2"
+model = "falcon"
 questions_path = "data/TeleQnA.txt"
 save_path = os.path.join(model + "_answers.txt")
 
@@ -187,10 +196,14 @@ while True:
         window['-RUN-'].update(disabled=True)
         threading.Thread(target=evaluate, args=(model, questions_path, save_path, n_questions, max_attempts, window), daemon=True).start()
     elif event == '-UPDATE-':
-        update_plot(window, values['-UPDATE-'])
-        window['-PROGRESS-'].update(f"Processed {len(values['-UPDATE-'])} questions")
+        update_plot(window, values['-UPDATE-'][0], values['-UPDATE-'][1])
+        window['-PROGRESS-'].update(f"Processed {len(values['-UPDATE-'][0])} questions")
     elif event == '-COMPLETE-':
-        update_plot(window, values['-COMPLETE-'])
-        window['-PROGRESS-'].update(f"Evaluation completed. Processed {len(values['-COMPLETE-'])} questions.")
+        update_plot(window, values['-COMPLETE-'][0], values['-COMPLETE-'][1])
+        window['-PROGRESS-'].update(f"Evaluation completed. Processed {len(values['-COMPLETE-'][0])} questions.")
+
+        # Log "None" answers to the console
+        for q in values['-COMPLETE-'][1]:
+            print(f"Question with 'None' answer: {q} - {values['-COMPLETE-'][0][q]['question']}")
 
 window.close()
