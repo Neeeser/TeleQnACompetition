@@ -1,3 +1,4 @@
 *.pyc
 output/db
 .DS_Store
+.idea
