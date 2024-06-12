@@ -7,6 +7,7 @@ from transformers import AutoModel, AutoTokenizer
 from typing import List
 from loguru import logger
 import chromadb
+from llm_pipeline import llmPipeline
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
@@ -88,9 +89,31 @@ class llmRag:
         logger.info(f"Generated {len(chunks)} overlapping chunks from the document.")
         return chunks
 
+    def search_documents_with_llm(self, query: str, top_n: int = 5, threshold: float = 0.0):
+        logger.info(f"Generating improved query using LLM pipeline...")
+        llm_pipeline = llmPipeline()
+
+        improved_query = llm_pipeline.call_local_model(
+            prompt=(
+                f"You are an expert in telecommunications and document retrieval. "
+                f"Given a query that needs to search through technical documents, improve the following query to make it more effective for retrieving the most relevant documents. "
+                f"The query might relate to specific technical standards, procedures, or definitions. "
+                f"Original query: '{query}' "
+                f"Improved query: "
+            ),
+            model="phi2",
+            temperature=.1,
+            max_tokens=500
+        )
+        logger.info(f"Improved query: {improved_query}")
+
+        results = self.search_documents(improved_query, top_n, threshold)
+        return results
+
 
 if __name__ == '__main__':
-    rag = llmRag()
-    rag.store_documents('../data/Test')
-    results = rag.search_documents("Radio", top_n=5, threshold=0.1)
+    rag = llmRag(db_path='output/db')
+    rag.store_documents("../data/Test")
+
+    results = rag.search_documents_with_llm("When can a gNB transmit a DL transmission(s) on a channel after initiating a channel occupancy? [3GPP Release 17]", top_n=5, threshold=0.1)
     print(results)
