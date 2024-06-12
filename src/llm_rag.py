@@ -7,13 +7,16 @@ from loguru import logger
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+
 class llmRag:
-    def __init__(self, db_path='output/db', collection_name='my_documents') -> None:
+    def __init__(self, db_path='output/db', collection_name='my_documents', chunk_size=200, overlap=50,
+                 batch_size=100) -> None:
         self.db_path = db_path
         self.collection_name = collection_name
-        self.batch_size = 10
-        self.chunk_size = 200
-        
+        self.batch_size = batch_size
+        self.chunk_size = chunk_size
+        self.overlap = overlap
+
         self.db_client = chromadb.PersistentClient(path=self.db_path)
         logger.info(f"Connected to ChromaDB at {self.db_path}...")
         self.collection = self.db_client.get_or_create_collection(self.collection_name)
@@ -39,37 +42,41 @@ class llmRag:
         for filename in os.listdir(folder_path):
             if filename.endswith('.docx'):
                 file_path = os.path.join(folder_path, filename)
-                chunks = self.read_docx_helper(file_path, self.chunk_size)
-                logger.info(f"Starting to store {len(chunks)} chunks from {filename}")
+                chunks = self.read_docx_helper(file_path)
+                logger.info(f"Starting to store {len(chunks)} overlapping chunks from {filename}")
 
                 for i in range(0, len(chunks), self.batch_size):
-                    batch_docs = [{'text': chunk, 'metadata': {'filename': filename}} for chunk in chunks[i:i+self.batch_size]]
+                    batch_docs = [{'text': chunk, 'metadata': {'filename': filename}} for chunk in
+                                  chunks[i:i + self.batch_size]]
                     ids = [str(uuid.uuid4()) for _ in batch_docs]
                     try:
-                        self.collection.add(documents=[doc['text'] for doc in batch_docs], metadatas=[doc['metadata'] for doc in batch_docs], ids=ids)
-                        logger.info(f"Stored batch {i//self.batch_size + 1} for {filename}")
+                        self.collection.add(documents=[doc['text'] for doc in batch_docs],
+                                            metadatas=[doc['metadata'] for doc in batch_docs], ids=ids)
+                        logger.info(f"Stored batch {i // self.batch_size + 1} for {filename}")
                     except Exception as e:
-                        logger.error(f"Failed to store batch {i//self.batch_size + 1} for {filename}: {str(e)}")
+                        logger.error(f"Failed to store batch {i // self.batch_size + 1} for {filename}: {str(e)}")
                         break
 
-    def read_docx_helper(self, file_path: str, 
-                         chunk_size: int) -> List[str]:
-        """ Reads a DOCX file using docx2txt and splits it into chunks of specified size. """
+    def read_docx_helper(self, file_path: str) -> List[str]:
+        """ Reads a DOCX file using docx2txt and splits it into overlapping chunks of specified size. """
         logger.info(f"Processing file: {file_path}")
         full_text = docx2txt.process(file_path)
         words = full_text.split()
-        chunks, current_chunk = [], []
-        current_length = 0
+        chunks = []
+        start_index = 0
 
-        for word in words:
-            current_chunk.append(word)
-            current_length += 1
-            if current_length >= chunk_size:
-                chunks.append(" ".join(current_chunk))
-                current_chunk = []
-                current_length = 0
+        while start_index < len(words):
+            end_index = min(start_index + self.chunk_size, len(words))
+            chunk = " ".join(words[start_index:end_index])
+            chunks.append(chunk)
+            start_index += self.chunk_size - self.overlap
 
-        if current_chunk:  # Add the last chunk if any
-            chunks.append(" ".join(current_chunk))
-        logger.info(f"Generated {len(chunks)} chunks from the document.")
+        logger.info(f"Generated {len(chunks)} overlapping chunks from the document.")
         return chunks
+
+
+if __name__ == '__main__':
+    rag = llmRag()
+    rag.store_documents('../data/Test')
+    results = rag.search_documents("Radio", top_n=5, threshold=0.1)
+    print(results)
