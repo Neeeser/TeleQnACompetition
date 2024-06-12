@@ -1,12 +1,15 @@
 import uuid
 import os
 import docx2txt
-import chromadb
+import torch
+import torch.nn.functional as F
+from transformers import AutoModel, AutoTokenizer
 from typing import List
 from loguru import logger
+import chromadb
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
+os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
 
 class llmRag:
     def __init__(self, db_path='output/db', collection_name='my_documents', chunk_size=200, overlap=50,
@@ -22,12 +25,23 @@ class llmRag:
         self.collection = self.db_client.get_or_create_collection(self.collection_name)
         logger.info(f"Connected to collection: {collection_name}")
 
+        self.model = AutoModel.from_pretrained('nvidia/NV-Embed-v1', trust_remote_code=True, token=os.getenv("HF_API_TOKEN"))
+        self.tokenizer = AutoTokenizer.from_pretrained('nvidia/NV-Embed-v1', trust_remote_code=True, token=os.getenv("HF_API_TOKEN"))
+
+    def encode_text(self, texts: List[str], instruction_prefix: str = ""):
+        max_length = 4096
+        inputs = self.tokenizer([instruction_prefix + text for text in texts], return_tensors='pt', padding=True, truncation=True, max_length=max_length)
+        with torch.no_grad():
+            embeddings = self.model(**inputs).last_hidden_state.mean(dim=1)
+        return F.normalize(embeddings, p=2, dim=1)
+
     def search_documents(self, query: str, top_n: int = 5, threshold: float = 0.0):
-        """ Searches documents based on a query and returns the top N similar chunks. If a threshold is provided, it returns only the chunks with similarity scores above the threshold. """
         logger.info(
             f"Searching for the top {top_n} documents similar to the query: '{query}' with threshold {threshold}")
-        query_result = self.collection.query(query_texts=[query], n_results=top_n)
+        query_embedding = self.encode_text([query])
+        query_embedding = query_embedding.numpy()
 
+        query_result = self.collection.query(query_vectors=query_embedding, n_results=top_n)
         documents = query_result["documents"][0]
         metadatas = query_result["metadatas"][0]
         scores = query_result["distances"][0]
@@ -35,7 +49,6 @@ class llmRag:
         results = [(doc, meta['filename'], score) for doc, meta, score in zip(documents, metadatas, scores) if
                    score >= threshold]
         logger.info(f"Found {len(results)} documents above the similarity threshold.")
-
         return results
 
     def store_documents(self, folder_path: str):
@@ -49,8 +62,9 @@ class llmRag:
                     batch_docs = [{'text': chunk, 'metadata': {'filename': filename}} for chunk in
                                   chunks[i:i + self.batch_size]]
                     ids = [str(uuid.uuid4()) for _ in batch_docs]
+                    embeddings = self.encode_text([doc['text'] for doc in batch_docs])
                     try:
-                        self.collection.add(documents=[doc['text'] for doc in batch_docs],
+                        self.collection.add(documents=embeddings.tolist(),
                                             metadatas=[doc['metadata'] for doc in batch_docs], ids=ids)
                         logger.info(f"Stored batch {i // self.batch_size + 1} for {filename}")
                     except Exception as e:
