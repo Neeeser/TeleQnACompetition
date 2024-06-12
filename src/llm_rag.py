@@ -14,35 +14,40 @@ os.environ["HF_API_TOKEN"] = "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"  # Replace 
 
 class llmRag:
     def __init__(self, db_path='output/db', collection_name='my_documents', chunk_size=200, overlap=50,
-                 batch_size=100) -> None:
+                 batch_size=50) -> None:
         self.db_path = db_path
         self.collection_name = collection_name
         self.batch_size = batch_size
         self.chunk_size = chunk_size
         self.overlap = overlap
 
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        logger.info(f"Using device: {self.device}")
+
         self.db_client = chromadb.PersistentClient(path=self.db_path)
         logger.info(f"Connected to ChromaDB at {self.db_path}...")
         self.collection = self.db_client.get_or_create_collection(self.collection_name)
         logger.info(f"Connected to collection: {collection_name}")
 
-        self.model = AutoModel.from_pretrained('nvidia/NV-Embed-v1', trust_remote_code=True, token=os.getenv("HF_API_TOKEN"))
-        self.tokenizer = AutoTokenizer.from_pretrained('nvidia/NV-Embed-v1', trust_remote_code=True, token=os.getenv("HF_API_TOKEN"))
+        self.model_path = 'Alibaba-NLP/gte-large-en-v1.5'
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_path, trust_remote_code=True)
+        self.model = AutoModel.from_pretrained(self.model_path, trust_remote_code=True).to(self.device)
 
     def encode_text(self, texts: List[str], instruction_prefix: str = ""):
-        max_length = 4096
-        inputs = self.tokenizer([instruction_prefix + text for text in texts], return_tensors='pt', padding=True, truncation=True, max_length=max_length)
+        max_length = 8192
+        inputs = self.tokenizer([instruction_prefix + text for text in texts], return_tensors='pt', padding=True, truncation=True, max_length=max_length).to(self.device)
         with torch.no_grad():
-            embeddings = self.model(**inputs).last_hidden_state.mean(dim=1)
+            outputs = self.model(**inputs)
+            embeddings = outputs.last_hidden_state[:, 0]  # Using CLS token
         return F.normalize(embeddings, p=2, dim=1)
 
     def search_documents(self, query: str, top_n: int = 5, threshold: float = 0.0):
         logger.info(
             f"Searching for the top {top_n} documents similar to the query: '{query}' with threshold {threshold}")
         query_embedding = self.encode_text([query])
-        query_embedding = query_embedding.numpy()
+        query_embedding = query_embedding.cpu().numpy()
 
-        query_result = self.collection.query(query_vectors=query_embedding, n_results=top_n)
+        query_result = self.collection.query(query_embeddings=query_embedding, n_results=top_n)
         documents = query_result["documents"][0]
         metadatas = query_result["metadatas"][0]
         scores = query_result["distances"][0]
@@ -60,17 +65,18 @@ class llmRag:
                 logger.info(f"Starting to store {len(chunks)} overlapping chunks from {filename}")
 
                 for i in range(0, len(chunks), self.batch_size):
-                    batch_docs = [{'text': chunk, 'metadata': {'filename': filename}} for chunk in
+                    batch_docs = [{'text': chunk, 'metadata': {'filename': filename, 'text': chunk}} for chunk in
                                   chunks[i:i + self.batch_size]]
                     ids = [str(uuid.uuid4()) for _ in batch_docs]
                     embeddings = self.encode_text([doc['text'] for doc in batch_docs])
                     try:
-                        self.collection.add(documents=embeddings.tolist(),
-                                            metadatas=[doc['metadata'] for doc in batch_docs], ids=ids)
+                        self.collection.add(embeddings=embeddings.cpu().tolist(),
+                                            metadatas=[doc['metadata'] for doc in batch_docs], ids=ids, documents=[doc['text'] for doc in batch_docs])
                         logger.info(f"Stored batch {i // self.batch_size + 1} for {filename}")
                     except Exception as e:
                         logger.error(f"Failed to store batch {i // self.batch_size + 1} for {filename}: {str(e)}")
                         break
+
 
     def read_docx_helper(self, file_path: str) -> List[str]:
         """ Reads a DOCX file using docx2txt and splits it into overlapping chunks of specified size. """
