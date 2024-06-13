@@ -3,18 +3,19 @@ import os
 import docx2txt
 import torch
 import torch.nn.functional as F
+from torch.cuda.amp import autocast
 from transformers import AutoModel, AutoTokenizer
 from typing import List
 from loguru import logger
 import chromadb
-from llm_pipeline import llmPipeline
+from .llm_pipeline import llmPipeline
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
 
 class llmRag:
     def __init__(self, db_path='output/db', collection_name='my_documents', chunk_size=200, overlap=50,
-                 batch_size=50) -> None:
+                 batch_size=1) -> None:
         self.db_path = db_path
         self.collection_name = collection_name
         self.batch_size = batch_size
@@ -37,8 +38,9 @@ class llmRag:
         max_length = 8192
         inputs = self.tokenizer([instruction_prefix + text for text in texts], return_tensors='pt', padding=True, truncation=True, max_length=max_length).to(self.device)
         with torch.no_grad():
-            outputs = self.model(**inputs)
-            embeddings = outputs.last_hidden_state[:, 0]  # Using CLS token
+            with autocast():
+                outputs = self.model(**inputs)
+                embeddings = outputs.last_hidden_state[:, 0]  # Using CLS token
         return F.normalize(embeddings, p=2, dim=1)
 
     def search_documents(self, query: str, top_n: int = 5, threshold: float = 0.0):
@@ -65,18 +67,24 @@ class llmRag:
                 logger.info(f"Starting to store {len(chunks)} overlapping chunks from {filename}")
 
                 for i in range(0, len(chunks), self.batch_size):
-                    batch_docs = [{'text': chunk, 'metadata': {'filename': filename, 'text': chunk}} for chunk in
-                                  chunks[i:i + self.batch_size]]
+                    batch_docs = [{'text': chunk, 'metadata': {'filename': filename, 'text': chunk}} for chunk in chunks[i:i + self.batch_size]]
                     ids = [str(uuid.uuid4()) for _ in batch_docs]
                     embeddings = self.encode_text([doc['text'] for doc in batch_docs])
+
                     try:
-                        self.collection.add(embeddings=embeddings.cpu().tolist(),
-                                            metadatas=[doc['metadata'] for doc in batch_docs], ids=ids, documents=[doc['text'] for doc in batch_docs])
+                        self.collection.add(
+                            embeddings=embeddings.cpu().tolist(),
+                            metadatas=[doc['metadata'] for doc in batch_docs],
+                            ids=ids,
+                            documents=[doc['text'] for doc in batch_docs]
+                        )
                         logger.info(f"Stored batch {i // self.batch_size + 1} for {filename}")
                     except Exception as e:
                         logger.error(f"Failed to store batch {i // self.batch_size + 1} for {filename}: {str(e)}")
                         break
-
+                    
+                    # Clear GPU cache
+                    torch.cuda.empty_cache()
 
     def read_docx_helper(self, file_path: str) -> List[str]:
         """ Reads a DOCX file using docx2txt and splits it into overlapping chunks of specified size. """
@@ -95,9 +103,9 @@ class llmRag:
         logger.info(f"Generated {len(chunks)} overlapping chunks from the document.")
         return chunks
 
-    def search_documents_with_llm(self, query: str, top_n: int = 5, threshold: float = 0.0):
+    def search_documents_with_llm(self,query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0):
         logger.info(f"Generating improved query using LLM pipeline...")
-        llm_pipeline = llmPipeline()
+        llm_pipeline = llm_pipeline
 
         improved_query = llm_pipeline.call_local_model(
             prompt=(
@@ -107,7 +115,7 @@ class llmRag:
                 f"Original query: '{query}' "
                 f"Improved query: "
             ),
-            model="phi2",
+
             temperature=.1,
             max_tokens=500
         )
@@ -118,8 +126,8 @@ class llmRag:
 
 
 if __name__ == '__main__':
-    rag = llmRag(db_path='output/db')
-    rag.store_documents("../data/Test")
-
-    results = rag.search_documents_with_llm("When can a gNB transmit a DL transmission(s) on a channel after initiating a channel occupancy? [3GPP Release 17]", top_n=5, threshold=0.1)
-    print(results)
+    rag = llmRag(db_path='output/db_gte-large')
+    #rag.store_documents("data/rel18")
+    
+    results = rag.search_documents_with_llm("When can a gNB transmit a DL transmission(s) on a channel after initiating a channel occupancy? [3GPP Release 17]", llmPipeline(),top_n=5, threshold=0.1)
+    print(results[0])

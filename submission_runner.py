@@ -66,7 +66,7 @@ if __name__ == "__main__":
     llm = llmPipeline()
 
     if args.rag:
-        llm_rag = llmRag()
+        llm_rag = llmRag(db_path="output/db_gte-large")
 
     ############################
     # Run solution

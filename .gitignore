@@ -1,4 +1,6 @@
 *.pyc
 output/db
+output/db_gte-large
+
 .DS_Store
 .idea
