@@ -13,9 +13,9 @@ from loguru import logger
 logger.add("log/loguru_phi2.txt")
 
 
-map_ans={'A':1, 'B':2, 'C':3, 'D':4, 'E':5}
+map_ans={'1':1, '2':2, '3':3, '4':4, '5':5}
 
-
+models = {"microsoft/phi-2":"phi2", "tiiuae/falcon-7b-instruct": "falcon7b"}
 
 def load_questions(questions_path):
     with open(questions_path, encoding="utf-8") as f:
@@ -65,6 +65,9 @@ if __name__ == "__main__":
                         help="Path to the dataset with answers for benchmarking")
     parser.add_argument("--summarize", default=False, action='store_true',
                         help="Summarize the results of the search with the RAG model")
+    parser.add_argument("--top_n", default=1, type=int, help="Number of top documents to retrieve in RAG")
+    parser.add_argument("--threshold", default=0.5, type=float, help="Relevance threshold for document retrieval")
+ 
     args = parser.parse_args()
 
     ############################
@@ -75,7 +78,7 @@ if __name__ == "__main__":
     else:
         all_questions = load_questions(args.question_path)
 
-    llm = llmPipeline()
+    llm = llmPipeline(model_name=models[args.model_name])
 
     if args.rag:
         llm_rag = llmRag(db_path="output/db_gte-large")
@@ -94,13 +97,13 @@ if __name__ == "__main__":
 
         if args.rag:
             if args.rag == 'v2':
-                relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=2, threshold=0.5)
+                relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
             elif args.rag == 'v3':
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=1, threshold=0.5)
-                docs_normal = llm_rag.search_documents(question_only, top_n=1, threshold=0.5)
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
+                docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
                 relevant_docs = combine_results(docs_llm, docs_normal)
             else:
-                relevant_docs = llm_rag.search_documents(question_only, top_n=1, threshold=0.5)
+                relevant_docs = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
 
             if relevant_docs:
                 if args.summarize:
@@ -129,7 +132,7 @@ if __name__ == "__main__":
         if pred_option is None:
             pred_option = -1
             logger.error(predicted_answer)
-        logger.info(f"Question ID: {key.split(' ')[1]}, Predicted Answer ID: {pred_option}, Task: Phi-2, Label: {answer_only}")
+        logger.info(f"Question ID: {key.split(' ')[1]}, Predicted Answer ID: {pred_option}, Task: Phi-2, Label: {answer_only}" + (", Correct Answer ID:" + answer_only.split(':')[0].strip().split()[1] if args.benchmark else ''))
         if args.benchmark:
             answer_key = answer_only.split(':')[0].strip().split()[1]
 

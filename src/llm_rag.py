@@ -8,7 +8,7 @@ from transformers import AutoModel, AutoTokenizer
 from typing import List
 from loguru import logger
 import chromadb
-from llm_pipeline import llmPipeline
+from .llm_pipeline import llmPipeline
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
@@ -127,16 +127,16 @@ class llmRag:
         results = self.search_documents(improved_query_cleaned, top_n, threshold)
         return results
 
+
     def summarize_individual_result(self, result: str, query: str, llm_pipeline):
         summary_prompt = (
             f" '{result}'. "
-            f"\n\n This text is similar to the question: '{query}'. "
-            f"Here is a summary of the text with only the key points that directly answer or support the question: "
+            f"Here is a summary of the text with only the key points: "
         )
         summary = llm_pipeline.call_local_model(
             prompt=summary_prompt,
             temperature=0.3,
-            max_tokens=150,
+            max_tokens=250,
             top_p=0.9,
             repetition_penalty=1.2
         )
@@ -149,22 +149,8 @@ class llmRag:
             self.summarize_individual_result(result[0], query, llm_pipeline) for result in results
         ]
         combined_summaries = "\n".join(individual_summaries)
-        final_summary_prompt = (
-            f"'{combined_summaries}'."
-            #f"\n\nThis text is similar to the question: '{query}'."
-            f"Here is a summary of the text with only the key points that directly answer or support the question:"
-        )
-        final_summary = llm_pipeline.call_local_model(
-            prompt=final_summary_prompt,
-            temperature=0.3,
-            max_tokens=500,
-            top_p=0.9,
-            repetition_penalty=1.2
-        )
-        logger.info(f"Generated final summary: {final_summary.strip()}")
-        return final_summary.strip()
-
-    
+        logger.info(f"Generated combined summary: {combined_summaries}")
+        return combined_summaries
     
 if __name__ == '__main__':
     rag = llmRag(db_path='output/db_gte-large')

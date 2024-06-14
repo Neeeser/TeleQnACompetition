@@ -7,7 +7,7 @@ import random
 import re
 from string import Template
 import pandas as pd
-
+from loguru import logger
 
 def prepare_questions(question_dict):
     tmp_question_dict = deepcopy(question_dict)
@@ -74,16 +74,19 @@ def dict_to_frame(text):
     return pd.DataFrame(data)
 
 
+
 def extract_answer(model_output):
-    # Using regular expressions to find the answer choice pattern
-    match = re.search(r'([A-E])\)', model_output)
+    print("Model output:", model_output)  # Print the model output for debugging
+    # Using regular expressions to find a single digit between 1 and 5
+    match = re.search(r'[1-5]', model_output)
     if match:
-        return match.group(1)  # Return the captured answer choice
-    return 'D'  # Default answer if not found
+        return match.group(0)  # Return the captured answer choice
+    logger.warning(f"Answer not found in model output: {model_output}, defaulting to '4'")
+    return '4'  # Default answer if not found
 
 
-preamble = 'Answer the following question by selecting the most likely answer choice (A, B, C, D, or E): please generate only answer choice'
-template = Template('$preamble\n\n$prompt\n\nA) $a\nB) $b\nC) $c\nD) $d\nE) $e\n\nAnswer:')
+preamble = 'Answer the following question by selecting the most likely answer choice (1, 2, 3, 4, or 5): please generate only answer choice'
+template = Template('$preamble\n\n$prompt\n\n1) $a\n2) $b\n3) $c\n4) $d\n5) $e\n\nAnswer:')
 
 
 
