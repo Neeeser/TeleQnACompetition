@@ -43,7 +43,6 @@ def regex_extraction(text, pattern=r"option (\d+):"):
         filtered_number = None
     return filtered_number
 
-
 def format_input(df, idx):
     prompt = df.loc[idx, 'question']
     a = df.loc[idx, 'option_1']
@@ -52,11 +51,16 @@ def format_input(df, idx):
     d = df.loc[idx, 'option_4']
     e = df.loc[idx, 'option_5']
 
-    input_text = template.substitute(
-        preamble=preamble, prompt=prompt, a=a, b=b, c=c, d=d, e=e)
+    options = [a, b, c, d]
+    if e:  # Only include option 5 if it is not empty
+        options.append(e)
+
+    input_text = preamble + "\n\n" + prompt + "\n\n"
+    for i, option in enumerate(options, 1):
+        input_text += f"({i}) {option}\n"
+    input_text += "\nAnswer:("
 
     return input_text
-
 
 
 def dict_to_frame(text):
@@ -70,23 +74,20 @@ def dict_to_frame(text):
         "option_4": text.get("option 4", None),
         "option_5": text.get("option 5", None),
         "category": text["category"],
-     })
+    })
     return pd.DataFrame(data)
-
 
 
 def extract_answer(model_output):
     print("Model output:", model_output)  # Print the model output for debugging
-    # Using regular expressions to find a single digit between 1 and 5
-    match = re.search(r'[1-5]', model_output)
+    match = re.search(r'\b[1-5]\b', model_output)
     if match:
-        return match.group(0)  # Return the captured answer choice
-    logger.warning(f"Answer not found in model output: {model_output}, defaulting to '4'")
-    return '4'  # Default answer if not found
+        return match.group(0)
+    logger.warning(f"Answer not found in model output: {model_output}, retrying.")
+    return False
 
 
 preamble = 'Answer the following question by selecting the most likely answer choice (1, 2, 3, 4, or 5): please generate only answer choice'
-template = Template('$preamble\n\n$prompt\n\n1) $a\n2) $b\n3) $c\n4) $d\n5) $e\n\nAnswer:')
 
 
 

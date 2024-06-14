@@ -10,12 +10,12 @@ import pandas as pd
 from loguru import logger
 
 
-logger.add("log/loguru_phi2.txt")
+
 
 
 map_ans={'1':1, '2':2, '3':3, '4':4, '5':5}
 
-models = {"microsoft/phi-2":"phi2", "tiiuae/falcon-7b-instruct": "falcon7b"}
+models = {"phi2": "microsoft/phi-2",  "falcon7b":"tiiuae/falcon-7b-instruct"}
 
 def load_questions(questions_path):
     with open(questions_path, encoding="utf-8") as f:
@@ -28,9 +28,11 @@ def select_random_questions(questions_file, num_questions=5):
     with open(questions_file, 'r', encoding="utf-8") as file:
         questions = json.load(file)
 
+    if num_questions == -1:
+        return questions
+
     question_keys = list(questions.keys())
     random_keys = random.sample(question_keys, num_questions)
-
     selected_questions = {key: questions[key] for key in random_keys}
     return selected_questions
 
@@ -60,8 +62,8 @@ if __name__ == "__main__":
     parser.add_argument("--benchmark", default=False, action='store_true',
                         help="Benchmark the model with a sample of questions with answers")
     parser.add_argument("--benchmark_num_questions", default=5, type=int,
-                        help="Number of questions to use for benchmarking")
-    parser.add_argument("--benchmark_path", default="./data/TeleQnA.txt",
+                        help="Number of questions to use for benchmarking (-1 to use all questions)")
+    parser.add_argument("--benchmark_path", default="./data/matched_questions_formatted.txt",
                         help="Path to the dataset with answers for benchmarking")
     parser.add_argument("--summarize", default=False, action='store_true',
                         help="Summarize the results of the search with the RAG model")
@@ -69,7 +71,8 @@ if __name__ == "__main__":
     parser.add_argument("--threshold", default=0.5, type=float, help="Relevance threshold for document retrieval")
  
     args = parser.parse_args()
-
+    
+    logger.add("log/loguru_phi2.txt")
     ############################
     # Load data and model
     ############################
@@ -119,20 +122,25 @@ if __name__ == "__main__":
 
         pred_option = None
         for _ in range(args.max_attempts):
-            predicted_answer = llm.call_local_model(prompt, max_tokens=5)
-            pred_option = map_ans[extract_answer(predicted_answer)]
 
+            predicted_answer = llm.call_local_model(prompt, max_tokens=5)
+            pred_option = map_ans.get(extract_answer(predicted_answer))
+
+            if pred_option is False:
+                logger.warning(f"Invalid answer format. Retrying... Question ID: {key.split(' ')[1]}, Task: {args.model_name}")
+                continue
 
             if _ > 0:
-                logger.warning(f"Retry: Question ID: {key.split(' ')[1]}, Answer ID: {pred_option}, Task: Phi-2")
+                logger.warning(f"Retry: Question ID: {key.split(' ')[1]}, Answer ID: {pred_option}, Task: {args.model_name}")
             if pred_option is not None:
                 break
 
-        answer_sheet.append([key.split(' ')[1], pred_option, 'Phi-2'])
+
+        answer_sheet.append([key.split(' ')[1], pred_option, '{args.model_name}'])
         if pred_option is None:
             pred_option = -1
             logger.error(predicted_answer)
-        logger.info(f"Question ID: {key.split(' ')[1]}, Predicted Answer ID: {pred_option}, Task: Phi-2, Label: {answer_only}" + (", Correct Answer ID:" + answer_only.split(':')[0].strip().split()[1] if args.benchmark else ''))
+        logger.info(f"Question ID: {key.split(' ')[1]}, Predicted Answer ID: {pred_option}, Task: {args.model_name}, Label: {answer_only}" + (", Correct Answer ID:" + answer_only.split(':')[0].strip().split()[1] if args.benchmark else ''))
         if args.benchmark:
             answer_key = answer_only.split(':')[0].strip().split()[1]
 
@@ -151,6 +159,8 @@ if __name__ == "__main__":
     if args.benchmark:
         timestamp = time.strftime("%Y%m%d-%H%M%S")
         output_file = f'output/{args.model_name}_answer_sheet_benchmark_{timestamp}.csv'
+        if args.benchmark_num_questions == -1:
+            args.benchmark_num_questions = len(all_questions)
         accuracy = correct_count / args.benchmark_num_questions * 100
         print(f"Benchmark accuracy: {accuracy:.2f}%")
     else:
