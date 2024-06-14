@@ -8,7 +8,7 @@ from transformers import AutoModel, AutoTokenizer
 from typing import List
 from loguru import logger
 import chromadb
-from .llm_pipeline import llmPipeline
+from llm_pipeline import llmPipeline
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
@@ -103,31 +103,76 @@ class llmRag:
         logger.info(f"Generated {len(chunks)} overlapping chunks from the document.")
         return chunks
 
-    def search_documents_with_llm(self,query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0):
+    def search_documents_with_llm(self, query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0):
         logger.info(f"Generating improved query using LLM pipeline...")
         llm_pipeline = llm_pipeline
 
         improved_query = llm_pipeline.call_local_model(
             prompt=(
                 f"You are an expert in telecommunications and document retrieval. "
-                f"Given a query that needs to search through technical documents, improve the following query to make it more effective for retrieving the most relevant documents. "
-                f"The query might relate to specific technical standards, procedures, or definitions. "
-                f"Original query: '{query}' "
-                f"Improved query: "
+                f"Your task is to transform the following multiple-choice question into a highly effective search query. "
+                f"The question is related to 3GPP standards, telecommunications procedures, or technical definitions. "
+                f"Ensure the search query is specific, includes relevant technical terms, and clearly targets the needed information. "
+                f"Original question: '{query}' "
+                f"Effective search query (without any prefacing text): "
             ),
-
-            temperature=.1,
-            max_tokens=500
+            temperature=0.1,
+            max_tokens=150,
+            top_p=0.9,
+            repetition_penalty=1.2
         )
-        logger.info(f"Improved query: {improved_query}")
+        improved_query_cleaned = improved_query.strip().replace("Assistant: ", "")
+        logger.info(f"Improved query: {improved_query_cleaned}")
 
-        results = self.search_documents(improved_query, top_n, threshold)
+        results = self.search_documents(improved_query_cleaned, top_n, threshold)
         return results
 
+    def summarize_individual_result(self, result: str, query: str, llm_pipeline):
+        summary_prompt = (
+            f" '{result}'. "
+            f"\n\n This text is similar to the question: '{query}'. "
+            f"Here is a summary of the text with only the key points that directly answer or support the question: "
+        )
+        summary = llm_pipeline.call_local_model(
+            prompt=summary_prompt,
+            temperature=0.3,
+            max_tokens=150,
+            top_p=0.9,
+            repetition_penalty=1.2
+        )
+        print(f"Generated summary: {summary.strip()}")
+        return summary.strip()
 
+    def summarize_results(self, query: str, results: List[str], llm_pipeline):
+        logger.info(f"Summarizing the results from {len(results)} documents...")
+        individual_summaries = [
+            self.summarize_individual_result(result[0], query, llm_pipeline) for result in results
+        ]
+        combined_summaries = "\n".join(individual_summaries)
+        final_summary_prompt = (
+            f"'{combined_summaries}'."
+            #f"\n\nThis text is similar to the question: '{query}'."
+            f"Here is a summary of the text with only the key points that directly answer or support the question:"
+        )
+        final_summary = llm_pipeline.call_local_model(
+            prompt=final_summary_prompt,
+            temperature=0.3,
+            max_tokens=500,
+            top_p=0.9,
+            repetition_penalty=1.2
+        )
+        logger.info(f"Generated final summary: {final_summary.strip()}")
+        return final_summary.strip()
+
+    
+    
 if __name__ == '__main__':
     rag = llmRag(db_path='output/db_gte-large')
     #rag.store_documents("data/rel18")
-    
-    results = rag.search_documents_with_llm("When can a gNB transmit a DL transmission(s) on a channel after initiating a channel occupancy? [3GPP Release 17]", llmPipeline(),top_n=5, threshold=0.1)
-    print(results[0])
+    p = llmPipeline()
+    query = "When can a gNB transmit a DL transmission(s) on a channel after initiating a channel occupancy? [3GPP Release 17]"
+    results = rag.search_documents_with_llm(query, p, top_n=5, threshold=0.1)
+    for i, result in enumerate(results):
+        print(f"Result {i + 1}: {result[0]}")
+    summary = rag.summarize_results(query, results, p)
+    print(summary)

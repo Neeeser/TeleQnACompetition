@@ -22,7 +22,7 @@ class llmPipeline:
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token  # Set pad token if it's None
 
-    def call_local_model(self, prompt, temperature=0.1, max_tokens=100):
+    def call_local_model(self, prompt, temperature=0.1, max_tokens=100, top_p=None, repetition_penalty=None):
         # Encoding and generating response
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
         outputs = self.model.generate(
@@ -31,6 +31,9 @@ class llmPipeline:
             pad_token_id=self.tokenizer.pad_token_id,
             temperature=temperature,
             do_sample=True,
+            top_p=top_p,  # Adding nucleus sampling to improve the quality
+            repetition_penalty=repetition_penalty  # Adding repetition penalty to reduce repetition
+
         )
         # Calculate the length of the prompt tokens
         input_length = inputs['input_ids'].shape[1]

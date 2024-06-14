@@ -34,6 +34,16 @@ def select_random_questions(questions_file, num_questions=5):
     selected_questions = {key: questions[key] for key in random_keys}
     return selected_questions
 
+def combine_results(docs1, docs2):
+    combined_docs = []
+    seen_texts = set()
+    
+    for doc in docs1 + docs2:
+        if doc[0] not in seen_texts:
+            combined_docs.append(doc)
+            seen_texts.add(doc[0])
+    
+    return combined_docs
 
 if __name__ == "__main__":
 
@@ -42,7 +52,7 @@ if __name__ == "__main__":
     ############################
     parser = argparse.ArgumentParser(description="TeleQA evaluation runner")
     parser.add_argument("--model_name", default="phi2", help="model name")
-    parser.add_argument("--rag", default=None, help="RAG solution x")
+    parser.add_argument("--rag", default=None, help="RAG solution (x for default, v2 for optimized, v3 for combined)")
     parser.add_argument("--question_path", default="./data/TeleQnA_testing1.txt", help="data file")
     parser.add_argument("--max_attempts", default=5, type=int,
                         help="Maximal number of trials before skipping the question")
@@ -53,6 +63,8 @@ if __name__ == "__main__":
                         help="Number of questions to use for benchmarking")
     parser.add_argument("--benchmark_path", default="./data/TeleQnA.txt",
                         help="Path to the dataset with answers for benchmarking")
+    parser.add_argument("--summarize", default=False, action='store_true',
+                        help="Summarize the results of the search with the RAG model")
     args = parser.parse_args()
 
     ############################
@@ -81,12 +93,26 @@ if __name__ == "__main__":
 
 
         if args.rag:
-            relevant_docs = llm_rag.search_documents(question_only, top_n=1, threshold=0.5)
+            if args.rag == 'v2':
+                relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=2, threshold=0.5)
+            elif args.rag == 'v3':
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=1, threshold=0.5)
+                docs_normal = llm_rag.search_documents(question_only, top_n=1, threshold=0.5)
+                relevant_docs = combine_results(docs_llm, docs_normal)
+            else:
+                relevant_docs = llm_rag.search_documents(question_only, top_n=1, threshold=0.5)
+
             if relevant_docs:
-                relevant_text = " ".join([doc[0] for doc in relevant_docs])
+                if args.summarize:
+                    final_summary = llm_rag.summarize_results(question_only, relevant_docs, llm)
+                    relevant_text = final_summary
+                else:
+                    relevant_text = " ".join([doc[0] for doc in relevant_docs])
+                print(relevant_text)
                 prompt = syst_prompt_with_relevant_text_version1.format(relevant_text, prompt)
             else:
                 logger.warning(f"No relevant documents found for Question ID: {key.split(' ')[1]}")
+
 
         pred_option = None
         for _ in range(args.max_attempts):
