@@ -35,13 +35,7 @@ def prepare_questions(question_dict):
 
     return user_prompt, question_only, answer_only
 
-def regex_extraction(text, pattern=r"option (\d+):"):
-    match = re.search(pattern, text)
-    if match:
-        filtered_number = int(match.group(1))
-    else:
-        filtered_number = None
-    return filtered_number
+
 
 def format_input(df, idx):
     prompt = df.loc[idx, 'question']
@@ -87,29 +81,29 @@ def extract_answer(model_output):
     return False
 
 
-preamble = 'Answer the following question by selecting the most likely answer choice (1, 2, 3, 4, or 5): please generate only answer choice'
+preamble = '''You are an expert in telecommunications and 3GPP standards. Answer the following multiple-choice question based on your knowledge and expertise. Please provide only the answer choice number (1, 2, 3, 4, or 5) that best answers the question. Avoid any additional explanations or text beyond the answer choice number.'''
 
 
 
-syst_prompt_version1 = """
-    You are an AI assistant that answers telecommunications-related multiple-choice questions. You will be provided with a single question in JSON format. Your response should only fill in the "answer" field with the correct answer option number, adhering to the following format:
+# syst_prompt_version1 = """
+#     You are an AI assistant that answers telecommunications-related multiple-choice questions. You will be provided with a single question in JSON format. Your response should only fill in the "answer" field with the correct answer option number, adhering to the following format:
 
-    option X
+#     option X
 
-    Important notes:
-    - The response should start with "option X", where X is the number of the correct answer option.
-    - Do not include any quotes, additional formatting, or answer text in your response.
-    - Use the relevant text to assist in answering the question. If the relevant text is not helpful, please ignore it and answer based on your knowledge.
+#     Important notes:
+#     - The response should start with "option X", where X is the number of the correct answer option.
+#     - Do not include any quotes, additional formatting, or answer text in your response.
+#     - Use the relevant text to assist in answering the question. If the relevant text is not helpful, please ignore it and answer based on your knowledge.
 
-    Example:
-    If the given question is:
-    { "question": "What is the capital of France?", "option 1": "London", "option 2": "Paris", "option 3": "Berlin", "option 4": "Madrid" }
+#     Example:
+#     If the given question is:
+#     { "question": "What is the capital of France?", "option 1": "London", "option 2": "Paris", "option 3": "Berlin", "option 4": "Madrid" }
 
-    The expected response for the "answer" field would be:
-    option 2
+#     The expected response for the "answer" field would be:
+#     option 2
 
-    Please ensure that your response fills in the "answer" field correctly, following the specified format and guidelines.
-    """
+#     Please ensure that your response fills in the "answer" field correctly, following the specified format and guidelines.
+#     """
 
 syst_prompt_with_relevant_text_version1 = """Relevant context to assist in answering the question:
 {0}

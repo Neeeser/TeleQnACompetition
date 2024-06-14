@@ -1,4 +1,5 @@
 *.pyc
+output
 output/db
 output/db_gte-large
 

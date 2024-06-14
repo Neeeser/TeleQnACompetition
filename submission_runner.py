@@ -2,7 +2,7 @@ import json
 import argparse
 import random
 import time
-from src.llm_utils import prepare_questions, regex_extraction
+
 from src.llm_utils import *
 from src.llm_pipeline import llmPipeline
 from src.llm_rag import llmRag
@@ -69,7 +69,8 @@ if __name__ == "__main__":
                         help="Summarize the results of the search with the RAG model")
     parser.add_argument("--top_n", default=1, type=int, help="Number of top documents to retrieve in RAG")
     parser.add_argument("--threshold", default=0.5, type=float, help="Relevance threshold for document retrieval")
- 
+    parser.add_argument("--temperature", default=0.1, type=float, help="Temperature for the model generation")
+    
     args = parser.parse_args()
     
     logger.add("log/loguru_phi2.txt")
@@ -122,8 +123,7 @@ if __name__ == "__main__":
 
         pred_option = None
         for _ in range(args.max_attempts):
-
-            predicted_answer = llm.call_local_model(prompt, max_tokens=5)
+            predicted_answer = llm.call_local_model(prompt, max_tokens=5, temperature=(None if args.temperature==-1 else args.temperature))
             pred_option = map_ans.get(extract_answer(predicted_answer))
 
             if pred_option is False:
