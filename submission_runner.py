@@ -70,6 +70,11 @@ if __name__ == "__main__":
     parser.add_argument("--top_n", default=1, type=int, help="Number of top documents to retrieve in RAG")
     parser.add_argument("--threshold", default=0.5, type=float, help="Relevance threshold for document retrieval")
     parser.add_argument("--temperature", default=0.1, type=float, help="Temperature for the model generation")
+    parser.add_argument("--lora", default=False, action='store_true',
+                        help="Apply LoRA model to the local model")
+    parser.add_argument("--lora_path", default="./fine_tuned_models/phi-2-finetuned",
+                        help="Path to the lora model")
+
     
     args = parser.parse_args()
     
@@ -82,8 +87,11 @@ if __name__ == "__main__":
     else:
         all_questions = load_questions(args.question_path)
 
-    llm = llmPipeline(model_name=models[args.model_name])
-
+    if args.lora:
+        llm = llmPipeline(model_name=models[args.model_name], lora_path=args.lora_path)
+    else:
+        llm = llmPipeline(model_name=models[args.model_name])
+    
     if args.rag:
         llm_rag = llmRag(db_path="output/db_gte-large")
 
@@ -136,7 +144,7 @@ if __name__ == "__main__":
                 break
 
 
-        answer_sheet.append([key.split(' ')[1], pred_option, '{args.model_name}'])
+        answer_sheet.append([key.split(' ')[1], pred_option, args.model_name])
         if pred_option is None:
             pred_option = -1
             logger.error(predicted_answer)
