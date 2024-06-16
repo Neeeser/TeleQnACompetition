@@ -2,6 +2,7 @@ import subprocess
 import csv
 import itertools
 import numpy as np
+import fcntl
 
 def run_benchmark(model_name, rag, temperature, top_n, threshold):
     command = [
@@ -41,6 +42,7 @@ def run_benchmark(model_name, rag, temperature, top_n, threshold):
 
     return accuracy
 
+
 def optimize_parameters():
     models = ["phi2", "falcon7b"]
     rag_versions = [None, "x", "v2", "v3"]
@@ -48,9 +50,14 @@ def optimize_parameters():
     top_ns = list(range(1, 5))
     thresholds = [round(t, 1) for t in list(np.arange(0.0, 1.1, 0.1))]
 
-    with open("optimization_results.csv", "w", newline="") as csvfile:
+    with open("optimization_results.csv", "a", newline="") as csvfile:
+        fcntl.flock(csvfile, fcntl.LOCK_EX)  # Acquire an exclusive lock on the file
         writer = csv.writer(csvfile)
-        writer.writerow(["Model", "RAG", "Temperature", "Top N", "Threshold", "Accuracy"])
+
+        # Check if the file is empty and write the header row if necessary
+        csvfile.seek(0)
+        if csvfile.tell() == 0:
+            writer.writerow(["Model", "RAG", "Temperature", "Top N", "Threshold", "Accuracy"])
 
         for model, rag, temperature in itertools.product(models, rag_versions, temperatures):
             if rag is None:
@@ -62,13 +69,10 @@ def optimize_parameters():
                     print(f"Running benchmark with parameters: model={model}, rag={rag}, temperature={temperature}, top_n={top_n}, threshold={threshold}")
                     accuracy = run_benchmark(model, rag, temperature, top_n, threshold)
                     writer.writerow((model, rag, temperature, top_n, threshold, accuracy))
-            
-            if accuracy is not None:
-                print(f"Benchmark accuracy: {accuracy:.2f}%\n")
-            else:
-                print("Benchmark accuracy: N/A\n")
 
             csvfile.flush()  # Flush the file buffer to ensure the results are written immediately
+        
+        fcntl.flock(csvfile, fcntl.LOCK_UN)  # Release the lock on the file
 
     with open("optimization_results.csv", "r") as csvfile:
         reader = csv.reader(csvfile)
@@ -83,7 +87,7 @@ def optimize_parameters():
             print(f"Model: {result[0]}, RAG: {result[1]}, Temperature: {result[2]}, Top N: {result[3]}, Threshold: {result[4]}, Accuracy: {float(result[5]):.2f}%")
         else:
             print(f"Model: {result[0]}, RAG: {result[1]}, Temperature: {result[2]}, Top N: {result[3]}, Threshold: {result[4]}, Accuracy: N/A")
-
-
+            
+            
 if __name__ == "__main__":
     optimize_parameters()
