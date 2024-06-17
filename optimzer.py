@@ -51,9 +51,9 @@ def run_benchmark(model_name, rag, temperature, top_n, threshold, print_output):
 def optimize_parameters(print_output):
     models = ["phi2"]
     rag_versions = ["x", "v2", "v3"]
-    temperatures = [-1] + [.1, .2, .3, .4]
-    top_ns = list(range(1, 5))
-    thresholds = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
+    temperatures = [.1, .2, .3, .4] + [-1]
+    top_ns = [5, 4, 3, 2, 1]
+    thresholds = [0.0, 0.1, 0.2]
 
     total_tests = len(models) * len(rag_versions) * len(temperatures) * len(top_ns) * len(thresholds)
     progress = tqdm(total=total_tests, desc="Running benchmarks")

@@ -111,8 +111,9 @@ if __name__ == "__main__":
             if args.rag == 'v2':
                 relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
             elif args.rag == 'v3':
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
-                docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
+                half = args.top_n // 2
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold)
+                docs_normal = llm_rag.search_documents(question_only, top_n=half, threshold=args.threshold)
                 relevant_docs = combine_results(docs_llm, docs_normal)
             else:
                 relevant_docs = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)

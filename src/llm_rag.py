@@ -11,6 +11,7 @@ import chromadb
 
 from docx_preprocess import get_header_chunks
 from typing import List, Dict
+import re
 
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -46,7 +47,25 @@ class llmRag:
                 embeddings = outputs.last_hidden_state[:, 0]  # Using CLS token
         return F.normalize(embeddings, p=2, dim=1)
 
+
+    def extract_3gpp_release(self, text):
+            # Define the regular expression pattern to match the metadata fields
+            pattern = r"\[(3GPP Release \d+)\]"
+            
+            # Find all matches in the text
+            matches = re.findall(pattern, text)
+            
+            # Extract the first match (assuming there's only one relevant metadata field per document)
+            metadata = matches[0] if matches else None
+            
+            # Remove all metadata fields from the text
+            clean_text = re.sub(pattern, '', text).strip()
+            
+            return metadata, clean_text
+
     def search_documents(self, query: str, top_n: int = 5, threshold: float = 0.0):
+        release, query = self.extract_3gpp_release(query)
+
         logger.info(
             f"Searching for the top {top_n} documents similar to the query: '{query}' with threshold {threshold}")
         query_embedding = self.encode_text([query])
