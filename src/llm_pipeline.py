@@ -1,9 +1,10 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from loguru import logger
+from peft import LoraConfig, get_peft_model, PeftModel
 
 class llmPipeline:
-    def __init__(self, model_name="microsoft/phi-2"):
+    def __init__(self, model_name="microsoft/phi-2", lora_path=None):
         # Initialize logger
         logger.add("llm_pipeline_logs.log", rotation="10 MB")
 
@@ -24,6 +25,17 @@ class llmPipeline:
 
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token  # Set pad token if it's None
+
+        # Load LoRA model if path is provided
+        if lora_path is not None:
+            self.load_lora_model(lora_path)
+
+    def load_lora_model(self, lora_path):
+        # Load the LoRA configuration and model
+        logger.info(f"Loading LoRA model from {lora_path}")
+        self.model = PeftModel.from_pretrained(self.model, lora_path)
+        self.model.to(self.device)
+        logger.info("LoRA model loaded successfully.")
 
     def call_local_model(self, prompt, temperature=0.1, max_tokens=100, top_p=None, repetition_penalty=None):
         # Encoding and generating response
