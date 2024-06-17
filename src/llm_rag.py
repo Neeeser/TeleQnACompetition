@@ -1,14 +1,17 @@
 import uuid
 import os
-import docx2txt
+
 import torch
 import torch.nn.functional as F
 from torch.cuda.amp import autocast
 from transformers import AutoModel, AutoTokenizer
-from typing import List
+
 from loguru import logger
 import chromadb
-from .llm_pipeline import llmPipeline
+
+from docx_preprocess import get_header_chunks
+from typing import List, Dict
+
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
@@ -63,11 +66,13 @@ class llmRag:
         for filename in os.listdir(folder_path):
             if filename.endswith('.docx'):
                 file_path = os.path.join(folder_path, filename)
-                chunks = self.read_docx_helper(file_path)
+                header_chunks = get_header_chunks(file_path)
+                logger.info(f"Extracted {len(header_chunks)} header chunks from {filename}")
+                chunks = self.chunkify(header_chunks)
                 logger.info(f"Starting to store {len(chunks)} overlapping chunks from {filename}")
 
                 for i in range(0, len(chunks), self.batch_size):
-                    batch_docs = [{'text': chunk, 'metadata': {'filename': filename, 'text': chunk}} for chunk in chunks[i:i + self.batch_size]]
+                    batch_docs = [{'text': chunk['text'], 'metadata': {'filename': filename, 'header': chunk['header'], 'text': chunk['text']}} for chunk in chunks[i:i + self.batch_size]]
                     ids = [str(uuid.uuid4()) for _ in batch_docs]
                     embeddings = self.encode_text([doc['text'] for doc in batch_docs])
 
@@ -86,23 +91,20 @@ class llmRag:
                     # Clear GPU cache
                     torch.cuda.empty_cache()
 
-    def read_docx_helper(self, file_path: str) -> List[str]:
-        """ Reads a DOCX file using docx2txt and splits it into overlapping chunks of specified size. """
-        logger.info(f"Processing file: {file_path}")
-        full_text = docx2txt.process(file_path)
-        words = full_text.split()
+
+    def chunkify(self, navigation_dict: Dict[tuple, str]) -> List[Dict[str, str]]:
+        """ Takes in a dictionary of chunks from a docx file and returns a list of chunks with the specified chunk size and overlap """
         chunks = []
-        start_index = 0
-
-        while start_index < len(words):
-            end_index = min(start_index + self.chunk_size, len(words))
-            chunk = " ".join(words[start_index:end_index])
-            chunks.append(chunk)
-            start_index += self.chunk_size - self.overlap
-
-        logger.info(f"Generated {len(chunks)} overlapping chunks from the document.")
+        for header, text in navigation_dict.items():
+            words = text.split()
+            for i in range(0, len(words), self.chunk_size - self.overlap):
+                chunk = ' '.join(words[i:i + self.chunk_size])
+                if len(chunk) > self.overlap:  # Ensure that chunk has meaningful content
+                    chunks.append({
+                        'text': chunk,
+                        'header': header[1]
+                    })
         return chunks
-
     def search_documents_with_llm(self, query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0):
         logger.info(f"Generating improved query using LLM pipeline...")
         llm_pipeline = llm_pipeline
@@ -154,11 +156,9 @@ class llmRag:
     
 if __name__ == '__main__':
     rag = llmRag(db_path='output/db_gte-large')
-    #rag.store_documents("data/rel18")
-    p = llmPipeline()
-    query = "When can a gNB transmit a DL transmission(s) on a channel after initiating a channel occupancy? [3GPP Release 17]"
-    results = rag.search_documents_with_llm(query, p, top_n=5, threshold=0.1)
+    rag.store_documents("../data/Test")
+    query = "The Reference Vector file format is used for which purpose in 3GPP standards?"
+    results = rag.search_documents(query, top_n=3, threshold=0.1)
     for i, result in enumerate(results):
         print(f"Result {i + 1}: {result[0]}")
-    summary = rag.summarize_results(query, results, p)
-    print(summary)
+
