@@ -9,8 +9,8 @@ from transformers import AutoModel, AutoTokenizer
 import sys
 from loguru import logger
 import chromadb
-
-from docx_preprocess import get_header_chunks
+import spacy
+from .docx_preprocess import get_header_chunks
 from typing import List, Dict
 import re
 
@@ -38,6 +38,9 @@ class llmRag:
         self.model_path = 'Alibaba-NLP/gte-large-en-v1.5'
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_path, trust_remote_code=True)
         self.model = AutoModel.from_pretrained(self.model_path, trust_remote_code=True).to(self.device)
+        
+        # Load SpaCy model for keyword extraction
+        self.nlp = spacy.load('en_core_web_lg')
 
     def encode_text(self, texts: List[str], instruction_prefix: str = ""):
         max_length = 1000  # Adjusted max length to match the reduced chunk size
@@ -48,7 +51,10 @@ class llmRag:
                 embeddings = outputs.last_hidden_state[:, 0]  # Using CLS token
         return F.normalize(embeddings, p=2, dim=1)
 
-
+    def extract_keywords(self, text: str) -> str:
+        doc = self.nlp(text)
+        keywords = [token.text for token in doc if token.is_alpha and not token.is_stop]
+        return " ".join(keywords)
 
     def extract_3gpp_release(self, text):
             # Define the regular expression pattern to match the metadata fields
@@ -213,6 +219,14 @@ class llmRag:
         logger.info(f"Improved query: {improved_query_cleaned}")
 
         results = self.search_documents(improved_query_cleaned, top_n, threshold)
+        return results
+    
+    def search_documents_with_nlp(self, query: str, top_n: int = 5, threshold: float = 0.0):
+        logger.info(f"Extracting keywords from the query using NLP...")
+        keywords = self.extract_keywords(query)
+        logger.info(f"Extracted keywords: {keywords}")
+
+        results = self.search_documents(keywords, top_n, threshold)
         return results
 
 

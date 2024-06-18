@@ -12,7 +12,7 @@ def run_benchmark(model_name, rag, temperature, top_n, threshold, print_output):
         "python", "submission_runner.py",
         "--model_name", model_name,
         "--benchmark",
-        "--benchmark_num_questions", "-1",
+        "--benchmark_num_questions", "200",
         "--temperature", str(temperature),
         "--lora"
     ]
@@ -51,9 +51,9 @@ def run_benchmark(model_name, rag, temperature, top_n, threshold, print_output):
 
 def optimize_parameters(print_output):
     models = ["phi2"]
-    rag_versions = ["x"]
-    temperatures = [.1, .2, .3, .4] + [-1]
-    top_ns = [5, 4, 3, 2, 1]
+    rag_versions = ["x", "nlp"]
+    temperatures = [-1, .1, .2, .3, .4]
+    top_ns = [6, 5, 4, 3, 2]
     thresholds = [0.0, 0.1, 0.2, .3]
 
     total_tests = len(models) * len(rag_versions) * len(temperatures) * len(top_ns) * len(thresholds)

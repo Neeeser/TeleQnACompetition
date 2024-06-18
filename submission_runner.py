@@ -54,7 +54,7 @@ if __name__ == "__main__":
     ############################
     parser = argparse.ArgumentParser(description="TeleQA evaluation runner")
     parser.add_argument("--model_name", default="phi2", help="model name")
-    parser.add_argument("--rag", default=None, help="RAG solution (x for default, v2 for optimized, v3 for combined)")
+    parser.add_argument("--rag", default=None, help="RAG solution (x for default, v2 for optimized, v3 for combined, nlp for nlp model)")
     parser.add_argument("--question_path", default="./data/TeleQnA_testing1.txt", help="data file")
     parser.add_argument("--max_attempts", default=5, type=int,
                         help="Maximal number of trials before skipping the question")
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     parser.add_argument("--summarize", default=False, action='store_true',
                         help="Summarize the results of the search with the RAG model")
     parser.add_argument("--top_n", default=1, type=int, help="Number of top documents to retrieve in RAG")
-    parser.add_argument("--threshold", default=0.5, type=float, help="Relevance threshold for document retrieval")
+    parser.add_argument("--threshold", default=0.0, type=float, help="Relevance threshold for document retrieval")
     parser.add_argument("--temperature", default=0.1, type=float, help="Temperature for the model generation")
     parser.add_argument("--lora", default=False, action='store_true',
                         help="Apply LoRA model to the local model")
@@ -115,6 +115,8 @@ if __name__ == "__main__":
                 docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold)
                 docs_normal = llm_rag.search_documents(question_only, top_n=half, threshold=args.threshold)
                 relevant_docs = combine_results(docs_llm, docs_normal)
+            elif args.rag == 'nlp':
+                relevant_docs = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
             else:
                 relevant_docs = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
 
