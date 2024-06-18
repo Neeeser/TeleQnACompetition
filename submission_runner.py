@@ -93,7 +93,7 @@ if __name__ == "__main__":
         llm = llmPipeline(model_name=models[args.model_name])
     
     if args.rag:
-        llm_rag = llmRag(db_path="output/db_gte-large")
+        llm_rag = llmRag(db_path="output/db_gte-large-preprocessed")
 
     ############################
     # Run solution

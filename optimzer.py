@@ -14,6 +14,7 @@ def run_benchmark(model_name, rag, temperature, top_n, threshold, print_output):
         "--benchmark",
         "--benchmark_num_questions", "-1",
         "--temperature", str(temperature),
+        "--lora"
     ]
 
     if rag:
@@ -50,10 +51,10 @@ def run_benchmark(model_name, rag, temperature, top_n, threshold, print_output):
 
 def optimize_parameters(print_output):
     models = ["phi2"]
-    rag_versions = ["x", "v2", "v3"]
+    rag_versions = ["x"]
     temperatures = [.1, .2, .3, .4] + [-1]
     top_ns = [5, 4, 3, 2, 1]
-    thresholds = [0.0, 0.1, 0.2]
+    thresholds = [0.0, 0.1, 0.2, .3]
 
     total_tests = len(models) * len(rag_versions) * len(temperatures) * len(top_ns) * len(thresholds)
     progress = tqdm(total=total_tests, desc="Running benchmarks")

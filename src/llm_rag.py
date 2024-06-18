@@ -1,11 +1,12 @@
 import uuid
 import os
-
+import time
+from tqdm import tqdm
 import torch
 import torch.nn.functional as F
 from torch.cuda.amp import autocast
 from transformers import AutoModel, AutoTokenizer
-
+import sys
 from loguru import logger
 import chromadb
 
@@ -19,7 +20,7 @@ os.environ["HF_API_TOKEN"] = "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"  # Replace 
 
 class llmRag:
     def __init__(self, db_path='output/db', collection_name='my_documents', chunk_size=200, overlap=50,
-                 batch_size=1) -> None:
+                 batch_size=50) -> None:
         self.db_path = db_path
         self.collection_name = collection_name
         self.batch_size = batch_size
@@ -39,13 +40,14 @@ class llmRag:
         self.model = AutoModel.from_pretrained(self.model_path, trust_remote_code=True).to(self.device)
 
     def encode_text(self, texts: List[str], instruction_prefix: str = ""):
-        max_length = 8192
+        max_length = 1000  # Adjusted max length to match the reduced chunk size
         inputs = self.tokenizer([instruction_prefix + text for text in texts], return_tensors='pt', padding=True, truncation=True, max_length=max_length).to(self.device)
         with torch.no_grad():
             with autocast():
                 outputs = self.model(**inputs)
                 embeddings = outputs.last_hidden_state[:, 0]  # Using CLS token
         return F.normalize(embeddings, p=2, dim=1)
+
 
 
     def extract_3gpp_release(self, text):
@@ -82,33 +84,98 @@ class llmRag:
         return results
 
     def store_documents(self, folder_path: str):
-        for filename in os.listdir(folder_path):
-            if filename.endswith('.docx'):
-                file_path = os.path.join(folder_path, filename)
-                header_chunks = get_header_chunks(file_path)
-                logger.info(f"Extracted {len(header_chunks)} header chunks from {filename}")
-                chunks = self.chunkify(header_chunks)
-                logger.info(f"Starting to store {len(chunks)} overlapping chunks from {filename}")
+        doc_files = [filename for filename in os.listdir(folder_path) if filename.endswith('.docx')]
+        total_files = len(doc_files)
+        start_time = time.time()
 
-                for i in range(0, len(chunks), self.batch_size):
-                    batch_docs = [{'text': chunk['text'], 'metadata': {'filename': filename, 'header': chunk['header'], 'text': chunk['text']}} for chunk in chunks[i:i + self.batch_size]]
-                    ids = [str(uuid.uuid4()) for _ in batch_docs]
-                    embeddings = self.encode_text([doc['text'] for doc in batch_docs])
+        for idx, filename in enumerate(tqdm(doc_files, desc="Processing documents")):
+            file_path = os.path.join(folder_path, filename)
+            header_chunks = get_header_chunks(file_path)
+            if len(header_chunks) == 0:
+                sys.exit(f"No header chunks extracted from {filename}")
+                
+            logger.info(f"Extracted {len(header_chunks)} header chunks from {filename}")
+            chunks = self.chunkify(header_chunks)
+            #logger.info(f"Starting to store {len(chunks)} overlapping chunks from {filename}")
 
-                    try:
-                        self.collection.add(
-                            embeddings=embeddings.cpu().tolist(),
-                            metadatas=[doc['metadata'] for doc in batch_docs],
-                            ids=ids,
-                            documents=[doc['text'] for doc in batch_docs]
-                        )
-                        logger.info(f"Stored batch {i // self.batch_size + 1} for {filename}")
-                    except Exception as e:
-                        logger.error(f"Failed to store batch {i // self.batch_size + 1} for {filename}: {str(e)}")
-                        break
-                    
-                    # Clear GPU cache
-                    torch.cuda.empty_cache()
+            for i in range(0, len(chunks), self.batch_size):
+                batch_docs = [{'text': chunk['text'], 'metadata': {'filename': filename, 'header': chunk['header'], 'text': chunk['text']}} for chunk in chunks[i:i + self.batch_size]]
+                ids = [str(uuid.uuid4()) for _ in batch_docs]
+                embeddings = self.encode_text([doc['text'] for doc in batch_docs])
+
+                try:
+                    self.collection.add(
+                        embeddings=embeddings.cpu().tolist(),
+                        metadatas=[doc['metadata'] for doc in batch_docs],
+                        ids=ids,
+                        documents=[doc['text'] for doc in batch_docs]
+                    )
+                    #logger.info(f"Stored batch {i // self.batch_size + 1} for {filename}")
+                except Exception as e:
+                    logger.error(f"Failed to store batch {i // self.batch_size + 1} for {filename}: {str(e)}")
+                    break
+
+                # Clear GPU cache
+                torch.cuda.empty_cache()
+            
+            # Calculate elapsed time and estimate remaining time
+            elapsed_time = time.time() - start_time
+            avg_time_per_file = elapsed_time / (idx + 1)
+            remaining_files = total_files - (idx + 1)
+            estimated_remaining_time = avg_time_per_file * remaining_files
+            
+            tqdm.write(f"Elapsed time: {elapsed_time:.2f}s, Estimated remaining time: {estimated_remaining_time:.2f}s ({estimated_remaining_time / 60:.2f} minutes)")
+
+
+
+    def store_documents_from_json(self, json_path: str):
+        """
+        Load preprocessed document chunks from a JSON file and store them in the database.
+        """
+        with open(json_path, 'r') as json_file:
+            preprocessed_data = json.load(json_file)
+        
+        total_files = len(preprocessed_data)
+        start_time = time.time()
+
+        for filename, navigation_dict in preprocessed_data.items():
+            navigation_dict = {eval(k): v for k, v in navigation_dict.items()}  # Convert string keys back to tuples
+            header_chunks = navigation_dict
+            if len(header_chunks) == 0:
+                sys.exit(f"No header chunks extracted from {filename}")
+                
+            logger.info(f"Extracted {len(header_chunks)} header chunks from {filename}")
+            chunks = self.chunkify(header_chunks)
+            logger.info(f"Starting to store {len(chunks)} overlapping chunks from {filename}")
+
+            for i in range(0, len(chunks), self.batch_size):
+                batch_docs = [{'text': chunk['text'], 'metadata': {'filename': filename, 'header': chunk['header'], 'text': chunk['text']}} for chunk in chunks[i:i + self.batch_size]]
+                ids = [str(uuid.uuid4()) for _ in batch_docs]
+                embeddings = self.encode_text([doc['text'] for doc in batch_docs])
+
+                try:
+                    self.collection.add(
+                        embeddings=embeddings.cpu().tolist(),
+                        metadatas=[doc['metadata'] for doc in batch_docs],
+                        ids=ids,
+                        documents=[doc['text'] for doc in batch_docs]
+                    )
+                    logger.info(f"Stored batch {i // self.batch_size + 1} for {filename}")
+                except Exception as e:
+                    logger.error(f"Failed to store batch {i // self.batch_size + 1} for {filename}: {str(e)}")
+                    break
+
+                # Clear GPU cache
+                torch.cuda.empty_cache()
+            
+            # Calculate elapsed time and estimate remaining time
+            elapsed_time = time.time() - start_time
+            avg_time_per_file = elapsed_time / (list(preprocessed_data.keys()).index(filename) + 1)
+            remaining_files = total_files - (list(preprocessed_data.keys()).index(filename) + 1)
+            estimated_remaining_time = avg_time_per_file * remaining_files
+            
+            tqdm.write(f"Elapsed time: {elapsed_time:.2f}s, Estimated remaining time: {estimated_remaining_time:.2f}s ({estimated_remaining_time / 60:.2f} minutes)")
+
 
 
     def chunkify(self, navigation_dict: Dict[tuple, str]) -> List[Dict[str, str]]:
@@ -173,11 +240,14 @@ class llmRag:
         logger.info(f"Generated combined summary: {combined_summaries}")
         return combined_summaries
     
+
+        
+        
 if __name__ == '__main__':
-    rag = llmRag(db_path='output/db_gte-large')
-    rag.store_documents("../data/Test")
+    rag = llmRag(db_path='output/db_gte-large-preprocessed')
+    rag.store_documents("data/rel18")
     query = "The Reference Vector file format is used for which purpose in 3GPP standards?"
-    results = rag.search_documents(query, top_n=3, threshold=0.1)
+    results = rag.search_documents(query, top_n=10, threshold=0.1)
     for i, result in enumerate(results):
         print(f"Result {i + 1}: {result[0]}")
 
