@@ -206,9 +206,9 @@ class llmRag:
         candidate_answers = llm_pipeline.call_local_model(
             prompt=(
                     f"You are an expert in telecommunications and 3GPP standards. Answer the following question based on your knowledge and expertise. Please provide only that best answer. Avoid any additional explanations or text beyond the answer.\n\n{query}\nAnswer:"),
-            temperature=None,
+            temperature=temperature,
             max_tokens=max_tokens,
-            #top_p=top_p,
+            top_p=top_p,
             repetition_penalty=repetition_penalty
         ).strip()
         
