@@ -94,14 +94,14 @@ if __name__ == "__main__":
                         help="Path to the dataset with answers for benchmarking")
     parser.add_argument("--summarize", default=False, action='store_true',
                         help="Summarize the results of the search with the RAG model")
-    parser.add_argument("--top_n", default=1, type=int, help="Number of top documents to retrieve in RAG")
+    parser.add_argument("--top_n", default=6, type=int, help="Number of top documents to retrieve in RAG")
     parser.add_argument("--threshold", default=0.0, type=float, help="Relevance threshold for document retrieval")
     parser.add_argument("--temperature", default=0.1, type=float, help="Temperature for the model generation")
     parser.add_argument("--lora", default=False, action='store_true',
                         help="Apply LoRA model to the local model")
     parser.add_argument("--lora_path", default="./fine_tuned_models/phi-2-finetuned",
                         help="Path to the lora model")
-    parser.add_argument("--db_path", default="output/db_gte-large-preprocessed",
+    parser.add_argument("--db_path", default="output/db_gte-large-preprocessed-2",
                         help="Path to the chroma db")
     
     args = parser.parse_args()
@@ -121,7 +121,7 @@ if __name__ == "__main__":
         llm = llmPipeline(model_name=models[args.model_name])
     
     if args.rag:
-        llm_rag = llmRag(db_path="output/db_gte-large-preprocessed")
+        llm_rag = llmRag(db_path=args.db_path)
 
     ############################
     # Run solution
@@ -134,7 +134,7 @@ if __name__ == "__main__":
 
         prompt = format_input(frame, 0)
 
-
+        prompt_with_rag = None
         if args.rag:
             if args.rag == 'v2':
                 relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
@@ -173,8 +173,7 @@ if __name__ == "__main__":
                 docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
                 docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
                 docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
-                relevant_docs = get_weighted_results([docs_llm, docs_normal, docs_nlp], weights=[0.33, 0.33, 0.34])    
-        
+                relevant_docs = get_weighted_results([docs_llm, docs_normal, docs_nlp], weights=[0.33, 0.33, 0.34])
             else:
                 relevant_docs = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
 
@@ -185,14 +184,21 @@ if __name__ == "__main__":
                 else:
                     relevant_text = " ".join([doc[0] for doc in relevant_docs])
                 print(relevant_text)
-                prompt = syst_prompt_with_relevant_text_version1.format(relevant_text, prompt)
+                prompt_with_rag = syst_prompt_with_relevant_text_version1.format(relevant_text, prompt)
             else:
                 logger.warning(f"No relevant documents found for Question ID: {key.split(' ')[1]}")
+                prompt_with_rag = None  # Ensure it's defined
+
 
 
         pred_option = None
         for _ in range(args.max_attempts):
-            predicted_answer = llm.call_local_model(prompt, max_tokens=5, temperature=(None if args.temperature==-1 else args.temperature))
+            if _ == 0 and prompt_with_rag:
+                prompt_to_use = prompt_with_rag
+            else:
+                prompt_to_use = prompt
+
+            predicted_answer = llm.call_local_model(prompt_to_use, max_tokens=5, temperature=(None if args.temperature == -1 else args.temperature), top_p=0.9, repetition_penalty=1.2)
             pred_option = map_ans.get(extract_answer(predicted_answer))
 
             if pred_option is False:
@@ -207,7 +213,7 @@ if __name__ == "__main__":
 
         answer_sheet.append([key.split(' ')[1], pred_option, args.model_name])
         if pred_option is None:
-            pred_option = -1
+            pred_option = 1
             logger.error(predicted_answer)
         logger.info(f"Question ID: {key.split(' ')[1]}, Predicted Answer ID: {pred_option}, Task: {args.model_name}, Label: {answer_only}" + (", Correct Answer ID:" + answer_only.split(':')[0].strip().split()[1] if args.benchmark else ''))
         if args.benchmark:
