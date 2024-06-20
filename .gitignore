@@ -2,6 +2,8 @@
 output
 output/db
 output/db_gte-large
-
+data/Test
 .DS_Store
 .idea
+llm_pipeline_logs
+fine_tuned_models

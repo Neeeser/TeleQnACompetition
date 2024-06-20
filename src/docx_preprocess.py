@@ -6,6 +6,7 @@ import json
 
 from docx import Document
 
+
 def generate_navigation_dict(document_path):
     document = Document(document_path)
     navigation_dict = {}
@@ -15,7 +16,9 @@ def generate_navigation_dict(document_path):
     for paragraph in document.paragraphs:
         if paragraph.style.name.startswith('Heading'):
             if current_heading is not None:
-                navigation_dict[current_heading] = '\n'.join(current_text)
+                combined_text = ' '.join([current_heading[1].split('\t', 1)[-1]] + current_text)
+                if len(combined_text.split()) >= 5:
+                    navigation_dict[current_heading] = combined_text
                 current_text = []
             
             # Check if the last character is a digit
@@ -28,11 +31,13 @@ def generate_navigation_dict(document_path):
             heading_text = paragraph.text
             current_heading = (heading_level, heading_text)
         else:
-            if current_heading is not None:
+            if current_heading is not None and paragraph.text.strip():
                 current_text.append(paragraph.text)
     
     if current_heading is not None:
-        navigation_dict[current_heading] = '\n'.join(current_text)
+        combined_text = ' '.join([current_heading[1].split('\t', 1)[-1]] + current_text)
+        if len(combined_text.split()) >= 10:
+            navigation_dict[current_heading] = combined_text
     
     return navigation_dict
 
@@ -105,34 +110,46 @@ def remove_table_lines(text):
 
     return text
 
+def remove_non_standard_characters(text):
+    # Define a regular expression pattern to match non-standard characters
+    pattern = re.compile(r'[^\x20-\x7E]')  # This matches any character that is not in the standard ASCII range (0x20-0x7E)
+    # Replace non-standard characters with an empty string
+    cleaned_text = pattern.sub('', text)
+    return cleaned_text
 
 def process_navigation_dict(navigation_dict):
-    skip_sections = ['Foreword', 'References']
+    skip_sections = ["Introduction",'Foreword', 'References',"Notifications", "Conclusion"]
     processed_dict = {}
 
+    text_to_skip = ['void.', 'void', 'none.', 'none', "(void)"]
+    
     for heading, text in navigation_dict.items():
-        if text.strip() and text.strip().lower() != 'void.':
+        if text.strip():
             skip = False
             for section in skip_sections:
                 if re.search(r'\b' + re.escape(section) + r'\b', heading[1]):
                     skip = True
                     break
+            # Check for exact match with text_to_skip
             if not skip:
-                try:
-                    # Remove references from the text
-                    cleaned_text = remove_references(text.strip())
-                    # Remove table lines from the text
-                    cleaned_text = remove_table_lines(cleaned_text)
-                    # Remove URLs from the text
-                    cleaned_text = remove_urls(cleaned_text)
-                    processed_dict[heading] = cleaned_text
-                except Exception as e:
-                    print(f"Error processing heading: {heading}, error: {e}")
-                    continue
-
-
-    
+                text_stripped_lower = text.strip().lower()
+                if not any(text_stripped_lower == skip_word for skip_word in text_to_skip):
+                    try:
+                        # Remove references from the text
+                        cleaned_text = remove_references(text.strip())
+                        # Remove table lines from the text
+                        cleaned_text = remove_table_lines(cleaned_text)
+                        # Remove URLs from the text
+                        cleaned_text = remove_urls(cleaned_text)
+                        cleaned_text = remove_non_standard_characters(cleaned_text)
+                        
+                        processed_dict[heading] = cleaned_text
+                    except Exception as e:
+                        print(f"Error processing heading: {heading}, error: {e}")
+                        continue
     return processed_dict
+
+
 
 def get_header_chunks(document_path):
     navigation_dict = None
@@ -147,7 +164,7 @@ def get_header_chunks(document_path):
 
 
 if __name__ == '__main__':
-    folder_path = 'data/Test'
+    folder_path = 'data/rel18'
     zero_item_files = []
     all_processed_dicts = {}
     

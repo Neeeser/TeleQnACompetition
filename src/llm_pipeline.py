@@ -48,7 +48,6 @@ class llmPipeline:
                 'max_new_tokens': max_tokens,
                 'pad_token_id': self.tokenizer.pad_token_id,
                 'do_sample': do_sample,
-                'top_p': top_p,
                 'repetition_penalty': repetition_penalty
             }
         else:

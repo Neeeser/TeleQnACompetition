@@ -7,14 +7,16 @@ import time
 from tqdm import tqdm
 import argparse
 
-def run_benchmark(model_name, rag, temperature, top_n, threshold, print_output):
+def run_benchmark(model_name, rag, temperature, top_n, threshold, db_path, print_output):
     command = [
         "python", "submission_runner.py",
         "--model_name", model_name,
         "--benchmark",
-        "--benchmark_num_questions", "200",
+        "--benchmark_num_questions", "-1",
         "--temperature", str(temperature),
-        "--lora"
+        "--lora",
+        "--db_path", db_path,
+        "--lora_path", "./fine_tuned_models/phi-2-finetuned-with-rag"
     ]
 
     if rag:
@@ -51,12 +53,13 @@ def run_benchmark(model_name, rag, temperature, top_n, threshold, print_output):
 
 def optimize_parameters(print_output):
     models = ["phi2"]
-    rag_versions = ["x", "nlp"]
-    temperatures = [-1, .1, .2, .3, .4]
-    top_ns = [6, 5, 4, 3, 2]
-    thresholds = [0.0, 0.1, 0.2, .3]
+    rag_versions = ["mx"]
+    temperatures = [-1, .1, .2]
+    top_ns = [4, 6, 8]
+    thresholds = [0.0, 0.1, .2]
+    db_paths = ["output/db_gte-large-preprocessed-2"]
 
-    total_tests = len(models) * len(rag_versions) * len(temperatures) * len(top_ns) * len(thresholds)
+    total_tests = len(models) * len(rag_versions) * len(temperatures) * len(top_ns) * len(thresholds) * len(db_paths)
     progress = tqdm(total=total_tests, desc="Running benchmarks")
 
     start_time = time.time()
@@ -65,33 +68,33 @@ def optimize_parameters(print_output):
     best_accuracy = 0.0
     best_parameters = None
 
-    with open("optimization_results_lora.csv", "a", newline="") as csvfile:
+    with open("optimization_results_lora_rag3.csv", "a", newline="") as csvfile:
         fcntl.flock(csvfile, fcntl.LOCK_EX)  # Acquire an exclusive lock on the file
         writer = csv.writer(csvfile)
 
         # Check if the file is empty and write the header row if necessary
         csvfile.seek(0)
         if csvfile.tell() == 0:
-            writer.writerow(["Model", "RAG", "Temperature", "Top N", "Threshold", "Accuracy"])
+            writer.writerow(["Model", "RAG", "Temperature", "Top N", "Threshold", "DB Path", "Accuracy"])
 
-        for model, rag, temperature in itertools.product(models, rag_versions, temperatures):
+        for model, rag, temperature, db_path in itertools.product(models, rag_versions, temperatures, db_paths):
             if rag is None:
-                print(f"Running benchmark with parameters: model={model}, rag=None, temperature={temperature}")
-                accuracy = run_benchmark(model, None, temperature, None, None, print_output)
-                writer.writerow((model, None, temperature, None, None, accuracy))
+                print(f"Running benchmark with parameters: model={model}, rag=None, temperature={temperature}, db_path={db_path}")
+                accuracy = run_benchmark(model, None, temperature, None, None, db_path, print_output)
+                writer.writerow((model, None, temperature, None, None, db_path, accuracy))
                 if accuracy > best_accuracy:
                     best_accuracy = accuracy
-                    best_parameters = (model, None, temperature, None, None)
+                    best_parameters = (model, None, temperature, None, None, db_path)
             else:
                 for top_n, threshold in itertools.product(top_ns, thresholds):
-                    print(f"Running benchmark with parameters: model={model}, rag={rag}, temperature={temperature}, top_n={top_n}, threshold={threshold}")
+                    print(f"Running benchmark with parameters: model={model}, rag={rag}, temperature={temperature}, top_n={top_n}, threshold={threshold}, db_path={db_path}")
                     test_start_time = time.time()
-                    accuracy = run_benchmark(model, rag, temperature, top_n, threshold, print_output)
+                    accuracy = run_benchmark(model, rag, temperature, top_n, threshold, db_path, print_output)
                     test_end_time = time.time()
-                    writer.writerow((model, rag, temperature, top_n, threshold, accuracy))
+                    writer.writerow((model, rag, temperature, top_n, threshold, db_path, accuracy))
                     if accuracy > best_accuracy:
                         best_accuracy = accuracy
-                        best_parameters = (model, rag, temperature, top_n, threshold)
+                        best_parameters = (model, rag, temperature, top_n, threshold, db_path)
                     completed_tests += 1
                     elapsed_time = test_end_time - start_time
                     avg_time_per_test = elapsed_time / completed_tests
@@ -101,25 +104,25 @@ def optimize_parameters(print_output):
                     progress.update(1)
                     print(f"\nTest Accuracy: {accuracy:.2f}%")
                     if best_parameters:
-                        print(f"Current Best Accuracy: {best_accuracy:.2f}% with parameters: Model: {best_parameters[0]}, RAG: {best_parameters[1]}, Temperature: {best_parameters[2]}, Top N: {best_parameters[3]}, Threshold: {best_parameters[4]}")
+                        print(f"Current Best Accuracy: {best_accuracy:.2f}% with parameters: Model: {best_parameters[0]}, RAG: {best_parameters[1]}, Temperature: {best_parameters[2]}, Top N: {best_parameters[3]}, Threshold: {best_parameters[4]}, DB Path: {best_parameters[5]}")
 
             csvfile.flush()  # Flush the file buffer to ensure the results are written immediately
         
         fcntl.flock(csvfile, fcntl.LOCK_UN)  # Release the lock on the file
 
-    with open("optimization_results.csv", "r") as csvfile:
+    with open("optimization_results_lora_rag3.csv", "r") as csvfile:
         reader = csv.reader(csvfile)
         results = list(reader)
 
     results = results[1:]  # Exclude the header row
-    results.sort(key=lambda x: float(x[5]) if x[5] != 'None' else 0, reverse=True)
+    results.sort(key=lambda x: float(x[6]) if x[6] != 'None' else 0, reverse=True)
 
     print("Optimization results:")
     for result in results:
-        if result[5] != 'None':
-            print(f"Model: {result[0]}, RAG: {result[1]}, Temperature: {result[2]}, Top N: {result[3]}, Threshold: {result[4]}, Accuracy: {float(result[5]):.2f}%")
+        if result[6] != 'None':
+            print(f"Model: {result[0]}, RAG: {result[1]}, Temperature: {result[2]}, Top N: {result[3]}, Threshold: {result[4]}, DB Path: {result[5]}, Accuracy: {float(result[6]):.2f}%")
         else:
-            print(f"Model: {result[0]}, RAG: {result[1]}, Temperature: {result[2]}, Top N: {result[3]}, Threshold: {result[4]}, Accuracy: N/A")
+            print(f"Model: {result[0]}, RAG: {result[1]}, Temperature: {result[2]}, Top N: {result[3]}, Threshold: {result[4]}, DB Path: {result[5]}, Accuracy: N/A")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Optimize model parameters for benchmark tests.")

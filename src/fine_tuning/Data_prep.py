@@ -2,6 +2,9 @@ import pandas as pd
 import json
 from copy import deepcopy
 import re
+from llm_rag import llmRag
+from llm_pipeline import llmPipeline
+
 
 def prepare_questions(question_dict):
     tmp_question_dict = deepcopy(question_dict)
@@ -65,6 +68,13 @@ def dict_to_record(text):
 
 preamble = '''You are an expert in telecommunications and 3GPP standards. Answer the following multiple-choice question based on your knowledge and expertise. Please provide only the answer choice number (1, 2, 3, 4, or 5) that best answers the question. Avoid any additional explanations or text beyond the answer choice number.'''
 
+
+syst_prompt_with_relevant_text_version1 = """Relevant context to assist in answering the question:
+{0}
+
+Question:
+{1}"""
+
 # Load training data
 with open('data/TeleQnA_training.txt', 'r') as file:
     training_data = json.load(file)
@@ -75,16 +85,21 @@ records = [dict_to_record(training_data[question]) for question in training_data
 # Create DataFrame
 df = pd.DataFrame(records)
 
+llmPipeline = llmPipeline(model_name="microsoft/phi-2", lora_path="./fine_tuned_models/phi-2-finetuned")
+llm_rag = llmRag(db_path="output/db_gte-large-preprocessed-2")
 # Prepare the input data for training
 train_data = []
 for idx, key in enumerate(training_data.keys()):
-    user_prompt, _, answer_choice = prepare_questions(training_data[key])
+    user_prompt, question_only, answer_choice = prepare_questions(training_data[key])
     formatted_input = format_input(df, idx)
-    train_data.append({"input": formatted_input, "output": answer_choice})
+    relevant_docs = llm_rag.search_documents_with_llm(question_only, llmPipeline, top_n=6, threshold=0.1)
+    relevant_text = " ".join([doc[0] for doc in relevant_docs])    
+    prompt = syst_prompt_with_relevant_text_version1.format(relevant_text, formatted_input)
+    train_data.append({"input": prompt + answer_choice, "output": answer_choice})
     print(f"Processed {key}")
 
 # Save the prepared data
-prepared_data_path = 'data/prepared_train_data.json'
+prepared_data_path = 'data/prepared_train_data_with_rag.json'
 with open(prepared_data_path, 'w') as outfile:
     json.dump(train_data, outfile)
 

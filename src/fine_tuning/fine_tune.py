@@ -8,7 +8,7 @@ from trl import SFTTrainer
 import torch
 
 # Load your dataset from the JSON file
-with open("prepared_train_data.json", "r") as file:
+with open("proper_train_data_with_rag.json", "r") as file:
     data = json.load(file)
 
 # Convert to Hugging Face dataset format
@@ -18,10 +18,7 @@ dataset = Dataset.from_list(data)
 model_name = "microsoft/phi-2"
 
 bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_compute_dtype=torch.bfloat16,
-    bnb_4bit_use_double_quant=False,
+    load_in_8bit=True,  # Change to 8-bit loading
 )
 
 model = AutoModelForCausalLM.from_pretrained(
@@ -48,7 +45,7 @@ model = get_peft_model(model, peft_config)
 
 # Set up training arguments
 training_arguments = TrainingArguments(
-    output_dir="./phi-2-finetuned",
+    output_dir="./phi-2-finetuned-with-rag",
     num_train_epochs=3,
     per_device_train_batch_size=2,
     gradient_accumulation_steps=1,
@@ -56,7 +53,7 @@ training_arguments = TrainingArguments(
     save_strategy="epoch",
     logging_steps=100,
     learning_rate=2e-4,
-    fp16=True,
+    fp16=False,
     bf16=False,
     group_by_length=True,
     disable_tqdm=False,
@@ -78,8 +75,8 @@ trainer = SFTTrainer(
 trainer.train()
 
 # Save the fine-tuned model
-trainer.model.save_pretrained("./phi-2-finetuned")
-tokenizer.save_pretrained("./phi-2-finetuned")
+trainer.model.save_pretrained("./phi-2-finetuned-with-rag")
+tokenizer.save_pretrained("./phi-2-finetuned-with-rag")
 
 # Evaluate the model
 prompt = "You are an expert in telecommunications and 3GPP standards. Answer the following multiple-choice question based on your knowledge and expertise. Please provide only the answer choice number (1, 2, 3, 4, or 5) that best answers the question. Avoid any additional explanations or text beyond the answer choice number.\n\nWhat is the purpose of the Nmfaf_3daDataManagement_Deconfigure service operation? [3GPP Release 18]\n\n(1) To configure the MFAF to map data or analytics received by the MFAF to out-bound notification endpoints\n(2) To configure the MFAF to stop mapping data or analytics received by the MFAF to out-bound notification endpoints\n(3) To supply data or analytics from the MFAF to notification endpoints\n(4) To fetch data or analytics from the MFAF based on fetch instructions\n\nAnswer:"

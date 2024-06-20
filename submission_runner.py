@@ -47,6 +47,33 @@ def combine_results(docs1, docs2):
     
     return combined_docs
 
+
+def get_weighted_results(docs_list, weights):
+    weighted_docs = []
+    print(f"Docs list: {docs_list}")
+    print(f"Weights: {weights}")
+
+    for docs, weight in zip(docs_list, weights):
+        print(f"Processing docs: {docs} with weight: {weight}")
+        for doc in docs:
+            try:
+                # doc is a tuple (document, filename, score)
+                weighted_doc = (
+                    doc[0],  # document
+                    doc[1],  # filename
+                    float(doc[2]) * weight  # score
+                )
+                weighted_docs.append(weighted_doc)
+            except ValueError as e:
+                print(f"Skipping document {doc} due to error: {e}")
+                continue  # Skip documents where the score cannot be converted to float
+
+    print(f"Weighted docs before sorting: {weighted_docs}")
+    weighted_docs.sort(key=lambda x: x[2], reverse=True)
+    print(f"Weighted docs after sorting: {weighted_docs}")
+
+    return weighted_docs[:args.top_n]
+
 if __name__ == "__main__":
 
     ############################
@@ -54,7 +81,7 @@ if __name__ == "__main__":
     ############################
     parser = argparse.ArgumentParser(description="TeleQA evaluation runner")
     parser.add_argument("--model_name", default="phi2", help="model name")
-    parser.add_argument("--rag", default=None, help="RAG solution (x for default, v2 for optimized, v3 for combined, nlp for nlp model)")
+    parser.add_argument("--rag", default=None, help="RAG solution (x for default, v2 for optimized, v3 for combined, nlp for nlp model, mx for mixed nlp and default, v4 v2+nlp , v5 v2+mx)")
     parser.add_argument("--question_path", default="./data/TeleQnA_testing1.txt", help="data file")
     parser.add_argument("--max_attempts", default=5, type=int,
                         help="Maximal number of trials before skipping the question")
@@ -74,7 +101,8 @@ if __name__ == "__main__":
                         help="Apply LoRA model to the local model")
     parser.add_argument("--lora_path", default="./fine_tuned_models/phi-2-finetuned",
                         help="Path to the lora model")
-
+    parser.add_argument("--db_path", default="output/db_gte-large-preprocessed",
+                        help="Path to the chroma db")
     
     args = parser.parse_args()
     
@@ -117,6 +145,36 @@ if __name__ == "__main__":
                 relevant_docs = combine_results(docs_llm, docs_normal)
             elif args.rag == 'nlp':
                 relevant_docs = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
+            elif args.rag == 'mx':
+                half = args.top_n // 2
+                docs_normal = llm_rag.search_documents(question_only, top_n=half, threshold=args.threshold)
+                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=half, threshold=args.threshold)
+                relevant_docs = combine_results(docs_nlp, docs_normal)
+            elif args.rag == 'v4':
+                half = args.top_n // 2
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold)
+                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=half, threshold=args.threshold)
+                relevant_docs = combine_results(docs_llm, docs_nlp)
+            elif args.rag == 'v5':
+                third = args.top_n // 3
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=third, threshold=args.threshold)
+                docs_normal = llm_rag.search_documents(question_only, top_n=third, threshold=args.threshold)
+                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=third, threshold=args.threshold)
+                relevant_docs = combine_results(docs_llm, combine_results(docs_normal, docs_nlp))
+            elif args.rag == 'v6':
+                docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
+                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
+                relevant_docs = get_weighted_results([docs_nlp, docs_normal], weights=[0.5, 0.5])
+            elif args.rag == 'v7':
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
+                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
+                relevant_docs = get_weighted_results([docs_llm, docs_nlp], weights=[0.5, 0.5])
+            elif args.rag == 'v8':
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold)
+                docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
+                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
+                relevant_docs = get_weighted_results([docs_llm, docs_normal, docs_nlp], weights=[0.33, 0.33, 0.34])    
+        
             else:
                 relevant_docs = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
 

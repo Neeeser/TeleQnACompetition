@@ -13,7 +13,8 @@ import spacy
 from .docx_preprocess import get_header_chunks
 from typing import List, Dict
 import re
-
+import json
+import ast
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
@@ -54,6 +55,7 @@ class llmRag:
     def extract_keywords(self, text: str) -> str:
         doc = self.nlp(text)
         keywords = [token.text for token in doc if token.is_alpha and not token.is_stop]
+        entities = [ent.text for ent in doc.ents]
         return " ".join(keywords)
 
     def extract_3gpp_release(self, text):
@@ -145,7 +147,7 @@ class llmRag:
         start_time = time.time()
 
         for filename, navigation_dict in preprocessed_data.items():
-            navigation_dict = {eval(k): v for k, v in navigation_dict.items()}  # Convert string keys back to tuples
+            # No need to convert keys; use them as they are
             header_chunks = navigation_dict
             if len(header_chunks) == 0:
                 sys.exit(f"No header chunks extracted from {filename}")
@@ -197,28 +199,24 @@ class llmRag:
                         'header': header[1]
                     })
         return chunks
-    def search_documents_with_llm(self, query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0):
+    
+    def search_documents_with_llm(self, query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0, temperature=0.3, max_tokens=15, top_p=0.9, repetition_penalty=1.2):
         logger.info(f"Generating improved query using LLM pipeline...")
-        llm_pipeline = llm_pipeline
-
-        improved_query = llm_pipeline.call_local_model(
+        # Generate Candidate Answers
+        candidate_answers = llm_pipeline.call_local_model(
             prompt=(
-                f"You are an expert in telecommunications and document retrieval. "
-                f"Your task is to transform the following multiple-choice question into a highly effective search query. "
-                f"The question is related to 3GPP standards, telecommunications procedures, or technical definitions. "
-                f"Ensure the search query is specific, includes relevant technical terms, and clearly targets the needed information. "
-                f"Original question: '{query}' "
-                f"Effective search query (without any prefacing text): "
-            ),
-            temperature=0.1,
-            max_tokens=150,
-            top_p=0.9,
-            repetition_penalty=1.2
-        )
-        improved_query_cleaned = improved_query.strip().replace("Assistant: ", "")
-        logger.info(f"Improved query: {improved_query_cleaned}")
+                    f"You are an expert in telecommunications and 3GPP standards. Answer the following question based on your knowledge and expertise. Please provide only that best answer. Avoid any additional explanations or text beyond the answer.\n\n{query}\nAnswer:"),
+            temperature=None,
+            max_tokens=max_tokens,
+            #top_p=top_p,
+            repetition_penalty=repetition_penalty
+        ).strip()
+        
+        refined_query = f"{query} {candidate_answers}"
 
-        results = self.search_documents(improved_query_cleaned, top_n, threshold)
+        
+        results = self.search_documents(refined_query, top_n, threshold)
+        
         return results
     
     def search_documents_with_nlp(self, query: str, top_n: int = 5, threshold: float = 0.0):
@@ -258,8 +256,8 @@ class llmRag:
         
         
 if __name__ == '__main__':
-    rag = llmRag(db_path='output/db_gte-large-preprocessed')
-    rag.store_documents("data/rel18")
+    rag = llmRag(db_path='output/db_gte-large-preprocessed-2')
+    rag.store_documents_from_json("processed_dicts.json")
     query = "The Reference Vector file format is used for which purpose in 3GPP standards?"
     results = rag.search_documents(query, top_n=10, threshold=0.1)
     for i, result in enumerate(results):
