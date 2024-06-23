@@ -69,12 +69,24 @@ def run_benchmark(model_name, rag, temperature, top_p, repetition_penalty, rag_t
 
     return accuracy, command
 
+
+def format_params(params):
+    param_names = ["Model", "RAG", "Temperature", "Top P", "Repetition Penalty", 
+                   "RAG Temperature", "RAG Top P", "RAG Repetition Penalty", 
+                   "Top N", "Threshold", "DB Path", "LoRA Path"]
+    formatted = []
+    for name, value in zip(param_names, params):
+        if value is not None and value != -1:
+            formatted.append(f"{name}: {value}")
+    return ", ".join(formatted)
+
+
 def worker(queue, results, print_output, gpu_id):
     while True:
         params = queue.get()
         if params is None:
             break
-        print(f"\nGPU {gpu_id}: Testing parameters: {params}")
+        print(f"\nGPU {gpu_id}: Testing parameters: {format_params(params)}")
         accuracy, command = run_benchmark(*params, print_output, gpu_id)
         results.put((params, accuracy, command))
 
@@ -93,9 +105,9 @@ def load_tested_combinations(results_file):
 def optimize_parameters(print_output, num_gpus):
     models = ["phi2"]
     rag_versions = ["v4"]
-    temperatures = [-1]
-    top_ps = [None, 0.9, 0.95]
-    repetition_penalties = [None, 1.0, 1.1, 1.2]
+    temperatures = [ .1, .2, .3]
+    top_ps = [0.9, 0.95]
+    repetition_penalties = [1.1, 1.2]
     rag_temperatures = [-1, 0.1, 0.2, .3]
     rag_top_ps = [None, 0.9, 0.95]
     rag_repetition_penalties = [None, 1.0, 1.1, 1.2]
@@ -181,9 +193,10 @@ def optimize_parameters(print_output, num_gpus):
             progress.update(1)
 
             print(f"\nTest Accuracy: {accuracy:.2f}%")
+            print(f"Parameters: {format_params(params)}")
             if best_parameters:
-                print(f"Current Best Accuracy: {best_accuracy:.2f}% with parameters: {best_parameters}")
-
+                print(f"Current Best Accuracy: {best_accuracy:.2f}%")
+                print(f"Best Parameters: {format_params(best_parameters)}")
             csvfile.flush()
 
     for p in processes:

@@ -24,16 +24,15 @@ def load_questions(questions_path):
     return all_questions
 
 
-def select_random_questions(questions_file, num_questions=5):
+def select_last_questions(questions_file, num_questions=5):
     with open(questions_file, 'r', encoding="utf-8") as file:
         questions = json.load(file)
 
     if num_questions == -1:
         return questions
 
-    question_keys = list(questions.keys())
-    random_keys = random.sample(question_keys, num_questions)
-    selected_questions = {key: questions[key] for key in random_keys}
+    question_keys = list(questions.keys())[-num_questions:]
+    selected_questions = {key: questions[key] for key in question_keys}
     return selected_questions
 
 def combine_results(docs1, docs2):
@@ -102,9 +101,10 @@ if __name__ == "__main__":
     parser.add_argument("--rag_top_p", default=.9, type=float, help="Top_p for the rag generation")
     parser.add_argument("--repetition_penalty", default=None, type=float, help="repetition_penalty for the model generation")
     parser.add_argument("--rag_repetition_penalty", default=1.2, type=float, help="repetition_penalty for the model generation")
+    parser.add_argument("--rag_max_tokens", default=15, type=int, help="Number of tokens to generate in rag resposne with LLM")
     parser.add_argument("--lora", default=False, action='store_true',
                         help="Apply LoRA model to the local model")
-    parser.add_argument("--lora_path", default="./fine_tuned_models/phi-2-finetuned",
+    parser.add_argument("--lora_path", default="./fine_tuned_models/phi-2-finetuned-with-rag",
                         help="Path to the lora model")
     parser.add_argument("--db_path", default="output/db_gte-large-preprocessed-2",
                         help="Path to the chroma db")
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     # Load data and model
     ############################
     if args.benchmark:
-        all_questions = select_random_questions(args.benchmark_path, args.benchmark_num_questions)
+        all_questions = select_last_questions(args.benchmark_path, args.benchmark_num_questions)
     else:
         all_questions = load_questions(args.question_path)
 
@@ -142,10 +142,10 @@ if __name__ == "__main__":
         prompt_with_rag = None
         if args.rag:
             if args.rag == 'v2':
-                relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty)
+                relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
             elif args.rag == 'v3':
                 half = args.top_n // 2
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty)
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
                 docs_normal = llm_rag.search_documents(question_only, top_n=half, threshold=args.threshold)
                 relevant_docs = combine_results(docs_llm, docs_normal)
             elif args.rag == 'nlp':
@@ -157,12 +157,12 @@ if __name__ == "__main__":
                 relevant_docs = combine_results(docs_nlp, docs_normal)
             elif args.rag == 'v4':
                 half = args.top_n // 2
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty)
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
                 docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=half, threshold=args.threshold)
                 relevant_docs = combine_results(docs_llm, docs_nlp)
             elif args.rag == 'v5':
                 third = args.top_n // 3
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=third, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty)
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=third, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
                 docs_normal = llm_rag.search_documents(question_only, top_n=third, threshold=args.threshold)
                 docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=third, threshold=args.threshold)
                 relevant_docs = combine_results(docs_llm, combine_results(docs_normal, docs_nlp))
@@ -171,11 +171,11 @@ if __name__ == "__main__":
                 docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
                 relevant_docs = get_weighted_results([docs_nlp, docs_normal], weights=[0.5, 0.5])
             elif args.rag == 'v7':
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty)
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
                 docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
                 relevant_docs = get_weighted_results([docs_llm, docs_nlp], weights=[0.5, 0.5])
             elif args.rag == 'v8':
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty)
+                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
                 docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
                 docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
                 relevant_docs = get_weighted_results([docs_llm, docs_normal, docs_nlp], weights=[0.33, 0.33, 0.34])
@@ -188,7 +188,7 @@ if __name__ == "__main__":
                     relevant_text = final_summary
                 else:
                     relevant_text = " ".join([doc[0] for doc in relevant_docs])
-                print(relevant_text)
+                #print(relevant_text)
                 prompt_with_rag = syst_prompt_with_relevant_text_version1.format(relevant_text, prompt)
             else:
                 logger.warning(f"No relevant documents found for Question ID: {key.split(' ')[1]}")
