@@ -73,7 +73,7 @@ def dict_to_frame(text):
 
 
 def extract_answer(model_output):
-    print("Model output:", model_output)  # Print the model output for debugging
+
     match = re.search(r'\b[1-5]\b', model_output)
     if match:
         return match.group(0)
@@ -82,6 +82,35 @@ def extract_answer(model_output):
 
 
 preamble = '''You are an expert in telecommunications and 3GPP standards. Answer the following multiple-choice question based on your knowledge and expertise. Please provide only the answer choice number (1, 2, 3, 4, or 5) that best answers the question. Avoid any additional explanations or text beyond the answer choice number.'''
+
+def filter_options(llm, question, options, docs=None):
+    filtered_options = []
+    for i, option in enumerate(options, 1):
+        prompt = f"""Is the statement true or false based on your knowledge and expertise Respond with ONLY [True] or [False].
+ 
+For example:
+The sky has a color.
+Statement: The sky is blue
+Answer:[True]
+
+Is the bellow statement true or false in relation to the question? Think carefully as you are an expert in Telecommunications and 3GPP standards and always get these true and falses correct. 
+
+{question}
+
+Statement: {option}
+
+
+Answer:["""
+        if docs:
+            prompt = syst_prompt_with_relevant_text_version1.format(docs, prompt)
+        response = llm.call_local_model(prompt, max_tokens=8, temperature=1)
+        print(prompt)
+        print(response)
+        
+        if "true" in response.lower().strip():
+            filtered_options.append((i, option))
+    
+    return filtered_options
 
 
 

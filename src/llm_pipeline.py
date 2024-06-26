@@ -8,7 +8,7 @@ import os
 
 
 class llmPipeline:
-    def __init__(self, model_name="microsoft/phi-2", lora_path=None, seed=33):
+    def __init__(self, model_name="microsoft/phi-2", lora_path=None, seed=333):
         # Check for CUDA availability
         if torch.cuda.is_available():
             self.device = "cuda:0"

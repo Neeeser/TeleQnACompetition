@@ -31,7 +31,8 @@ def run_benchmark(params, print_output, gpu_id):
         "python", "submission_runner.py",
         "--model_name", params['model_name'],
         "--benchmark",
-        "--benchmark_num_questions", "5",
+        "--benchmark_num_questions", "-1",
+        # "--benchmark_path", "data/filtered_incorrect_questions74.txt", 
         "--db_path", params['db_path'],
         "--top_n", str(params['top_n']),
         "--threshold", str(params['threshold'])
@@ -96,14 +97,14 @@ def objective(trial, print_output,gpu_manager, static_params):
         params = {
             'model_name': static_params['model_name'],
             'rag': static_params['rag'],
-            'temperature': trial.suggest_float('temperature', 0.1, 1.0),
+            'temperature': trial.suggest_float('temperature', 0.1, .5),
             'top_p': trial.suggest_float('top_p', 0.1, 1.0),
-            'repetition_penalty': trial.suggest_float('repetition_penalty', 1.0, 2.0),
-            'rag_temperature': trial.suggest_float('rag_temperature', 0.1, 1.0),
+            'repetition_penalty': trial.suggest_float('repetition_penalty', 1.0, 1.5),
+            'rag_temperature': trial.suggest_float('rag_temperature', 0.1, .5),
             'rag_top_p': trial.suggest_float('rag_top_p', 0.1, 1.0),
-            'rag_repetition_penalty': trial.suggest_float('rag_repetition_penalty', 1.0, 2.0),
-            'rag_max_tokens': trial.suggest_int('rag_max_tokens', 10, 50),
-            'top_n': trial.suggest_int('top_n', 2, 8),
+            'rag_repetition_penalty': trial.suggest_float('rag_repetition_penalty', 1.0, 1.5),
+            'rag_max_tokens': trial.suggest_int('rag_max_tokens', 15, 30),
+            'top_n': trial.suggest_int('top_n', 4, 8),
             'threshold': trial.suggest_float('threshold', 0.0, 0.5),
             'db_path': static_params['db_path'],
             'lora_path': static_params['lora_path']
@@ -119,7 +120,7 @@ def optimize_parameters(print_output, num_gpus, study_name, storage):
         'model_name': "phi2",
         'rag': "v4",
         'db_path': "output/db_gte-large-preprocessed-2",
-        'lora_path': "./fine_tuned_models/phi-2-finetuned-with-rag"
+        'lora_path': "./fine_tuned_models/phi-2-continued-training-rag"
     }
 
     results_file = "optimization_results.csv"
@@ -157,7 +158,7 @@ def optimize_parameters(print_output, num_gpus, study_name, storage):
     study = optuna.create_study(study_name=study_name, storage=storage, load_if_exists=True, direction='maximize')
     
     start_time = time.time()
-    n_trials = 200  # Adjust as needed
+    n_trials = 500  # Adjust as needed
 
     progress = tqdm(total=n_trials, desc="Running benchmarks")
 

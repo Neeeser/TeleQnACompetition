@@ -9,7 +9,7 @@ import multiprocessing
 import os
 import json
 
-def run_benchmark(model_name, rag, temperature, top_p, repetition_penalty, rag_temperature, rag_top_p, rag_repetition_penalty, top_n, threshold, db_path, lora_path, print_output, gpu_id):
+def run_benchmark(model_name, rag, temperature, top_p, repetition_penalty, rag_temperature, rag_top_p, rag_repetition_penalty, rag_max_tokens, top_n, threshold, db_path, lora_path, print_output, gpu_id):
     env = os.environ.copy()
     env["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
     
@@ -20,23 +20,23 @@ def run_benchmark(model_name, rag, temperature, top_p, repetition_penalty, rag_t
         "--benchmark_num_questions", "-1",
         "--db_path", db_path,
         "--top_n", str(top_n),
-        "--threshold", str(threshold)
+        "--threshold", str(threshold),
+        "--rag_max_tokens", str(rag_max_tokens)
     ]
 
     if rag:
         command.extend(["--rag", rag])
         if rag_temperature != -1:
             command.extend(["--rag_temperature", str(rag_temperature)])
-            if rag_top_p is not None:
-                command.extend(["--rag_top_p", str(rag_top_p)])
+        if rag_top_p is not None:
+            command.extend(["--rag_top_p", str(rag_top_p)])
         if rag_repetition_penalty is not None:
             command.extend(["--rag_repetition_penalty", str(rag_repetition_penalty)])
 
     if temperature != -1:
         command.extend(["--temperature", str(temperature)])
-        if top_p is not None:
-            command.extend(["--top_p", str(top_p)])
-    
+    if top_p is not None:
+        command.extend(["--top_p", str(top_p)])
     if repetition_penalty is not None:
         command.extend(["--repetition_penalty", str(repetition_penalty)])
 
@@ -69,17 +69,15 @@ def run_benchmark(model_name, rag, temperature, top_p, repetition_penalty, rag_t
 
     return accuracy, command
 
-
 def format_params(params):
     param_names = ["Model", "RAG", "Temperature", "Top P", "Repetition Penalty", 
                    "RAG Temperature", "RAG Top P", "RAG Repetition Penalty", 
-                   "Top N", "Threshold", "DB Path", "LoRA Path"]
+                   "RAG Max Tokens", "Top N", "Threshold", "DB Path", "LoRA Path"]
     formatted = []
     for name, value in zip(param_names, params):
         if value is not None and value != -1:
             formatted.append(f"{name}: {value}")
     return ", ".join(formatted)
-
 
 def worker(queue, results, print_output, gpu_id):
     while True:
@@ -104,26 +102,27 @@ def load_tested_combinations(results_file):
 
 def optimize_parameters(print_output, num_gpus):
     models = ["phi2"]
-    rag_versions = ["v4"]
-    temperatures = [ .1, .2, .3]
-    top_ps = [0.9, 0.95]
-    repetition_penalties = [1.1, 1.2]
-    rag_temperatures = [-1, 0.1, 0.2, .3]
-    rag_top_ps = [None, 0.9, 0.95]
-    rag_repetition_penalties = [None, 1.0, 1.1, 1.2]
-    top_ns = [6]
-    thresholds = [0.1]
+    rag_versions = ["v9"]
+    temperatures = [-1, 0.1, 0.2, 0.3]
+    top_ps = [0.5 ,0.9, 1]
+    repetition_penalties = [1.1, 1.2, 1.3]
+    rag_temperatures = [-1, 0.1, 0.2, 0.3]
+    rag_top_ps = [None, 0.9, 1, .5]
+    rag_repetition_penalties = [1.1, 1.2, 1.3]
+    rag_max_tokens = [30]
+    top_ns = [8]
+    thresholds = [0.0]
     db_paths = ["output/db_gte-large-preprocessed-2"]
-    lora_paths = ["./fine_tuned_models/phi-2-finetuned-with-rag"]
+    lora_paths = ["./fine_tuned_models/phi-2-continued-training-rag"]
 
     results_file = "optimization_results.csv"
     tested_combinations = load_tested_combinations(results_file)
 
     all_combinations = []
     for combo in itertools.product(models, rag_versions, temperatures, top_ps, repetition_penalties, 
-                                   rag_temperatures, rag_top_ps, rag_repetition_penalties, 
+                                   rag_temperatures, rag_top_ps, rag_repetition_penalties, rag_max_tokens,
                                    top_ns, thresholds, db_paths, lora_paths):
-        model, rag, temp, top_p, rep_penalty, rag_temp, rag_top_p, rag_rep_penalty, top_n, threshold, db_path, lora_path = combo
+        model, rag, temp, top_p, rep_penalty, rag_temp, rag_top_p, rag_rep_penalty, rag_max_tok, top_n, threshold, db_path, lora_path = combo
         
         # Skip combinations where RAG is None but RAG-specific parameters are set
         if rag is None and (rag_temp != -1 or rag_top_p is not None or rag_rep_penalty is not None):
@@ -175,7 +174,7 @@ def optimize_parameters(print_output, num_gpus):
         if not file_exists:
             writer.writerow(["Model", "RAG", "Temperature", "Top P", "Repetition Penalty", 
                              "RAG Temperature", "RAG Top P", "RAG Repetition Penalty", 
-                             "Top N", "Threshold", "DB Path", "LoRA Path", "Accuracy", "Full Command"])
+                             "RAG Max Tokens", "Top N", "Threshold", "DB Path", "LoRA Path", "Accuracy", "Full Command"])
 
         while completed_tests < total_tests:
             params, accuracy, command = results.get()
@@ -199,6 +198,8 @@ def optimize_parameters(print_output, num_gpus):
                 print(f"Best Parameters: {format_params(best_parameters)}")
             csvfile.flush()
 
+
+
     for p in processes:
         p.join()
 
@@ -219,6 +220,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Optimize model parameters for benchmark tests using multiple GPUs.")
     parser.add_argument("-p", "--print_output", action="store_true", help="Print the output of each subprocess to the console.")
     parser.add_argument("-g", "--num_gpus", type=int, default=1, help="Number of GPUs to use for parallel processing.")
+
     args = parser.parse_args()
 
     optimize_parameters(args.print_output, args.num_gpus)

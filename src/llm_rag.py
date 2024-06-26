@@ -219,6 +219,15 @@ class llmRag:
         
         return results
     
+    
+    def search_documents_with_llm_and_nlp(self, query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0, temperature=0.3, max_tokens=15, top_p=0.9, repetition_penalty=1.2):
+        logger.info(f"Extracting keywords from the query using NLP...")
+        keywords = self.extract_keywords(query)
+        logger.info(f"Extracted keywords: {keywords}")
+
+        results = self.search_documents_with_llm(query, llm_pipeline, top_n, threshold, temperature, max_tokens, top_p, repetition_penalty)
+        return results
+    
     def search_documents_with_nlp(self, query: str, top_n: int = 5, threshold: float = 0.0):
         logger.info(f"Extracting keywords from the query using NLP...")
         keywords = self.extract_keywords(query)
