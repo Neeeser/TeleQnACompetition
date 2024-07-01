@@ -8,7 +8,7 @@ import os
 
 
 class llmPipeline:
-    def __init__(self, model_name="microsoft/phi-2", lora_path=None, seed=333):
+    def __init__(self, model_name="microsoft/phi-2", lora_path=None, seed=1969):
         # Check for CUDA availability
         if torch.cuda.is_available():
             self.device = "cuda:0"
@@ -55,9 +55,34 @@ class llmPipeline:
         logger.info("LoRA model loaded successfully.")
 
     def call_local_model(self, prompt, temperature=0.1, max_tokens=100, top_p=None, repetition_penalty=None):
+        # Check if prompt exceeds context size
+        max_context_size = 2048
+        target_size = max_context_size - 100  # Aim for 100 tokens under max_context_size
+        encoded_prompt = self.tokenizer.encode(prompt)
+        print(f"Initial prompt length: {len(encoded_prompt)} tokens")
+
+        if len(encoded_prompt) > target_size:
+            # Split the prompt at "Question:"
+            split_prompt = prompt.split("Question:")
+            
+            if len(split_prompt) > 1:
+                # If "Question:" is found, trim the context before it
+                question = "Question:" + split_prompt[1]
+                question_length = len(self.tokenizer.encode(question))
+                context_target_size = target_size - question_length
+                context = self.tokenizer.decode(self.tokenizer.encode(split_prompt[0])[-context_target_size:], skip_special_tokens=True)
+                prompt = context.strip() + question
+            else:
+                # If "Question:" is not found, simply trim from the front
+                prompt = self.tokenizer.decode(encoded_prompt[-target_size:], skip_special_tokens=True)
+
+            logger.warning("Prompt exceeded target size. Trimmed context.")
+            logger.debug(f"New prompt length: {len(self.tokenizer.encode(prompt))} tokens")
+            logger.debug(f"New prompt: {prompt}")
+
         # Encoding and generating response
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
-        
+
         # Check if temperature is None and set do_sample accordingly
         if temperature is None:
             do_sample = False

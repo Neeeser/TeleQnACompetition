@@ -35,6 +35,20 @@ def prepare_questions(question_dict):
 
     return user_prompt, question_only, answer_only
 
+def extract_3gpp_release(text):
+        # Define the regular expression pattern to match the metadata fields
+        pattern = r"\[(3GPP Release \d+)\]"
+        
+        # Find all matches in the text
+        matches = re.findall(pattern, text)
+        
+        # Extract the first match (assuming there's only one relevant metadata field per document)
+        metadata = matches[0] if matches else None
+        
+        # Remove all metadata fields from the text
+        clean_text = re.sub(pattern, '', text).strip()
+        
+        return metadata, clean_text
 
 
 def format_input(df, idx):
@@ -67,7 +81,7 @@ def dict_to_frame(text):
         "option_3": text.get("option 3", None),
         "option_4": text.get("option 4", None),
         "option_5": text.get("option 5", None),
-        "category": text["category"],
+
     })
     return pd.DataFrame(data)
 

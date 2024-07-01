@@ -114,7 +114,21 @@ def pred_answer(llm, args, question_only, prompt, prompt_with_rag, map_ans, key,
     
     return pred_option
 
+def generate_candidate_answer(query: str, llm_pipeline, top_n: int = 5, threshold: float = 0.0, temperature=0.3, max_tokens=15, top_p=0.9, repetition_penalty=1.2):
+    logger.info(f"Generating improved query using LLM pipeline...")
+    # Generate Candidate Answers
+    candidate_answers = llm_pipeline.call_local_model(
+        prompt=(
+                f"You are an expert in telecommunications and 3GPP standards. Answer the following question based on your knowledge and expertise. Please provide only that best answer. Avoid any additional explanations or text beyond the answer.\n\n{query}\nAnswer:"),
+        temperature=temperature,
+        max_tokens=max_tokens,
+        top_p=top_p,
+        repetition_penalty=repetition_penalty
+    ).strip()
+    
+    return candidate_answers
 
+        
 
 if __name__ == "__main__":
 
@@ -128,7 +142,7 @@ if __name__ == "__main__":
     parser.add_argument("--max_attempts", default=5, type=int,
                         help="Maximal number of trials before skipping the question")
     parser.add_argument("--log_step", default=100, type=int, help="Save the answer sheet every log_step questions")
-    parser.add_argument("--benchmark", default=True, action='store_true',
+    parser.add_argument("--benchmark", default=False, action='store_true',
                         help="Benchmark the model with a sample of questions with answers")
     parser.add_argument("--benchmark_num_questions", default=-1, type=int,
                         help="Number of questions to use for benchmarking (-1 to use all questions)")
@@ -144,10 +158,12 @@ if __name__ == "__main__":
     parser.add_argument("--rag_top_p", default=.9, type=float, help="Top_p for the rag generation")
     parser.add_argument("--repetition_penalty", default=None, type=float, help="repetition_penalty for the model generation")
     parser.add_argument("--rag_repetition_penalty", default=1.2, type=float, help="repetition_penalty for the model generation")
-    parser.add_argument("--rag_max_tokens", default=30, type=int, help="Number of tokens to generate in rag resposne with LLM")
+    parser.add_argument("--rag_max_tokens", default=15, type=int, help="Number of tokens to generate in rag resposne with LLM")
     parser.add_argument("--lora", default=False, action='store_true',
                         help="Apply LoRA model to the local model")
-    parser.add_argument("--lora_path", default="./fine_tuned_models/phi-2-continued-training-rag",
+    parser.add_argument("--candidate_answer", default=False, action='store_true',
+                        help="Generate candidate answer using LLM")
+    parser.add_argument("--lora_path", default="./fine_tuned_models/phi-2-finetuned-with-rag",
                         help="Path to the lora model")
     parser.add_argument("--db_path", default="output/db_gte-large-preprocessed-2",
                         help="Path to the chroma db")
@@ -231,12 +247,15 @@ if __name__ == "__main__":
                 docs_llm = llm_rag.search_documents_with_llm_and_nlp(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
                 docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
                 relevant_docs = get_weighted_results([docs_llm, docs_nlp], weights=[0.5, 0.5])
+            elif args.rag == "v11":
+                relevant_docs = llm_rag.search_documents_with_ner(question_only, top_n=args.top_n, threshold=args.threshold)
+                
             else:
                 relevant_docs = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
 
             if relevant_docs:
                 if args.summarize:
-                    final_summary = llm_rag.summarize_results(question_only, relevant_docs, llm)
+                    final_summary = llm_rag.summarize_results([doc[0] for doc in relevant_docs])
                     relevant_text = final_summary
                 else:
                     relevant_text = " ".join([doc[0] for doc in relevant_docs])
@@ -292,7 +311,7 @@ if __name__ == "__main__":
         if args.benchmark_num_questions == -1:
             args.benchmark_num_questions = len(all_questions)
         accuracy = correct_count / args.benchmark_num_questions * 100
-        print(f"Benchmark accuracy: {accuracy:.2f}%")
+        print(f"Benchmark accuracy: {accuracy:.2f}%" + " Correct answers: " + str(correct_count) + " Total questions: " + len(all_questions))
     else:
         output_file = f'output/{args.model_name}_answer_sheet_final.csv'
 

@@ -11,10 +11,14 @@ from loguru import logger
 import chromadb
 import spacy
 from .docx_preprocess import get_header_chunks
-from typing import List, Dict
+from typing import List, Dict, Tuple
 import re
 import json
 import ast
+from summa import summarizer
+from collections import OrderedDict
+
+
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_API_TOKEN"] = "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"  # Replace with your Hugging Face token
@@ -236,34 +240,67 @@ class llmRag:
         results = self.search_documents(keywords, top_n, threshold)
         return results
 
-
-    def summarize_individual_result(self, result: str, query: str, llm_pipeline):
-        summary_prompt = (
-            f" '{result}'. "
-            f"Here is a summary of the text with only the key points: "
-        )
-        summary = llm_pipeline.call_local_model(
-            prompt=summary_prompt,
-            temperature=0.3,
-            max_tokens=250,
-            top_p=0.9,
-            repetition_penalty=1.2
-        )
-        print(f"Generated summary: {summary.strip()}")
-        return summary.strip()
-
-    def summarize_results(self, query: str, results: List[str], llm_pipeline):
-        logger.info(f"Summarizing the results from {len(results)} documents...")
-        individual_summaries = [
-            self.summarize_individual_result(result[0], query, llm_pipeline) for result in results
+    def search_documents_with_ner(self, query: str, top_n: int = 5, threshold: float = 0.0) -> List[Tuple[str, str, float]]:
+        release, query = self.extract_3gpp_release(query)
+        
+        # Perform NER on the query
+        doc = self.nlp(query)
+        entities = [ent.text.lower() for ent in doc.ents]
+        
+        # Extract keywords
+        keywords = [token.text.lower() for token in doc if token.is_alpha and not token.is_stop]
+        
+        logger.info(f"Extracted entities from query: {entities}")
+        logger.info(f"Extracted keywords from query: {keywords}")
+        
+        # Combine entities, and keywords for search
+        search_terms = set(entities + keywords)
+        enhanced_query = " ".join(search_terms)
+        
+        logger.info(f"Enhanced search query: {enhanced_query}")
+        
+        # Perform the search with the enhanced query
+        search_results = self.search_documents(enhanced_query, top_n=top_n*4, threshold=threshold)
+        
+        # Filter results based on entity or keyword presence
+        filtered_results = [
+            result for result in search_results
+            if any(entity in result[0].lower() for entity in entities) or 
+            any(keyword in result[0].lower() for keyword in keywords)
         ]
-        combined_summaries = "\n".join(individual_summaries)
-        logger.info(f"Generated combined summary: {combined_summaries}")
-        return combined_summaries
-    
+        
+        # Log the number of filtered out results
+        filtered_out_count = len(search_results) - len(filtered_results)
+        logger.info(f"Filtered out {filtered_out_count} results based on entity and keyword matching")
+        
+        # Sort filtered results by score and return top_n
+        filtered_results.sort(key=lambda x: x[2], reverse=True)
+        return filtered_results[:top_n]
 
+    def summarize_results(self, relevant_docs: List[str], per_reduction: float = 0.5) -> str:
+        # Combine all documents into a single string
+        full_text = ' '.join(relevant_docs)
         
+        # Split the text into sentences
+        sentences = re.split(r'(?<=[.!?]) +', full_text)
         
+        # Remove duplicate sentences while preserving order
+        unique_sentences = list(OrderedDict.fromkeys(sentences))
+        
+        # Join the unique sentences back into a single string
+        unique_text = ' '.join(unique_sentences)
+        
+        # Calculate the ratio (opposite of reduction)
+        ratio = 1 - per_reduction
+        
+        # Use TextRank to generate the summary
+        summary = summarizer.summarize(unique_text, ratio=ratio)
+        
+        return summary
+
+
+
+            
 if __name__ == '__main__':
     rag = llmRag(db_path='output/db_gte-large-preprocessed-2')
     rag.store_documents_from_json("processed_dicts.json")
