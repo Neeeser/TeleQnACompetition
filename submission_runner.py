@@ -311,7 +311,7 @@ if __name__ == "__main__":
         if args.benchmark_num_questions == -1:
             args.benchmark_num_questions = len(all_questions)
         accuracy = correct_count / args.benchmark_num_questions * 100
-        print(f"Benchmark accuracy: {accuracy:.2f}%" + " Correct answers: " + str(correct_count) + " Total questions: " + len(all_questions))
+        print(f"Benchmark accuracy: {accuracy:.2f}%" + " Correct answers: " + str(correct_count) + " Total questions: " + str(len(all_questions)))
     else:
         output_file = f'output/{args.model_name}_answer_sheet_final.csv'
 
