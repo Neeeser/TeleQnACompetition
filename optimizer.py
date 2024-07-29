@@ -102,18 +102,18 @@ def load_tested_combinations(results_file):
 
 def optimize_parameters(print_output, num_gpus):
     models = ["phi2"]
-    rag_versions = ["v9"]
-    temperatures = [-1, 0.1, 0.2, 0.3]
-    top_ps = [0.5 ,0.9, 1]
-    repetition_penalties = [1.1, 1.2, 1.3]
-    rag_temperatures = [-1, 0.1, 0.2, 0.3]
-    rag_top_ps = [None, 0.9, 1, .5]
-    rag_repetition_penalties = [1.1, 1.2, 1.3]
-    rag_max_tokens = [30]
-    top_ns = [8]
-    thresholds = [0.0]
+    rag_versions = ["v4"]
+    temperatures = [0.15, 0.2, 0.25]
+    top_ps = [0.85 ,0.9, .95]
+    repetition_penalties = [1.1, 1.15, 1.2]
+    rag_temperatures = [0.15, 0.2, 0.25]
+    rag_top_ps = [0.85 ,0.9, .95]
+    rag_repetition_penalties = [1.1, 1.15, 1.2]
+    rag_max_tokens = [15, 20, 25, 30]
+    top_ns = [6, 8]
+    thresholds = [0.1]
     db_paths = ["output/db_gte-large-preprocessed-2"]
-    lora_paths = ["./fine_tuned_models/phi-2-continued-training-rag"]
+    lora_paths = ["./fine_tuned_models/phi-2-finetuned-with-rag"]
 
     results_file = "optimization_results.csv"
     tested_combinations = load_tested_combinations(results_file)

@@ -35,42 +35,47 @@ def select_last_questions(questions_file, num_questions=5):
     selected_questions = {key: questions[key] for key in question_keys}
     return selected_questions
 
-def combine_results(docs1, docs2):
+def combine_results(docs_list):
     combined_docs = []
     seen_texts = set()
     
-    for doc in docs1 + docs2:
-        if doc[0] not in seen_texts:
-            combined_docs.append(doc)
-            seen_texts.add(doc[0])
+    for docs in docs_list:
+
+        text, filename, score = docs
+        if text not in seen_texts:
+            combined_docs.append(docs)
+            seen_texts.add(text)
+
     
+    # # Sort the combined docs by their weighted scores highest to lowest
+    # combined_docs.sort(key=lambda x: x[2], reverse=True)
+
     return combined_docs
 
 
-def get_weighted_results(docs_list, weights):
-    weighted_docs = []
-   
 
-    for docs, weight in zip(docs_list, weights):
 
+def get_weighted_results(docs_list, weights, top_n):
+    combined_docs = []
+    seen_texts = set()
+    
+    # Ensure we only process the first two document lists (normal and LLM)
+    for docs, weight in list(zip(docs_list, weights))[:2]:
         for doc in docs:
             try:
-                # doc is a tuple (document, filename, score)
-                weighted_doc = (
-                    doc[0],  # document
-                    doc[1],  # filename
-                    float(doc[2]) * weight  # score
-                )
-                weighted_docs.append(weighted_doc)
+                text, filename, score = doc
+                if text not in seen_texts:
+                    weighted_score = float(score) * weight
+                    combined_docs.append((text, filename, weighted_score))
+                    seen_texts.add(text)
             except ValueError as e:
-
                 continue  # Skip documents where the score cannot be converted to float
 
+    # Sort the combined docs by their weighted scores
+    combined_docs.sort(key=lambda x: x[2], reverse=True)
 
-    weighted_docs.sort(key=lambda x: x[2], reverse=True)
-
-
-    return weighted_docs[:args.top_n]
+    # Return the top N results
+    return combined_docs[:top_n]
 
 
 
@@ -137,7 +142,7 @@ if __name__ == "__main__":
     ############################
     parser = argparse.ArgumentParser(description="TeleQA evaluation runner")
     parser.add_argument("--model_name", default="phi2", help="model name")
-    parser.add_argument("--rag", default=None, help="RAG solution (x for default, v2 for optimized, v3 for combined, nlp for nlp model, mx for mixed nlp and default, v4 v2+nlp , v5 v2+mx)")
+    parser.add_argument("--rag", action="store_true", help="Enable RAG (Retrieval-Augmented Generation)")
     parser.add_argument("--question_path", default="./data/TeleQnA_testing1.txt", help="data file")
     parser.add_argument("--max_attempts", default=5, type=int,
                         help="Maximal number of trials before skipping the question")
@@ -170,6 +175,12 @@ if __name__ == "__main__":
     parser.add_argument("--accuracy_threshold", default=0, type=float, help="Accuracy threshold for early stopping")
     parser.add_argument("--filter", default=False, action='store_true',
                         help="Filter options with LLM")
+    # Modified argument parsing for boolean weights
+    parser.add_argument("--weight_normal", default=True,action="store_true", help="Enable normal document search")
+    parser.add_argument("--weight_llm", default=True, action="store_true", help="Enable LLM-based document search")
+    parser.add_argument("--weight_nlp", default=False, action="store_true", help="Enable NLP-based document search")
+    parser.add_argument("--weight_ner", default=False, action="store_true", help="Enable NER-based document search")
+
     args = parser.parse_args()
     
     logger.add("log/loguru_phi2.txt")
@@ -202,68 +213,55 @@ if __name__ == "__main__":
         prompt = format_input(frame, 0)
         relevant_text = None
         prompt_with_rag = None
+
         if args.rag:
-            if args.rag == 'v2':
-                relevant_docs = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-            elif args.rag == 'v3':
-                half = args.top_n // 2
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-                docs_normal = llm_rag.search_documents(question_only, top_n=half, threshold=args.threshold)
-                relevant_docs = combine_results(docs_llm, docs_normal)
-            elif args.rag == 'nlp':
-                relevant_docs = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
-            elif args.rag == 'mx':
-                half = args.top_n // 2
-                docs_normal = llm_rag.search_documents(question_only, top_n=half, threshold=args.threshold)
-                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=half, threshold=args.threshold)
-                relevant_docs = combine_results(docs_nlp, docs_normal)
-            elif args.rag == 'v4':
-                half = args.top_n // 2
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=half, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=half, threshold=args.threshold)
-                relevant_docs = combine_results(docs_llm, docs_nlp)
-            elif args.rag == 'v5':
-                third = args.top_n // 3
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=third, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-                docs_normal = llm_rag.search_documents(question_only, top_n=third, threshold=args.threshold)
-                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=third, threshold=args.threshold)
-                relevant_docs = combine_results(docs_llm, combine_results(docs_normal, docs_nlp))
-            elif args.rag == 'v6':
-                docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
-                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
-                relevant_docs = get_weighted_results([docs_nlp, docs_normal], weights=[0.5, 0.5])
-            elif args.rag == 'v7':
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
-                relevant_docs = get_weighted_results([docs_llm, docs_nlp], weights=[0.5, 0.5])
-            elif args.rag == 'v8':
-                docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-                docs_normal = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
-                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
-                relevant_docs = get_weighted_results([docs_llm, docs_normal, docs_nlp], weights=[0.33, 0.33, 0.34])
-            elif args.rag == 'v9':
-                relevant_docs = llm_rag.search_documents_with_llm_and_nlp(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-            elif args.rag == "v10":
-                docs_llm = llm_rag.search_documents_with_llm_and_nlp(question_only, llm, top_n=args.top_n, threshold=args.threshold, temperature=args.rag_temperature, top_p=args.rag_top_p, repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
-                docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=args.top_n, threshold=args.threshold)
-                relevant_docs = get_weighted_results([docs_llm, docs_nlp], weights=[0.5, 0.5])
-            elif args.rag == "v11":
-                relevant_docs = llm_rag.search_documents_with_ner(question_only, top_n=args.top_n, threshold=args.threshold)
-                
+            docs_list = []
+            
+            # Calculate the number of enabled search methods
+            num_methods = sum([args.weight_normal, args.weight_llm, args.weight_nlp, args.weight_ner])
+            if num_methods == 0:
+                logger.warning(f"No searches performed due to all weights being zero for Question ID: {key.split(' ')[1]}")
+                relevant_docs = None
             else:
-                relevant_docs = llm_rag.search_documents(question_only, top_n=args.top_n, threshold=args.threshold)
+                docs_per_method = args.top_n // num_methods
+                
+                if args.weight_normal:
+                    docs_normal = llm_rag.search_documents(question_only, top_n=docs_per_method, threshold=args.threshold)
+                    docs_list.extend(docs_normal)
+
+                if args.weight_llm:
+                    docs_llm = llm_rag.search_documents_with_llm(question_only, llm, top_n=docs_per_method, threshold=args.threshold, 
+                                                                temperature=None if args.rag_temperature == -1 else args.rag_temperature, top_p=args.rag_top_p, 
+                                                                repetition_penalty=args.rag_repetition_penalty, max_tokens=args.rag_max_tokens)
+                    docs_list.extend(docs_llm)
+
+                if args.weight_nlp:
+                    docs_nlp = llm_rag.search_documents_with_nlp(question_only, top_n=docs_per_method, threshold=args.threshold)
+                    docs_list.extend(docs_nlp)
+
+                if args.weight_ner:
+                    docs_ner = llm_rag.search_documents_with_ner(question_only, top_n=docs_per_method, threshold=args.threshold)
+                    docs_list.extend(docs_ner)
+
+                relevant_docs = combine_results(docs_list)
+                
+                if len(relevant_docs) > args.top_n:
+                    relevant_docs = relevant_docs[:args.top_n]
 
             if relevant_docs:
                 if args.summarize:
                     final_summary = llm_rag.summarize_results([doc[0] for doc in relevant_docs])
                     relevant_text = final_summary
                 else:
+                    for doc in relevant_docs:
+                        print("Document: " + doc[0] + "\n")
                     relevant_text = " ".join([doc[0] for doc in relevant_docs])
-                print(relevant_text)
+                #print(relevant_text)
                 prompt_with_rag = syst_prompt_with_relevant_text_version1.format(relevant_text, prompt)
             else:
                 logger.warning(f"No relevant documents found for Question ID: {key.split(' ')[1]}")
-                prompt_with_rag = None  # Ensure it's defined
+                prompt_with_rag = None
+
 
 
 
@@ -311,7 +309,8 @@ if __name__ == "__main__":
         if args.benchmark_num_questions == -1:
             args.benchmark_num_questions = len(all_questions)
         accuracy = correct_count / args.benchmark_num_questions * 100
-        print(f"Benchmark accuracy: {accuracy:.2f}%" + " Correct answers: " + str(correct_count) + " Total questions: " + str(len(all_questions)))
+        print("Correct answers: " + str(correct_count) + " Total questions: " + str(len(all_questions)))
+        print(f"Benchmark accuracy: {accuracy:.2f}%")
     else:
         output_file = f'output/{args.model_name}_answer_sheet_final.csv'
 

@@ -9,7 +9,6 @@ import os
 import json
 import optuna
 
-
 class GPUManager:
     def __init__(self, num_gpus):
         self.available_gpus = multiprocessing.Queue()
@@ -22,7 +21,6 @@ class GPUManager:
     def release_gpu(self, gpu_id):
         self.available_gpus.put(gpu_id)
 
-
 def run_benchmark(params, print_output, gpu_id):
     env = os.environ.copy()
     env["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
@@ -32,33 +30,25 @@ def run_benchmark(params, print_output, gpu_id):
         "--model_name", params['model_name'],
         "--benchmark",
         "--benchmark_num_questions", "-1",
-        # "--benchmark_path", "data/filtered_incorrect_questions74.txt", 
+        "--rag",  # RAG is always enabled
         "--db_path", params['db_path'],
         "--top_n", str(params['top_n']),
-        "--threshold", str(params['threshold'])
+        "--threshold", str(params['threshold']),
+        "--rag_temperature", str(params['rag_temperature']),
+        "--rag_top_p", str(params['rag_top_p']),
+        "--rag_repetition_penalty", str(params['rag_repetition_penalty']),
+        "--rag_max_tokens", str(params['rag_max_tokens']),
+        "--temperature", str(params['temperature']),
+        "--top_p", str(params['top_p']),
+        "--repetition_penalty", str(params['repetition_penalty']),
     ]
-
-    if params['rag']:
-        command.extend(["--rag", params['rag']])
-        if params['rag_temperature'] != -1:
-            command.extend(["--rag_temperature", str(params['rag_temperature'])])
-            if params['rag_top_p'] is not None:
-                command.extend(["--rag_top_p", str(params['rag_top_p'])])
-        if params['rag_repetition_penalty'] is not None:
-            command.extend(["--rag_repetition_penalty", str(params['rag_repetition_penalty'])])
-        command.extend(["--rag_max_tokens", str(params['rag_max_tokens'])])
-
-    if params['temperature'] != -1:
-        command.extend(["--temperature", str(params['temperature'])])
-        if params['top_p'] is not None:
-            command.extend(["--top_p", str(params['top_p'])])
-    
-    if params['repetition_penalty'] is not None:
-        command.extend(["--repetition_penalty", str(params['repetition_penalty'])])
 
     if params['lora_path']:
         command.extend(["--lora", "--lora_path", params['lora_path']])
-
+    
+    if params['summarize']:
+        command.append("--summarize")
+    
     try:
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, env=env)
         output, error = process.communicate(timeout=3600)  # 1 hour timeout
@@ -91,23 +81,27 @@ def run_benchmark(params, print_output, gpu_id):
         print(f"GPU {gpu_id}: Error occurred during benchmark execution: {str(e)}")
         return 0.0, command
 
-def objective(trial, print_output,gpu_manager, static_params):
+def objective(trial, print_output, gpu_manager, static_params):
     gpu_id = gpu_manager.get_gpu()
     try:
         params = {
             'model_name': static_params['model_name'],
-            'rag': static_params['rag'],
-            'temperature': trial.suggest_float('temperature', 0.1, .5),
-            'top_p': trial.suggest_float('top_p', 0.1, 1.0),
-            'repetition_penalty': trial.suggest_float('repetition_penalty', 1.0, 1.5),
-            'rag_temperature': trial.suggest_float('rag_temperature', 0.1, .5),
-            'rag_top_p': trial.suggest_float('rag_top_p', 0.1, 1.0),
-            'rag_repetition_penalty': trial.suggest_float('rag_repetition_penalty', 1.0, 1.5),
-            'rag_max_tokens': trial.suggest_int('rag_max_tokens', 15, 30),
-            'top_n': trial.suggest_int('top_n', 4, 8),
-            'threshold': trial.suggest_float('threshold', 0.0, 0.5),
-            'db_path': static_params['db_path'],
-            'lora_path': static_params['lora_path']
+            'temperature': trial.suggest_float('temperature', 0.15, 0.3),
+            'top_p': trial.suggest_float('top_p', 0.85, 0.96),
+            'repetition_penalty': trial.suggest_float('repetition_penalty', 1.05, 1.15),
+            'rag_temperature': trial.suggest_float('rag_temperature', 0.24, 0.28),
+            'rag_top_p': trial.suggest_float('rag_top_p', 0.82, 0.98),
+            'rag_repetition_penalty': trial.suggest_float('rag_repetition_penalty', 1.05, 1.08),
+            'rag_max_tokens': trial.suggest_int('rag_max_tokens', 14, 18),
+            'top_n': trial.suggest_int('top_n', 3, 6),
+            'threshold': trial.suggest_float('threshold', 0.02, 0.11),
+            'db_path': trial.suggest_categorical('db_path', [
+                "output/db_gte-large-preprocessed-2"
+            ]),
+            'lora_path': trial.suggest_categorical('lora_path', [
+                "./fine_tuned_models/phi-2-finetuned-with-rag"
+            ]),
+            'summarize': trial.suggest_categorical('summarize', [False]),
         }
         
         accuracy, command = run_benchmark(params, print_output, gpu_id)
@@ -118,19 +112,14 @@ def objective(trial, print_output,gpu_manager, static_params):
 def optimize_parameters(print_output, num_gpus, study_name, storage):
     static_params = {
         'model_name': "phi2",
-        'rag': "v4",
-        'db_path': "output/db_gte-large-preprocessed-2",
-        'lora_path': "./fine_tuned_models/phi-2-continued-training-rag"
     }
 
     results_file = "optimization_results.csv"
-    
     def logger(study, trial):
         with open(results_file, "a", newline="") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow([
                 static_params['model_name'],
-                static_params['rag'],
                 trial.params['temperature'],
                 trial.params['top_p'],
                 trial.params['repetition_penalty'],
@@ -140,8 +129,13 @@ def optimize_parameters(print_output, num_gpus, study_name, storage):
                 trial.params['rag_max_tokens'],
                 trial.params['top_n'],
                 trial.params['threshold'],
-                static_params['db_path'],
-                static_params['lora_path'],
+                trial.params['db_path'],
+                trial.params['lora_path'],
+                trial.params['summarize'],
+                1,  # weight_normal
+                1,  # weight_llm
+                0,  # weight_nlp
+                0,  # weight_ner
                 trial.value,
                 json.dumps(trial.user_attrs.get('command', []))
             ])
@@ -150,9 +144,11 @@ def optimize_parameters(print_output, num_gpus, study_name, storage):
         with open(results_file, "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow([
-                "Model", "RAG", "Temperature", "Top P", "Repetition Penalty", 
+                "Model", "Temperature", "Top P", "Repetition Penalty", 
                 "RAG Temperature", "RAG Top P", "RAG Repetition Penalty", 
-                "RAG Max Tokens", "Top N", "Threshold", "DB Path", "LoRA Path", "Accuracy", "Full Command"
+                "RAG Max Tokens", "Top N", "Threshold", "DB Path", "LoRA Path", 
+                "Summarize", "Weight Normal", "Weight LLM", "Weight NLP", "Weight NER",
+                "Accuracy", "Full Command"
             ])
 
     study = optuna.create_study(study_name=study_name, storage=storage, load_if_exists=True, direction='maximize')
@@ -170,14 +166,10 @@ def optimize_parameters(print_output, num_gpus, study_name, storage):
         estimated_remaining_time = avg_time_per_trial * remaining_trials
         progress.set_postfix_str(f"Elapsed: {elapsed_time:.2f}s, Remaining: {estimated_remaining_time:.2f}s ({estimated_remaining_time / 3600:.2f}h)")
 
-
     gpu_manager = GPUManager(num_gpus)
 
-    def objective_wrapper(trial):
-        return objective(trial, print_output, gpu_manager, static_params)
-
     study.optimize(
-        objective_wrapper,
+        lambda trial: objective(trial, print_output, gpu_manager, static_params),
         n_trials=n_trials,
         n_jobs=num_gpus,
         callbacks=[logger, update_progress]

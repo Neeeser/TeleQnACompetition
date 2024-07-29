@@ -26,7 +26,7 @@ class llmPipeline:
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            torch_dtype=torch.bfloat16  # Specific setting for Falcon model
+            # torch_dtype=torch.bfloat16  # Specific setting for Falcon model
         ).to(self.device)
         
         if self.tokenizer.pad_token is None:
